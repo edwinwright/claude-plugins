@@ -1,15 +1,21 @@
 {
-	"name": "edwinwright-plugins-work",
-	"description": "Ed Wright's private marketplace of Claude plugins for freelance/contract software development work.",
-	"owner": {
-		"name": "Ed Wright"
-	},
-	"plugins": [
-		{
-			"name": "delivery-design",
-			"description": "End-to-end SDLC delivery pipeline: product briefs, domain docs, feature triage, PRDs, technical specs, delivery plans, tickets, publishing to Linear/GitHub, and architecture decision records.",
-			"source": "./plugins/delivery-design",
-			"category": "productivity"
-		}
-	]
+  "name": "edwinwright-plugins",
+  "description": "Claude plugins for software delivery and knowledge work: an end-to-end SDLC pipeline, and note and document authoring for an Obsidian vault.",
+  "owner": {
+    "name": "Ed Wright"
+  },
+  "plugins": [
+    {
+      "name": "delivery-design",
+      "description": "End-to-end SDLC delivery pipeline: product briefs, domain docs, feature triage, PRDs, technical specs, delivery plans, tickets, publishing to Linear/GitHub, and architecture decision records.",
+      "source": "./plugins/delivery-design",
+      "category": "productivity"
+    },
+    {
+      "name": "knowledge",
+      "description": "Note and document authoring for an Obsidian vault: the source of truth for document shape and house style, plus workflows for writing and refactoring notes, synthesising conversations, and turning processes into checklists, runbooks, and playbooks.",
+      "source": "./plugins/knowledge",
+      "category": "productivity"
+    }
+  ]
 }

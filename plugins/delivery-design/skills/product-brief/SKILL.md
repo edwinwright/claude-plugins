@@ -11,7 +11,8 @@ This is the first step in the product workflow:
 
 1. **product-brief** (this skill) — idea → Product Brief / Vision + `product-backlog.md`
 2. **domain-doc** — bootstraps `glossary.md` + `domain-model.md`
-3. **feature-brief** — one PRD per backlog item → feeds the feature pipeline
+3. **feature-request** — triages each new idea against the backlog before it is scoped
+4. **feature-brief** — one PRD per backlog item → feeds the feature pipeline
 
 Your goal is a Product Brief clear enough to give a developer the "why" of the product, and a `product-backlog.md` rich enough for `feature-brief` to open any backlog item without further context.
 
@@ -52,6 +53,8 @@ Draw from these as needed:
 Read the template at `product-brief-template.md`. Fill every section.
 
 If a section genuinely has no content, write "None identified at this stage" rather than leaving it blank. This signals deliberate intent rather than omission.
+
+That rule is specific to pipeline artefacts. A Product Brief is a contract with the next stage, so an explicitly empty section carries information — it says the question was asked. Free-standing notes work the other way: `note-formats` deletes unused sections instead, because there is no downstream reader to reassure.
 
 ---
 

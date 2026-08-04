@@ -1,0 +1,8 @@
+{
+  "name": "knowledge",
+  "version": "2.0.0",
+  "description": "Note and document authoring for an Obsidian vault: the source of truth for document shape and house style, plus workflows for writing and refactoring notes, synthesising conversations, and turning processes into checklists, runbooks, and playbooks.",
+  "author": {
+    "name": "Ed Wright"
+  }
+}

@@ -7,12 +7,12 @@ Breaks a Delivery Plan into an Epic and Stories, saved as local Markdown files r
 Use this after `feature-plan` has produced a Delivery Plan. It is step four of the feature pipeline:
 
 ```
-feature-brief → feature-design → feature-plan → feature-tickets → feature-deploy
+feature-brief → feature-design → feature-plan → feature-tickets → feature-publish
 ```
 
 Do not run this skill if the Delivery Plan has unresolved Open Questions — they will cause stories to be scoped or phased incorrectly.
 
-Run `feature-deploy` afterwards to push the generated files to Linear or GitHub Issues.
+Run `feature-publish` afterwards to push the generated files to Linear or GitHub Issues.
 
 ## Inputs
 
@@ -28,7 +28,7 @@ Local Markdown files written to a `tickets/` subfolder:
 - `_epic.md` — the Epic ticket
 - `[story-name].md` — one file per story, named in kebab-case
 
-Each file includes frontmatter (`ticket_type`, `phase`, `depends_on`, `epic`) that `feature-deploy` reads when creating tickets in the project management tool.
+Each file includes frontmatter (`ticket_type`, `phase`, `depends_on`, `epic`) that `feature-publish` reads when creating tickets in the project management tool.
 
 ## How it works
 
@@ -51,16 +51,16 @@ This skill runs entirely within the main agent — no subagents are spawned.
 
 Ticket quality depends on the Tech Spec. Passing only the Delivery Plan produces thinner stories. Passing both the Delivery Plan and the Tech Spec produces richer acceptance criteria and task breakdowns.
 
-This is the safe step — review and edit the generated files before running `feature-deploy`. File changes are free; deleting 30 tickets from Linear is not.
+This is the safe step — review and edit the generated files before running `feature-publish`. File changes are free; deleting 30 tickets from Linear is not.
 
 ## Pipeline
 
 ```
-feature-brief  →  feature-design  →  feature-plan  →  feature-tickets  →  feature-deploy
+feature-brief  →  feature-design  →  feature-plan  →  feature-tickets  →  feature-publish
 idea → PRD        PRD → Tech Spec   Tech Spec → Plan  Plan → local files  files → tickets
 ```
 
-**Next step:** Review the files in `tickets/`, then run `feature-deploy`.
+**Next step:** Review the files in `tickets/`, then run `feature-publish`.
 
 ## Files
 

@@ -1,6 +1,6 @@
 {
   "name": "delivery-design",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "End-to-end SDLC delivery pipeline: product briefs, domain docs, feature triage, PRDs, technical specs, delivery plans, tickets, publishing to Linear/GitHub, and architecture decision records.",
   "author": {
     "name": "Ed Wright"

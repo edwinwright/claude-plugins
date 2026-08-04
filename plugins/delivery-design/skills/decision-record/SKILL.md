@@ -67,9 +67,11 @@ Wait for the subagent(s) to complete. If a lens identifies that the gate does no
 
 ## Step 5: Determine the file number
 
-Look at the existing files in `docs/decisions/<scope>/`. Count the `.md` files already present and increment by one to get the next sequence number. Use a four-digit zero-padded number (e.g. `0001`, `0002`).
+Look at the existing files in `docs/decisions/<scope>/`. Find the **highest** four-digit prefix already in use and increment it by one. Use a four-digit zero-padded number (e.g. `0001`, `0002`).
 
-If `docs/decisions/<scope>/` does not exist, this will be `0001`.
+Read the highest prefix rather than counting files — counting mis-numbers as soon as a record is deleted, or when a file without an `NNNN-` prefix (a README, say) lands in the folder. Ignore any file whose name does not start with four digits and a hyphen.
+
+If `docs/decisions/<scope>/` does not exist or holds no numbered records, this will be `0001`.
 
 ---
 

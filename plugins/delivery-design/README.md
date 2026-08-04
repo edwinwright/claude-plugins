@@ -81,7 +81,7 @@ docs/
 This plugin installs via the repo's marketplace (see the repository root `README.md`):
 
 ```
-/plugin marketplace add <owner>/claude-plugins-work
+/plugin marketplace add edwinwright/claude-plugins
 /plugin install delivery-design
 ```
 
@@ -91,4 +91,4 @@ Skills trigger on natural language — see each skill's `SKILL.md` for trigger p
 
 ## Design reference
 
-Full design rationale: `docs/Delivery Design — Plugin Design.md`
+The constraints this pipeline is built around — local markdown as the single source of truth, project-management tools as sync targets rather than origins, a significance gate on every decision record, and standard formats (MADR, `AGENTS.md`) over bespoke ones — are summarised in the repository [`README.md`](../../README.md), with the skill-authoring conventions in [`CLAUDE.md`](../../CLAUDE.md).

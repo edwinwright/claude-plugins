@@ -1,5 +1,3 @@
-# NNNN. [Title]
-
 ---
 status: proposed | accepted | superseded
 scope: architecture | product | process
@@ -8,6 +6,8 @@ deciders: [name or team]
 supersedes: [filename of superseded record, or leave blank]
 superseded_by: [filename of superseding record, or leave blank]
 ---
+
+# NNNN. [Title]
 
 ## Context
 
