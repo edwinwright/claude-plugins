@@ -1,6 +1,6 @@
 {
   "name": "edwinwright-plugins",
-  "description": "Claude plugins for software delivery and knowledge work: an end-to-end SDLC pipeline, and note and document authoring for an Obsidian vault.",
+  "description": "Claude plugins for software delivery, engineering practice, and knowledge work: an end-to-end SDLC pipeline, personal coding conventions, and note and document authoring for an Obsidian vault.",
   "owner": {
     "name": "Ed Wright"
   },
@@ -9,6 +9,12 @@
       "name": "delivery-design",
       "description": "End-to-end SDLC delivery pipeline: product briefs, domain docs, feature triage, PRDs, technical specs, delivery plans, tickets, publishing to Linear/GitHub, and architecture decision records.",
       "source": "./plugins/delivery-design",
+      "category": "productivity"
+    },
+    {
+      "name": "engineering",
+      "description": "Personal engineering conventions: the judgement rules for TypeScript, React, and Next.js that a linter cannot enforce, plus the standard setup a new project gets.",
+      "source": "./plugins/engineering",
       "category": "productivity"
     },
     {

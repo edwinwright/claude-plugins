@@ -1,6 +1,6 @@
 # claude-plugins — Claude Context
 
-A Claude plugin marketplace holding two plugins: `delivery-design` (an end-to-end SDLC pipeline) and `knowledge` (note and document authoring for an Obsidian vault). Public, and intended to double as a portfolio artifact demonstrating AI-engineering practice. This repo is the single source of truth for these plugins; installed copies elsewhere should be treated as stale.
+A Claude plugin marketplace holding three plugins: `delivery-design` (an end-to-end SDLC pipeline), `engineering` (personal coding conventions), and `knowledge` (note and document authoring for an Obsidian vault). Public, and intended to double as a portfolio artifact demonstrating AI-engineering practice. This repo is the single source of truth for these plugins; installed copies elsewhere should be treated as stale.
 
 > [!warning] Public repo — no personal data
 > Never commit PII, client names, credentials, private vault structure, or commercial terms. Personal-*flavoured* examples are fine and often useful — a runbook for renewing a passport shows the skills generalise past SDLC. Personal *data* is not. Review diffs for leakage before every push.
@@ -17,6 +17,9 @@ plugins/
 │   └── skills/{product-brief, domain-doc, feature-request, feature-brief,
 │               feature-design, feature-plan, feature-tickets,
 │               feature-publish, decision-record}/
+├── engineering/                     personal coding conventions
+│   ├── .claude-plugin/plugin.json
+│   └── skills/{coding-conventions}/
 └── knowledge/                       document shape + note-writing workflows
     ├── .claude-plugin/plugin.json
     └── skills/{note-formats, obsidian-note-writer, session-synthesis, ops-docs}/
@@ -26,7 +29,9 @@ The `delivery-design` skills form a pipeline: `product-brief → domain-doc → 
 
 In `knowledge`, `note-formats` is the source of truth for shape and style; the other three own workflows and call it.
 
-The two plugins are independent — no file in one references a file in the other. Keep it that way: there is no mechanism to declare a cross-plugin dependency, so a skill that reaches into a sibling plugin fails silently when that plugin is not installed. A `documentation` plugin previously shipped with exactly this defect (its only skill delegated all three of its formats to `note-formats` in another plugin) and was merged into `knowledge` to fix it.
+In `engineering`, `coding-conventions` holds only what a linter cannot enforce. Anything ESLint decides deterministically belongs in the lint config and is deliberately absent from the skill — the same one-owner-per-rule doctrine applied across tools rather than across skills.
+
+The three plugins are independent — no file in one references a file in another. Keep it that way: there is no mechanism to declare a cross-plugin dependency, so a skill that reaches into a sibling plugin fails silently when that plugin is not installed. A `documentation` plugin previously shipped with exactly this defect (its only skill delegated all three of its formats to `note-formats` in another plugin) and was merged into `knowledge` to fix it.
 
 ---
 
