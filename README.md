@@ -1,19 +1,20 @@
 # claude-plugins
 
-A Claude plugin marketplace covering two halves of the same job: turning an idea into shipped, tracked work, and turning what you learn along the way into notes you can find again. Both ship as composable, natural-language-triggered skills that run in Claude Code and Cowork.
+A Claude plugin marketplace: turning an idea into shipped, tracked work, writing the code itself to a settled standard, and turning what you learn along the way into notes you can find again. All ship as composable, natural-language-triggered skills that run in Claude Code and Cowork.
 
-Two plugins, thirteen skills.
+Three plugins, fourteen skills.
 
 | Plugin | Skills | For |
 |---|---|---|
 | [`delivery-design`](#delivery-design) | 9 | An end-to-end SDLC pipeline: idea → PRD → tech spec → delivery plan → tickets → Linear/GitHub |
+| [`engineering`](#engineering) | 1 | Personal coding conventions: the judgement calls a linter can't make, plus the standard setup a new project gets |
 | [`knowledge`](#knowledge) | 4 | Note and document authoring for an Obsidian vault: what shape a document should take, and the workflows that produce it |
 
-They install independently and share no files. Install one, the other, or both.
+They install independently and share no files. Install any combination.
 
 ## Design principles
 
-Both plugins are built around a small set of deliberate constraints rather than an accumulation of features:
+All three plugins are built around a small set of deliberate constraints rather than an accumulation of features:
 
 - **One source of truth: local markdown.** Project-management tools (Linear, GitHub Issues) are sync targets, never the origin. State lives where the code lives.
 - **A document is worth writing only if its "why" can't be recovered from the code.** That single test gates every decision record — it keeps documentation from drifting into noise.
@@ -48,6 +49,14 @@ A brand-new product runs the product workflow first, then pushes each backlog it
 | `feature-publish` | Local ticket files → Linear or GitHub Issues |
 | `decision-record` | MADR-style decision record with a significance gate that refuses trivial ones |
 
+## engineering
+
+`coding-conventions` holds only the judgement calls a linter cannot make — naming that carries meaning, function and module boundaries, error handling, server/client component choice, feature-based folder structure. Anything ESLint decides deterministically stays in the lint config instead.
+
+| Skill | Does |
+|---|---|
+| `coding-conventions` | TypeScript, React, and Next.js conventions, plus the standard setup a new repository gets |
+
 ## knowledge
 
 `note-formats` is the source of truth for document shape and house style. The other three own workflows and call it rather than restating it.
@@ -65,10 +74,16 @@ The eleven shapes split into **knowledge** shapes, read to build understanding (
 
 ```
 .claude-plugin/marketplace.json      marketplace catalog (fixed path)
+docs/                                plugin-mechanics and skill-authoring doctrine, read on demand
 plugins/
 ├── delivery-design/
 │   ├── .claude-plugin/plugin.json   plugin manifest (versioned)
 │   └── skills/                      one directory per skill: SKILL.md + templates + subagent prompts
+├── engineering/
+│   ├── .claude-plugin/plugin.json
+│   └── skills/
+│       └── coding-conventions/
+│           └── references/          typescript, react-nextjs, project-setup doctrine
 └── knowledge/
     ├── .claude-plugin/plugin.json
     └── skills/
@@ -84,6 +99,7 @@ Skills are auto-discovered by walking `skills/*/SKILL.md`; they are not declared
 ```
 /plugin marketplace add edwinwright/claude-plugins
 /plugin install delivery-design
+/plugin install engineering
 /plugin install knowledge
 ```
 
@@ -93,7 +109,7 @@ Skills then trigger on natural language — see each skill's `SKILL.md` for its 
 
 ## Status
 
-All thirteen skills ship and are in active use. `CLAUDE.md` carries the conventions these plugins are developed under, including why two overlapping skills were merged into one.
+All fourteen skills ship and are in active use. `CLAUDE.md` carries the conventions these plugins are developed under, including why two overlapping skills were merged into one.
 
 ## Licence
 
