@@ -2,13 +2,13 @@
 
 A Claude plugin marketplace: turning an idea into shipped, tracked work, writing the code itself to a settled standard, and turning what you learn along the way into notes you can find again. All ship as composable, natural-language-triggered skills that run in Claude Code and Cowork.
 
-Three plugins, fourteen skills.
+Three plugins, fifteen skills.
 
 | Plugin | Skills | For |
 |---|---|---|
 | [`delivery-design`](#delivery-design) | 9 | An end-to-end SDLC pipeline: idea → PRD → tech spec → delivery plan → tickets → Linear/GitHub |
 | [`engineering`](#engineering) | 1 | Personal coding conventions: the judgement calls a linter can't make, plus the standard setup a new project gets |
-| [`knowledge`](#knowledge) | 4 | Note and document authoring for an Obsidian vault: what shape a document should take, and the workflows that produce it |
+| [`knowledge`](#knowledge) | 5 | Learning and knowledge capture for an Obsidian vault: what shape a document should take, the workflows that produce it, and coached sessions that build understanding while you work |
 
 They install independently and share no files. Install any combination.
 
@@ -59,7 +59,7 @@ A brand-new product runs the product workflow first, then pushes each backlog it
 
 ## knowledge
 
-`note-formats` is the source of truth for document shape and house style. The other three own workflows and call it rather than restating it.
+`note-formats` is the source of truth for document shape and house style. The other skills own workflows and call it rather than restating it.
 
 | Skill | Does |
 |---|---|
@@ -67,6 +67,7 @@ A brand-new product runs the product workflow first, then pushes each backlog it
 | `obsidian-note-writer` | Create, enhance, and refactor notes — search before creating, safe splits and merges |
 | `session-synthesis` | Conversation or transcript → conceptual map → notes |
 | `ops-docs` | A messy process → Checklist, Runbook, or Playbook |
+| `guided-practice` | Turns a real task into a coached, step-by-step learning session — a real deliverable still gets built, just collaboratively; hands off to `session-synthesis` at the close to capture what was learned |
 
 The eleven shapes split into **knowledge** shapes, read to build understanding (Atomic Note, Overview, Hub, Decision Guide, Guide, Map of Content), and **operational** shapes, read to get something done (Checklist, Runbook, Playbook, Standard Note, Decision Record). Choosing between them is the hard part and the reason the skill exists — `references/choosing-a-format.md` carries the criteria, the pairs that get confused, and worked examples.
 
@@ -109,7 +110,7 @@ Skills then trigger on natural language — see each skill's `SKILL.md` for its 
 
 ## Status
 
-All fourteen skills ship and are in active use. `CLAUDE.md` carries the conventions these plugins are developed under, including why two overlapping skills were merged into one.
+All fifteen skills ship and are in active use. `CLAUDE.md` carries the conventions these plugins are developed under, including why two overlapping skills were merged into one.
 
 ## Licence
 
