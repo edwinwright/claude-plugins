@@ -1,6 +1,6 @@
 {
   "name": "knowledge",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Learning and knowledge capture for an Obsidian vault: the source of truth for document shape and house style, workflows for writing and refactoring notes, synthesising conversations, turning processes into checklists, runbooks, and playbooks, and coached sessions that build real understanding while producing a real deliverable.",
   "author": {
     "name": "Ed Wright"

@@ -110,6 +110,25 @@ Prefer one primary voice per note.
 
 ---
 
+## Source Independence
+
+A note must stand on its own, carrying no trace of how it came to exist. The transcript, book, course, or conversation that produced it is not part of its subject.
+
+This rules out:
+
+- **Narrating the note's own origin.** Opening by framing the subject as a question someone once asked, or as a topic that turned out to be broader than expected.
+- **Wording that only parses for someone who was there** — "as we discussed", "the question this started from", "building on the earlier point".
+- **Letting the source's emphasis set the note's emphasis.** How much space a topic occupied in the source, and where it sat in the source's arc, say nothing about what it deserves here. A point laboured over three exchanges may warrant one line; an aside may warrant a section.
+- **Keeping a digression prominent because it mattered at the time.** If it has its own note, state the assumption in a sentence and link out rather than re-teaching it.
+
+Where a source genuinely needs crediting, that belongs in a `References` section at the foot of the note, never in its framing.
+
+**Test:** would this note read identically if you had learned the subject somewhere else entirely? If not, the source has leaked in.
+
+The risk is highest when a whole set of notes is derived from one source in a single pass, because the source's structure is then the most available structure to reach for. Decide the set's shape from the subject, not from the order the material arrived in.
+
+---
+
 ## Duplication
 
 Prefer links over duplication. If the same fact would need updating in two places, it belongs in one note with pointers to it.
@@ -129,3 +148,4 @@ The *procedure* for searching before you create — and the judgement about whet
 - [ ] No reciprocal or duplicate links — the backlinks pane handles those
 - [ ] Related Topics holds only notes not already linked in the body; omitted if empty
 - [ ] Voice is consistent and matches the shape
+- [ ] No trace of the source that produced the note — no origin narration, no borrowed emphasis

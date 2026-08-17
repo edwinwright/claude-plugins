@@ -58,9 +58,11 @@ Do not silently write five notes the user asked for one of.
 
 1. Read the matching asset in full before writing. It is a skeleton with italicised authoring guidance under each heading — that guidance says when a section should be deleted rather than filled in. Delete it as you go; it must not survive into the finished note.
 2. Read `references/obsidian-style.md` for the notation — frontmatter, wikilinks, callouts, headings, emphasis, code blocks, tables. Also holds the substitutions to make when the target is not Obsidian.
-3. Read `references/structure-doctrine.md` when splitting, merging, or refactoring notes, or when judging how much content a note should carry.
+3. Read `references/structure-doctrine.md` when splitting, merging, or refactoring notes, when judging how much content a note should carry, or when the material comes from a transcript, book, course, or any other source with a narrative of its own.
 
 Do not invent sections the asset does not have, and do not keep sections the source has nothing to put in. An empty heading is worse than a missing one.
+
+**The note is about the subject, not about where you learned it.** Do not open by narrating the note's own origin, and do not let the source's ordering or emphasis become the note's — see *Source Independence* in `references/structure-doctrine.md`.
 
 That holds for free-standing notes, which are read on their own. Pipeline artefacts are the exception: where a document is a contract with a later stage — a PRD read by `feature-design`, say — an explicitly empty section carries information, and those skills say so themselves. Delete the heading only when nothing downstream is waiting on it.
 
@@ -77,6 +79,7 @@ Where the source is incomplete, flag the gap with `#TODO` rather than filling it
 - [ ] Frontmatter carries topic-relevant `tags`; no `created` or `modified` added
 - [ ] Links are specific and descriptive; unresolved links are deliberate
 - [ ] Related Topics holds only notes not already linked in the body, or is deleted
+- [ ] No trace of the source that produced the note — no origin narration, no borrowed emphasis
 
 `references/structure-doctrine.md` carries the fuller checklist for structure and linking.
 
@@ -99,6 +102,6 @@ A calling skill supplies the task and the source material. It should:
 | File | Contents | Portable? |
 |---|---|---|
 | `references/choosing-a-format.md` | Full criteria per shape, confused pairs, worked examples | Yes |
-| `references/structure-doctrine.md` | Split criteria, content density, linking, voice, quality checklist | Yes |
+| `references/structure-doctrine.md` | Split criteria, content density, linking, voice, source independence, quality checklist | Yes |
 | `references/obsidian-style.md` | Obsidian notation, plus substitutions for non-Obsidian targets | No — Obsidian-specific |
 | `assets/*.md` | One skeleton per shape | Obsidian-flavoured; shape is portable |

@@ -1,6 +1,6 @@
 ---
 name: session-synthesis
-description: Synthesise a chat transcript or the current conversation into structured understanding. Use when the user pastes a transcript, says "synthesise this session", "what did I learn?", or wants to turn a conversation into notes.
+description: Synthesise one or more chat transcripts, or the current conversation, into structured understanding and then optionally into notes. Use when the user pastes a transcript or attaches transcript files, says "synthesise this session", "what did I learn?", or asks to turn a conversation, chat log, or AI session into notes — including when they name only the destination ("integrate these into my vault", "write these up as notes") rather than the process, and when several related transcripts are handed over together.
 ---
 
 # Session Synthesis
@@ -73,6 +73,8 @@ Invite review: the user may want to push back, ask follow-up questions, or conti
 ## Phase 2 — Notes (optional, user-initiated)
 
 Only proceed when the user explicitly says they are ready to make notes.
+
+**The synthesis does not become the notes.** Everything about Phase 1 — its ordering, its emphasis, the fact that it opens by saying what the session was about — exists to reflect the conversation back to the user. None of that survives here. A note is organised by its subject and carries no trace of the session that produced it; re-derive each note's scope and emphasis from the subject rather than inheriting them from the synthesis in front of you. See *Source Independence* in `note-formats` → `references/structure-doctrine.md`.
 
 ### Step 5 — Propose Notes
 
