@@ -129,6 +129,32 @@ The risk is highest when a whole set of notes is derived from one source in a si
 
 ---
 
+## Structural Independence
+
+Source Independence governs a note's prose. The same failure occurs at the level
+of a set: the shape of a note set must come from the subject, not from the
+conversation, transcript, or course that produced it.
+
+The commonest form is prominence. A concept the reader asked about by name gets
+its own note and a top-level slot in the hub, while its peers — equally weighted
+in the subject — remain bullets inside a parent note. Nothing about the subject
+justifies the asymmetry; it records what came up first.
+
+This rules out:
+
+- **Promoting a concept because it was asked about.** Depth should match the
+  concept's weight in the subject, not the attention it received in the source.
+- **Listing a member of a set alongside the set.** Options belong inside their
+  grouping note and are reached through it, not placed as its siblings in a hub.
+- **Letting the source's sequence become the link structure.** The order material
+  arrived in says nothing about how the notes should connect.
+
+**Test:** would this set have the same shape — the same notes, the same hub
+entries, the same depth — if the subject had been learned in a different order?
+If not, the source has leaked into the structure.
+
+---
+
 ## Duplication
 
 Prefer links over duplication. If the same fact would need updating in two places, it belongs in one note with pointers to it.
@@ -149,3 +175,4 @@ The *procedure* for searching before you create — and the judgement about whet
 - [ ] Related Topics holds only notes not already linked in the body; omitted if empty
 - [ ] Voice is consistent and matches the shape
 - [ ] No trace of the source that produced the note — no origin narration, no borrowed emphasis
+- [ ] Set shape reflects the subject, not the order the material arrived in
