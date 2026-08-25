@@ -1,6 +1,6 @@
 ---
 name: request-triage
-description: 'Triage an incoming request — a feature idea, a bug report, a change ask — and choose which delivery route it takes: direct (straight to work breakdown), standard (refine the requirements first), or full (discovery and technical design first). Decides whether the request is worth building at all, checks the backlog for duplicates, and names the escalation gate whenever it routes to full. The front door to any piece of delivery work. Triggers: "I have an idea for", "should we build X", "new feature request", "is this worth building", "add this to the backlog", "what route does this take".'
+description: 'Triage an incoming request — a feature idea, a bug report, a change ask — and choose its delivery route: direct (straight to work breakdown), standard (refine the requirements first), or full (discovery and design first). Decides whether the request is worth building, checks the backlog for duplicates, and names the escalation gate whenever it routes to full. The front door to any delivery work. Triggers: "I have an idea for", "should we build X", "new feature request", "is this worth building", "add this to the backlog", "what route does this take".'
 ---
 
 # request-triage
