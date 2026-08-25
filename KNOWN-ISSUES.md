@@ -52,6 +52,21 @@ Skills were placed directly under `plugins/knowledge/` instead of `plugins/knowl
 
 ---
 
+## Cowork: renamed skills can appear alongside their old names
+
+**Status:** A consequence of the remote-sync issue above, not a separate bug.
+
+`delivery-design` 2.0.0 renamed eight skills. Because Cowork syncs plugin state from a remote store rather than from disk, an install can end up carrying both the old and the new skill sets at once — `feature-brief` and `backlog-refinement` both loaded, competing for the same trigger phrases.
+
+**Symptom:** a skill fires under a name that no longer exists in this repo, or two skills with overlapping descriptions both appear in the roster.
+
+**Fix:** reinstall the plugin from Cowork's plugin settings (remove/disable, then re-enable). That is the only force-resync lever the UI offers.
+
+Claude Code has no remote-sync layer and picks the rename up directly, so verify there first if you want to know whether the repo itself is correct.
+
+---
+
 ## Notes
 
 - Marketplace `name` fields must not contain `claude` — Cowork rejects them as impersonating an official marketplace. This repo uses `edwinwright-plugins`.
+- There is **no alias mechanism** for skill names. Skills are discovered by walking `skills/*/SKILL.md`, and the directory name must match the frontmatter `name`. Keeping an old name alive means shipping a stub skill directory, whose description then loads into every session in every project. Renames here are therefore hard renames.

@@ -64,7 +64,7 @@ Do not invent sections the asset does not have, and do not keep sections the sou
 
 **The note is about the subject, not about where you learned it.** Do not open by narrating the note's own origin, and do not let the source's ordering or emphasis become the note's — see *Source Independence* in `references/structure-doctrine.md`.
 
-That holds for free-standing notes, which are read on their own. Pipeline artefacts are the exception: where a document is a contract with a later stage — a PRD read by `technical-design`, say — an explicitly empty section carries information, and those skills say so themselves. Delete the heading only when nothing downstream is waiting on it.
+That holds for free-standing notes, which are read on their own. Pipeline artefacts are the exception: where a document is a contract with a later stage — a requirements document read by `technical-design`, say — an explicitly empty section carries information, and those skills say so themselves. Delete the heading only when nothing downstream is waiting on it.
 
 Where the source is incomplete, flag the gap with `#TODO` rather than filling it with plausible invention.
 
