@@ -1,8 +1,0 @@
-{
-  "name": "delivery-design",
-  "version": "2.0.0",
-  "description": "End-to-end SDLC delivery pipeline on three routes: requirements discovery, product definition, domain modelling, request triage, backlog refinement, technical design, delivery planning, work breakdown, publishing to Linear/GitHub, acceptance review, and decision records.",
-  "author": {
-    "name": "Ed Wright"
-  }
-}

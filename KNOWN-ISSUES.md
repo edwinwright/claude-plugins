@@ -35,7 +35,7 @@ Local paths that look relevant but are **not** the source of truth:
    ```
    /plugin marketplace add edwinwright/claude-plugins
    /plugin install knowledge
-   /plugin install delivery-design
+   /plugin install product-delivery
    ```
 2. To force Cowork to re-pull after a repo change, **reinstall the specific plugin** from Cowork's plugin settings (remove/disable, then re-enable). This is the only "force re-sync" lever the UI offers.
 
@@ -52,15 +52,17 @@ Skills were placed directly under `plugins/knowledge/` instead of `plugins/knowl
 
 ---
 
-## Cowork: renamed skills can appear alongside their old names
+## Cowork: renamed skills and plugins can appear alongside their old names
 
 **Status:** A consequence of the remote-sync issue above, not a separate bug.
 
 `delivery-design` 2.0.0 renamed eight skills. Because Cowork syncs plugin state from a remote store rather than from disk, an install can end up carrying both the old and the new skill sets at once — `feature-brief` and `backlog-refinement` both loaded, competing for the same trigger phrases.
 
+`product-delivery` 3.0.0 renamed the plugin itself, from `delivery-design`. That failure mode is worse: where the 2.0.0 rename could double up eight skills, a stale `delivery-design` left resident alongside `product-delivery` loads all eleven twice, under two prefixes, every one of them competing for the same trigger phrases.
+
 **Symptom:** a skill fires under a name that no longer exists in this repo, or two skills with overlapping descriptions both appear in the roster.
 
-**Fix:** reinstall the plugin from Cowork's plugin settings (remove/disable, then re-enable). That is the only force-resync lever the UI offers.
+**Fix:** reinstall the plugin from Cowork's plugin settings (remove/disable, then re-enable) — that is the only force-resync lever the UI offers. After the plugin rename, remove `delivery-design` outright rather than re-enabling it, then install `product-delivery`.
 
 Claude Code has no remote-sync layer and picks the rename up directly, so verify there first if you want to know whether the repo itself is correct.
 

@@ -1,4 +1,4 @@
-# delivery-design
+# product-delivery
 
 A Claude plugin (Claude Code and Cowork) that takes work from an incoming request through to verified, accepted delivery — with the source-of-truth documents co-located with the code.
 
@@ -116,7 +116,7 @@ This plugin installs via the repo's marketplace (see the repository root `README
 
 ```
 /plugin marketplace add edwinwright/claude-plugins
-/plugin install delivery-design
+/plugin install product-delivery
 ```
 
 Skills trigger on natural language — see each skill's `SKILL.md` for trigger phrases.

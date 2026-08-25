@@ -6,9 +6,9 @@
   },
   "plugins": [
     {
-      "name": "delivery-design",
-      "description": "End-to-end SDLC delivery pipeline on three routes: requirements discovery, product definition, domain modelling, request triage, backlog refinement, technical design, delivery planning, work breakdown, publishing to Linear/GitHub, acceptance review, and decision records.",
-      "source": "./plugins/delivery-design",
+      "name": "product-delivery",
+      "description": "Takes work from an incoming request through to verified, accepted delivery, on one of three routes — with the source-of-truth documents living in the repo alongside the code.",
+      "source": "./plugins/product-delivery",
       "category": "productivity"
     },
     {

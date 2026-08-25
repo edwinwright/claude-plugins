@@ -147,7 +147,7 @@ The middle three form a hierarchy of weight:
 
 An Architecture Decision Record is the architecture-scoped variant; the same shape records product and process decisions.
 
-**Two homes, two shapes — route by destination.** This asset is for a decision recorded in the vault: tags frontmatter, wikilinks, a Related Topics section, read alongside your other notes. A decision belonging to a *codebase* goes in that repo as `docs/decisions/<scope>/NNNN-<slug>.md`, with `supersedes`/`superseded_by` fields and a numbered sequence — use the `delivery-design:decision-record` skill, which owns that shape and applies a significance gate before writing anything. If the decision would be looked up by someone reading the code, it is a repo ADR, not a vault note.
+**Two homes, two shapes — route by destination.** This asset is for a decision recorded in the vault: tags frontmatter, wikilinks, a Related Topics section, read alongside your other notes. A decision belonging to a *codebase* goes in that repo as `docs/decisions/<scope>/NNNN-<slug>.md`, with `supersedes`/`superseded_by` fields and a numbered sequence — use the `product-delivery:decision-record` skill, which owns that shape and applies a significance gate before writing anything. If the decision would be looked up by someone reading the code, it is a repo ADR, not a vault note.
 
 ---
 

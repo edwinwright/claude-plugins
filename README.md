@@ -6,7 +6,7 @@ Three plugins, seventeen skills.
 
 | Plugin | Skills | For |
 |---|---|---|
-| [`delivery-design`](#delivery-design) | 11 | An end-to-end SDLC pipeline: request → requirements → spec → tickets → build → verified acceptance, on one of three routes |
+| [`product-delivery`](#product-delivery) | 11 | An end-to-end SDLC pipeline: request → requirements → spec → tickets → build → verified acceptance, on one of three routes |
 | [`engineering`](#engineering) | 1 | Personal coding conventions: the judgement calls a linter can't make, plus the standard setup a new project gets |
 | [`knowledge`](#knowledge) | 5 | Learning and knowledge capture for an Obsidian vault: what shape a document should take, the workflows that produce it, and coached sessions that build understanding while you work |
 
@@ -24,7 +24,7 @@ All three plugins are built around a small set of deliberate constraints rather 
 - **Formats are data; skills are workflows.** A shape is defined once, in the skill that owns it. Every other skill owns a *process* and delegates shape. If a convention appears in two skills, that is a bug.
 - **Skills never hardcode where a file goes.** Placement, naming, and folder structure are read from the host project or vault at runtime, so the same skill works in any of them.
 
-## delivery-design
+## product-delivery
 
 Everything enters at `request-triage`, which decides whether the work should happen and which of three routes it takes.
 
@@ -89,7 +89,7 @@ The eleven shapes split into **knowledge** shapes, read to build understanding (
 .claude-plugin/marketplace.json      marketplace catalog (fixed path)
 docs/                                plugin-mechanics and skill-authoring doctrine, read on demand
 plugins/
-├── delivery-design/
+├── product-delivery/
 │   ├── .claude-plugin/plugin.json   plugin manifest (versioned)
 │   └── skills/                      one directory per skill: SKILL.md + templates + subagent prompts
 │       └── request-triage/
@@ -113,7 +113,7 @@ Skills are auto-discovered by walking `skills/*/SKILL.md`; they are not declared
 
 ```
 /plugin marketplace add edwinwright/claude-plugins
-/plugin install delivery-design
+/plugin install product-delivery
 /plugin install engineering
 /plugin install knowledge
 ```
@@ -125,6 +125,8 @@ Skills then trigger on natural language — see each skill's `SKILL.md` for its 
 ## Status
 
 All seventeen skills ship and are in active use. `CLAUDE.md` carries the conventions these plugins are developed under, including why two overlapping skills were merged into one.
+
+`product-delivery` 3.0 is `delivery-design` renamed. The plugin grew past the old name: `requirements-discovery` runs before anything is designed and `acceptance-review` runs after the code is built, leaving design as three skills of eleven rather than the shape of the whole. No skill was renamed and nothing inside them changed — but the namespace every skill is invoked under did, so `delivery-design:request-triage` is now `product-delivery:request-triage`. There is no alias mechanism for plugin names any more than for skill names, so remove the old plugin and install `product-delivery` fresh.
 
 `delivery-design` 2.0 renamed its skills after the processes they run rather than the artefacts they emit, replaced the single pipeline with three routes, and added `requirements-discovery` and `acceptance-review` at either end. The old names (`feature-brief`, `feature-design`, `feature-tickets`, and the rest) are gone — there is no alias mechanism in the plugin system, so this is a hard rename.
 

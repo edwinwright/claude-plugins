@@ -1,0 +1,8 @@
+{
+  "name": "product-delivery",
+  "version": "3.0.0",
+  "description": "Takes work from an incoming request through to verified, accepted delivery, on one of three routes — with the source-of-truth documents living in the repo alongside the code.",
+  "author": {
+    "name": "Ed Wright"
+  }
+}

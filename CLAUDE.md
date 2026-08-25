@@ -1,6 +1,6 @@
 # claude-plugins — Claude Context
 
-A Claude plugin marketplace holding three plugins: `delivery-design` (an end-to-end SDLC pipeline), `engineering` (personal coding conventions), and `knowledge` (note and document authoring for an Obsidian vault). Built for use in my own tool chain. This repo is the single source of truth for these plugins; installed copies elsewhere should be treated as stale.
+A Claude plugin marketplace holding three plugins: `product-delivery` (an end-to-end SDLC pipeline), `engineering` (personal coding conventions), and `knowledge` (note and document authoring for an Obsidian vault). Built for use in my own tool chain. This repo is the single source of truth for these plugins; installed copies elsewhere should be treated as stale.
 
 > [!warning] Public repo — no personal data
 > Never commit PII, client names, credentials, private vault structure, or commercial terms. Personal-*flavoured* examples are fine and often useful — a runbook for renewing a passport shows the skills generalise past SDLC. Personal *data* is not. Review diffs for leakage before every push.
