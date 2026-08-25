@@ -32,7 +32,8 @@ Look for an associated product. Check for `docs/product/vision.md` and `docs/pro
 Before running triage, scan for existing work that overlaps with this request:
 
 1. Scan `docs/product/product-backlog.md` for entries with similar titles or goals.
-2. List the directories in `docs/features/` — scan the feature names for overlap.
+2. List the directories in `docs/work/` — scan the slugs for overlap. Include `docs/work/_archive/`: work that already shipped is the most useful kind of duplicate to find, because the answer may be "this already exists".
+3. If the project predates the current layout, also list `docs/features/`. See `references/artefacts.md`.
 
 If you find a likely duplicate, surface it to the user before continuing:
 
@@ -117,7 +118,7 @@ Fill in `backlog-entry-template.md` using the lens's `BACKLOG TITLE` and `BACKLO
 
 Append the new row to the appropriate MoSCoW section in `docs/product/product-backlog.md`. The MoSCoW section to use is the one matching the lens's `MOSCOW` field.
 
-If `docs/product/product-backlog.md` does not exist, create it using the backlog structure from `product-definition/product-backlog-template.md` (or the standard MoSCoW table format) and add the entry.
+If `docs/product/product-backlog.md` does not exist, create it using the backlog structure from `../product-definition/product-backlog-template.md` (or the standard MoSCoW table format) and add the entry.
 
 Tell the user:
 

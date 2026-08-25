@@ -53,11 +53,13 @@ Wait for confirmation before proceeding.
 
 Derive the feature slug from the feature name — lowercase, kebab-case (e.g. `user-authentication`, `billing-portal`).
 
-If the user has a project folder connected, save all ticket files to:
+Save all ticket files into the work order's folder:
 
 ```
-docs/features/<feature-slug>/tickets/
+docs/work/YYYY-MM-<slug>/tickets/
 ```
+
+Use the slug and date from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.
 
 If no project folder is connected, ask the user where to save them.
 
@@ -123,10 +125,39 @@ Generate stories in dependency order — Technical stories that unblock others f
 
 ---
 
-## Step 6: Present the output
+## Step 6: Emit or update AGENTS.md
+
+This is the last step before the code gets written, which is exactly when an agent router earns its place. It runs on every route.
+
+**Guardrail: keep AGENTS.md lean.** An over-stuffed AGENTS.md reduces agent task success and adds cost. This step adds only what is non-inferable: a pointer to this work order's documents. No procedures, no style guides, no explanations — those belong in skills or linked docs.
+
+Check whether an `AGENTS.md` exists at the repo root.
+
+**If it does not exist:** read the template at `agents-template.md` and create it. Fill in:
+- The "What this is" line from `docs/product/vision.md` if it exists, or a one-line summary from the requirements document
+- A "Before you start" entry for this work order
+- Build/test/run commands if they are known
+
+**If it already exists:** read it, then append or update only the "Before you start" entry for this work order. Do not touch any other section. One line per work order.
+
+Point the entry at the work folder, and name only the documents that exist on this route:
+
+```
+- Implementing [Title] → docs/work/YYYY-MM-<slug>/requirements.md + tech-spec.md
+```
+
+On the Direct route, point at the work order itself. Never point into `docs/work/_archive/` — `acceptance-review` removes this entry when it archives the folder, so no entry outlives what it points at.
+
+Tell the user:
+
+> "AGENTS.md updated with a pointer to this work order. Keep the file to roughly one screen — if it grows past that, the overflow belongs in a skill or a linked doc, not here."
+
+---
+
+## Step 7: Present the output
 
 Once all files are written, present the full list of generated files to the user.
 
 Tell the user:
 
-> "All ticket files are saved to `tickets/`. Review and edit them before deploying — you can rename files, adjust tasks, or change acceptance criteria at this stage with no cost. When you are ready to create the tickets in Linear or GitHub, run the `ticket-publish` skill."
+> "All ticket files are saved to `tickets/`. Review and edit them before deploying — you can rename files, adjust tasks, or change acceptance criteria at this stage with no cost. When you are ready to create the tickets in Linear or GitHub, run `ticket-publish`. When the work is built, run `acceptance-review` to verify it and close the work order out."

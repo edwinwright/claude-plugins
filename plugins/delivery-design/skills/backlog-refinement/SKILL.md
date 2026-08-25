@@ -55,7 +55,7 @@ Draw from these as needed:
 
 ## Step 4: Write the PRD
 
-Once you have enough information, write the PRD using the template at `prd-template.md`. Read that file before writing.
+Once you have enough information, write the requirements document using the template at `requirements-template.md`. Read that file before writing.
 
 Fill every section. If a section genuinely has no content (for example, no known integrations), write "None identified at this stage" rather than leaving it blank. This signals deliberate intent rather than omission.
 
@@ -67,16 +67,24 @@ The **Open Questions** section matters — use it for anything that remains unre
 
 ## Step 5: Save and present
 
-Derive the feature slug from the feature name — lowercase, kebab-case (e.g. `user-authentication`, `billing-portal`).
-
-If the user has a project folder connected, save the PRD to:
+Save the requirements document into the work order's folder, alongside the work order that opened it:
 
 ```
-docs/features/<feature-slug>/prd.md
+docs/work/YYYY-MM-<slug>/requirements.md
 ```
 
-If no project folder is connected, save to the outputs folder as `[Feature Name] PRD.md` and present the file.
+Use the slug and date from the work order rather than deriving new ones — everything for one piece of work lives in one folder and moves together. If there is no work order, derive `YYYY-MM` from today and the slug from the feature name.
 
-Tell the user:
+Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`. Check the host project's `AGENTS.md` or `CLAUDE.md` first — `docs/work/` is the default, not a fixed path.
 
-> "This PRD is ready to pass to the `technical-design` skill, which will run a dev team of subagents to produce a Technical Specification. If anything looks wrong or incomplete, edit the PRD before continuing. If there are Open Questions, resolve them first."
+If no project folder is connected, save to the outputs folder as `[Feature Name] Requirements.md` and present the file.
+
+Tell the user what comes next, which depends on the route:
+
+> **Full route:** "This is ready to pass to `technical-design`, which will run a dev team of subagents to produce a Technical Specification."
+>
+> **Standard route:** "This is ready to pass to `work-breakdown`, which will decompose it into ticket files."
+
+In both cases add:
+
+> "If anything looks wrong or incomplete, edit it now — everything downstream is built on what this document says. If there are Open Questions, resolve them first."

@@ -36,7 +36,7 @@ A structured PRD saved as a Markdown file covering:
 1. Reads the input and identifies what is already clear
 2. Asks whether this is a new product or a feature on an existing one
 3. Asks targeted clarifying questions for any gaps (max 7)
-4. Writes the PRD using `prd-template.md`
+4. Writes the requirements document using `requirements-template.md`
 5. Saves the PRD and prompts the user to continue to `technical-design`
 
 ## Usage guidelines
@@ -66,4 +66,4 @@ Routes, escalation gates, and the work order format are defined in [`request-tri
 |---|---|
 | `SKILL.md` | Skill instructions |
 | `README.md` | This file |
-| `prd-template.md` | Output template used when writing the PRD |
+| `requirements-template.md` | Output template for the requirements document |

@@ -6,10 +6,13 @@ One sentence describing what this product is. → docs/product/vision.md
 
 ## Before you start — read for your task
 
-- Implementing a story → that feature's `docs/features/<feature>/prd.md` + `docs/features/<feature>/tech-spec.md`
+- Implementing a story → that work order's `docs/work/<YYYY-MM-slug>/requirements.md` + `tech-spec.md`
 - Touching a domain entity or term → `docs/product/domain-model.md` + `docs/product/glossary.md`
+- Meeting a performance, accessibility, or security bar → `docs/product/nfr.md`
 - Making an architectural change → `docs/decisions/architecture/`
 - Adding a new feature → `docs/product/product-backlog.md` + `docs/product/vision.md`
+
+Entries under `docs/work/` are transient and are removed when the work order is accepted. Nothing here should ever point into `docs/work/_archive/`.
 
 ## Commands
 

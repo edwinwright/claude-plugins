@@ -17,13 +17,13 @@ Optional on every route, and not a route step. Run it when the tickets should ex
 
 ## Step 1: Read the ticket files
 
-Read all files in the `tickets/` subfolder. When a project folder is connected, this is:
+Read all files in the work order's `tickets/` subfolder:
 
 ```
-docs/features/<feature-slug>/tickets/
+docs/work/YYYY-MM-<slug>/tickets/
 ```
 
-If no project folder is connected, ask the user where the ticket files are saved.
+Older work may be under `docs/features/<slug>/tickets/` — see `../request-triage/references/artefacts.md`. If you find neither, ask the user where the ticket files are saved.
 
 Identify:
 

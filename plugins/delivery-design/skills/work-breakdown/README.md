@@ -65,3 +65,4 @@ Routes, escalation gates, and the work order format are defined in [`request-tri
 | `README.md` | This file |
 | `templates/epic-template.md` | Template for the Epic file |
 | `templates/story-template.md` | Template for each Story file |
+| `agents-template.md` | Template for the repo-root `AGENTS.md` agent router |

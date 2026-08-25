@@ -107,45 +107,21 @@ During synthesis:
 
 Derive the feature slug from the feature name — lowercase, kebab-case (e.g. `user-authentication`, `billing-portal`).
 
-If the user has a project folder connected, save the Technical Specification to:
+Save the Technical Specification into the work order's folder:
 
 ```
-docs/features/<feature-slug>/tech-spec.md
+docs/work/YYYY-MM-<slug>/tech-spec.md
 ```
 
-If no project folder is connected, save as `[Feature Name] Tech Spec.md` in the working directory.
+Use the slug and date from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.
 
 Clean up the intermediate files (`_architect-output.md`, `_frontend-output.md`, `_backend-output.md`, `_qa-output.md`) from the working directory once the final spec is saved.
 
 ---
 
-## Step 8: Emit or update AGENTS.md
+## Step 8: Present and hand off
 
-**Guardrail: keep AGENTS.md lean.** Research is clear that an over-stuffed AGENTS.md reduces agent task success and adds cost. This step adds only what is non-inferable: a pointer to this feature's docs. Do not add procedures, style guides, or explanations — those belong in skills or linked docs.
-
-Check whether an `AGENTS.md` exists at the repo root.
-
-**If it does not exist:** read the template at `agents-template.md`. Create `AGENTS.md` at the repo root using the template. Fill in:
-- The "What this is" line from `docs/product/vision.md` if it exists, or a one-line summary from the PRD
-- A "Before you start" entry for this feature pointing to its `prd.md` and `tech-spec.md`
-- Build/test/run commands if they are known from the tech spec
-
-**If it already exists:** read it. Append or update only the "Before you start" entry for this feature. Do not modify any other section. Do not add prose. One line per feature pointing to its two docs.
-
-Example entry to add or update:
-```
-- Implementing [Feature Name] → docs/features/<feature-slug>/prd.md + docs/features/<feature-slug>/tech-spec.md
-```
-
-Present the AGENTS.md change to the user and tell them:
-
-> "AGENTS.md updated with a pointer to this feature's docs. Keep this file to roughly one screen — if it grows past that, the overflow belongs in a skill or a linked doc, not here."
-
----
-
-## Step 9: Present and hand off
-
-Present the Technical Specification and the AGENTS.md change to the user.
+Present the Technical Specification to the user.
 
 Tell the user:
 

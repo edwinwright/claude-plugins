@@ -88,11 +88,13 @@ Wait for confirmation before proceeding.
 
 Derive the feature slug from the feature name — lowercase, kebab-case (e.g. `user-authentication`, `billing-portal`).
 
-If the user has a project folder connected, save the Delivery Plan to:
+Save the Delivery Plan into the work order's folder:
 
 ```
-docs/features/<feature-slug>/delivery-plan.md
+docs/work/YYYY-MM-<slug>/delivery-plan.md
 ```
+
+Use the slug and date from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.
 
 If no project folder is connected, save as `[Feature Name] Delivery Plan.md` in the working directory.
 
