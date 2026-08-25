@@ -4,11 +4,7 @@ Turns a product or feature idea into a Product Requirements Document (PRD).
 
 ## When to use
 
-Use this at the start of any new feature or product. It is step one of the feature pipeline:
-
-```
-backlog-refinement → technical-design → delivery-planning → work-breakdown
-```
+Use this after `request-triage` has routed a request to Standard or Full.
 
 Invoke it with phrases like:
 - "I have an idea for..."
@@ -54,14 +50,13 @@ This skill runs entirely within the main agent — no subagents are spawned.
 
 The quality of the PRD depends heavily on what you provide upfront. The more context you give — business goals, constraints, target users — the fewer clarifying questions the skill will need to ask.
 
-## Pipeline
+## Routes
 
-```
-backlog-refinement     →     technical-design     →     delivery-planning     →     work-breakdown
-idea → PRD              PRD → Tech Spec          Tech Spec → Plan        Plan → tickets
-```
+Runs on the **Standard** and **Full** routes. Direct skips it: on Direct, a requirements document would only restate the request.
 
-**Next step:** Pass the saved PRD to `technical-design`.
+Routes, escalation gates, and the work order format are defined in [`request-triage/references/routes.md`](../request-triage/references/routes.md).
+
+**Next step:** On Full, pass the requirements document to `technical-design`. On Standard, go straight to `work-breakdown`.
 
 > If the PRD contains unresolved Open Questions, resolve them before passing to `technical-design`. The tech spec is built on top of what is stated here.
 

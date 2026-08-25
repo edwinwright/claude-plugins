@@ -4,11 +4,7 @@ Transforms a Product Requirements Document (PRD) into a Technical Specification 
 
 ## When to use
 
-Use this after `backlog-refinement` has produced a PRD. It is step two of the feature pipeline:
-
-```
-backlog-refinement → technical-design → delivery-planning → work-breakdown
-```
+Use this after `backlog-refinement` has produced a requirements document, on work that triage routed to Full.
 
 Do not run this skill if the PRD has unresolved Open Questions — resolve them first. The tech spec is built on top of what the PRD states.
 
@@ -64,12 +60,11 @@ The **main orchestrating agent** (the session you run the skill in) handles coor
 
 If you have a large or architecturally complex PRD, consider upgrading the Architect subagent to **claude-opus-4-8** for richer decision-making. The SKILL.md controls this — edit the Architect step if needed.
 
-## Pipeline
+## Routes
 
-```
-backlog-refinement     →     technical-design     →     delivery-planning     →     work-breakdown
-idea → PRD              PRD → Tech Spec          Tech Spec → Plan        Plan → tickets
-```
+Runs on the **Full** route only. Direct and Standard skip it — a feature in a well-understood domain, with no escalation gate open, does not need a technical specification to be broken into stories.
+
+Routes, escalation gates, and the work order format are defined in [`request-triage/references/routes.md`](../request-triage/references/routes.md).
 
 **Next step:** Pass the saved Tech Spec to `delivery-planning`.
 

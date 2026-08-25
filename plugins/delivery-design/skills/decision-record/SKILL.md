@@ -7,7 +7,9 @@ description: 'Write a Decision Record (MADR-style) for a contested, costly-to-re
 
 You are helping the user write a MADR-style Decision Record for a contested, costly-to-reverse decision.
 
-This is a standalone skill — it can be run at any point in the delivery pipeline.
+This is a standalone skill — it can be run at any point, on any route. Routes are defined in `../request-triage/references/routes.md`.
+
+"A decision inside it is costly or slow to reverse" is also one of the escalation gates that moves work onto the Full route. If you are here because that gate opened, the gate and this skill's significance test are asking the same question — a decision that clears the gate will usually clear the test.
 
 ---
 

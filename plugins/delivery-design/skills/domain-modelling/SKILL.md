@@ -13,10 +13,13 @@ This skill produces two files:
 
 These files are the highest-leverage agent-context docs in the repository. They stop implementation agents from inventing the wrong meaning for a term.
 
-This skill is standalone — it can run at any point:
+This skill is standalone and runs on any route, at any point:
 - **After `product-definition`** to bootstrap a new product's domain docs
-- **After `backlog-refinement`** when a new feature introduces new domain concepts
+- **When new work introduces domain concepts** the glossary does not yet cover
 - **Cold on an existing codebase** to document a legacy domain
+- **In append mode from `acceptance-review`**, which harvests terms and invariants discovered during a build and hands them here rather than writing the files itself
+
+The glossary is also what the first escalation gate is checked against — work that introduces a term not in this file escalates to the Full route. Keeping it current is what keeps that gate honest. Routes are defined in `../request-triage/references/routes.md`.
 
 ---
 

@@ -35,8 +35,23 @@ Compare the request against the product vision (if provided). Does this move the
 ### 3. Is the scope appropriate for a single feature?
 
 - **Too broad**: This sounds like a new product or a multi-feature initiative. If so, recommend "Park" and note that it may need a `product-definition` first.
-- **Too narrow**: This is a minor UI tweak or config change that does not need a PRD — it is a story-level task. If so, recommend "Won't build" and tell the user to raise it directly as a ticket.
+- **Too narrow**: This is a minor UI tweak, a copy change, or a config change. That is not a reason to reject it — it is a reason to route it Direct. Recommend "Build now" with `ROUTE: Direct`.
 - **Right-sized**: One coherent capability, deliverable in a few weeks. Proceed.
+
+### 3b. Which route should it take?
+
+Recommend a route. The main agent makes the final call — it has read the glossary and the non-functional baseline and you have not — but your read is the starting point.
+
+- **Direct** — a requirements document would only restate the request. Bug fixes, copy changes, config changes, version bumps.
+- **Standard** — the default. A feature, days of work, in a domain the team already understands.
+- **Full** — only when you can name one of these as *actually* true, not plausible:
+  - introduces domain concepts that sound new to this product
+  - changes behaviour across more than one bounded context
+  - carries a real, numbered non-functional requirement rather than a wish
+  - depends on a third-party integration outside our control
+  - contains a decision that is costly or slow to reverse
+
+If you cannot name a gate, the route is not Full. Escalating without a gate defeats the point of routing — it puts the heaviest process back on the smallest work.
 
 ### 4. Where does it fit in MoSCoW priority?
 
@@ -60,7 +75,11 @@ Does anything in the provided backlog already cover this request? Look at titles
 Return a structured verdict block. Use exactly this format — the main agent parses it:
 
 ```
-VERDICT: <Brief now | Park | Won't build | Needs clarification>
+VERDICT: <Build now | Park | Won't build | Needs clarification>
+ROUTE: <Direct | Standard | Full | N/A>
+(N/A unless VERDICT is "Build now".)
+GATES: <comma-separated list of the gates that opened, or "none">
+(Only include if ROUTE is "Full". Name the gate and what makes it true — "new domain concepts: settlement window". Omit entirely otherwise.)
 MOSCOW: <Must Have | Should Have | Could Have | Won't Have | N/A>
 REASONING: <2–4 sentences. Direct and honest. Say what you actually think.>
 CLARIFYING QUESTIONS:

@@ -7,13 +7,11 @@ description: 'Publish locally generated ticket files to a connected project mana
 
 You are publishing locally generated ticket files to the user's connected project management tool.
 
-This is step five of the feature pipeline:
+## Routes
 
-1. **backlog-refinement** — idea → PRD
-2. **technical-design** — PRD → Technical Specification
-3. **delivery-planning** — PRD + Tech Spec → Delivery Plan
-4. **work-breakdown** — Delivery Plan → local ticket files
-5. **ticket-publish** (this skill) — local ticket files → Linear or GitHub Issues
+Optional on every route, and not a route step. Run it when the tickets should exist in Linear or GitHub; skip it when local files are enough. Routes are defined in `../request-triage/references/routes.md`.
+
+**Before you start,** you need ticket files. If none exist, say so and offer to run `work-breakdown` first. This skill creates nothing locally — it only mirrors what `work-breakdown` already wrote.
 
 ---
 

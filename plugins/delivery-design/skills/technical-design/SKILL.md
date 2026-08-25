@@ -7,14 +7,13 @@ description: 'Produce a Technical Specification from a requirements document by 
 
 You are orchestrating a virtual dev team to transform a PRD into a Technical Specification.
 
-This is step two of the feature pipeline:
+## Routes
 
-1. **backlog-refinement** — idea → PRD
-2. **technical-design** (this skill) — PRD → Technical Specification
-3. **delivery-planning** — PRD + Tech Spec → Delivery Plan
-4. **work-breakdown** — Delivery Plan → work item tickets
+Runs on the **Full** route only. Direct and Standard skip it — a feature in a well-understood domain, with no escalation gate open, does not need a technical specification to be broken into stories. Routes are defined in `../request-triage/references/routes.md`.
 
-The output of this skill feeds directly into `delivery-planning`, so it must be complete and internally consistent.
+**Before you start,** read the work order at `docs/work/YYYY-MM-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, ask whether a gate has opened since triage — if one has, update the work order and continue; if not, say the work does not need this step and stop.
+
+The output feeds directly into `delivery-planning`, so it must be complete and internally consistent.
 
 ---
 

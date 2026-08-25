@@ -1,17 +1,18 @@
 ---
 name: request-triage
-description: 'Triage an incoming request — a feature idea, a bug report, a change ask — and decide whether it is worth building, should be parked in the backlog, or needs clarifying first. Checks the existing backlog for duplicates before anything is scoped. The front door to any piece of delivery work, ahead of writing requirements or tickets. Triggers: "I have an idea for", "should we build X", "new feature request", "is this worth building", "add this to the backlog", "triage this request".'
+description: 'Triage an incoming request — a feature idea, a bug report, a change ask — and choose which delivery route it takes: direct (straight to work breakdown), standard (refine the requirements first), or full (discovery and technical design first). Decides whether the request is worth building at all, checks the backlog for duplicates, and names the escalation gate whenever it routes to full. The front door to any piece of delivery work. Triggers: "I have an idea for", "should we build X", "new feature request", "is this worth building", "add this to the backlog", "what route does this take".'
 ---
 
 # request-triage
 
-You are helping the user triage a raw feature request — an idea, an ask from a user, a Slack message, a rough note. Your job is to assess whether it warrants a full PRD right now, should be parked in the backlog for later, or should not be built at all.
+You are helping the user triage a raw request — an idea, a bug report, an ask from a user, a Slack message, a rough note.
 
-This is the front door to the feature pipeline:
+You make two decisions, in this order:
 
-```
-request-triage → backlog-refinement → technical-design → delivery-planning → work-breakdown
-```
+1. **Should this be built at all?** Now, later, or never.
+2. **Which route does it take?** Direct, Standard, or Full.
+
+This is the front door to every piece of delivery work. Read `references/routes.md` before deciding anything — it defines the three routes, the escalation gates, and the work order format, and it is the only place those are defined.
 
 ---
 
@@ -58,26 +59,55 @@ Wait for the subagent to return a structured verdict before proceeding.
 
 ## Step 4: Handle "Needs clarification"
 
-If the lens verdict is `Needs clarification`, surface the lens's clarifying questions to the user verbatim. Do not park, reject, or hand off to backlog-refinement until you have answers. Once the user provides answers, re-run Step 3 with the enriched request.
+If the lens verdict is `Needs clarification`, surface the lens's clarifying questions to the user verbatim. Do not park, reject, or route the work until you have answers. Once the user provides answers, re-run Step 3 with the enriched request.
 
 ---
 
 ## Step 5: Act on the verdict
 
-### Verdict: Brief now
+### Verdict: Build now
+
+Select the route, then write the work order.
+
+#### 5a: Select the route
+
+Read `references/routes.md` if you have not already. Work through it in this order:
+
+1. **Start at Standard.** It is the default, and it stays the default unless one of the next two tests moves you off it.
+2. **Test for Direct.** Would a requirements document say anything the request does not already say? If you cannot name what it would add, take Direct.
+3. **Test the five escalation gates.** Take Full only if you can name a gate that is *actually* true. Check the glossary before claiming the domain-concepts gate; check `docs/product/nfr.md` before claiming the non-functional gate. A gate that is probably true but unconfirmed is not a gate — say so and stay on Standard.
+
+The lens's `ROUTE` and `GATES` fields are an input to this decision, not the decision. You have read the glossary and the NFR baseline; the lens has not.
+
+#### 5b: Write the work order
+
+Derive a slug from the request — lowercase, kebab-case, three words at most (`csv-export`, `stripe-subscriptions`, `pricing-page-typo`).
+
+Read `work-order-template.md` and write it to:
+
+```
+docs/work/YYYY-MM-<slug>/work-order.md
+```
+
+...where `YYYY-MM` is the current year and month. Set `route`, and set `escalation_gates` to the named gates — non-empty whenever `route: full`, empty otherwise.
+
+Check the host project's `AGENTS.md` or `CLAUDE.md` for a different work directory before writing; `docs/work/` is the default, not a fixed path.
+
+#### 5c: Hand off
 
 Present this to the user:
 
-> **Verdict: Ready to scope**
+> **Verdict: Build now — [Direct | Standard | Full] route**
 >
 > [The lens's REASONING — 2–4 sentences]
 >
-> **Suggested summary for backlog-refinement:**
-> [Write a one-paragraph summary of the request in plain language — what the user wants to do and why. This is the input they should pass to backlog-refinement.]
+> **Why this route:** [One or two sentences. On Full, name each gate and what makes it true. On Direct, say what a requirements document would have added and why the answer is nothing.]
 >
-> Run `/backlog-refinement` with the summary above to write the PRD.
+> Work order written to `docs/work/YYYY-MM-<slug>/work-order.md`.
+>
+> **Next:** run `[backlog-refinement | work-breakdown]`.
 
-Do not run backlog-refinement automatically.
+The next skill is the one the route names: `work-breakdown` on Direct, `backlog-refinement` on Standard and Full. Do not run it automatically.
 
 ---
 

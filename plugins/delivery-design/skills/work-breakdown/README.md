@@ -4,11 +4,7 @@ Breaks a Delivery Plan into an Epic and Stories, saved as local Markdown files r
 
 ## When to use
 
-Use this after `delivery-planning` has produced a Delivery Plan. It is step four of the feature pipeline:
-
-```
-backlog-refinement → technical-design → delivery-planning → work-breakdown → ticket-publish
-```
+Use this once the work is specified enough to decompose. On the Direct route that is straight after `request-triage`.
 
 Do not run this skill if the Delivery Plan has unresolved Open Questions — they will cause stories to be scoped or phased incorrectly.
 
@@ -53,14 +49,13 @@ Ticket quality depends on the Tech Spec. Passing only the Delivery Plan produces
 
 This is the safe step — review and edit the generated files before running `ticket-publish`. File changes are free; deleting 30 tickets from Linear is not.
 
-## Pipeline
+## Routes
 
-```
-backlog-refinement  →  technical-design  →  delivery-planning  →  work-breakdown  →  ticket-publish
-idea → PRD        PRD → Tech Spec   Tech Spec → Plan  Plan → local files  files → tickets
-```
+Runs on **every** route — the one step no route skips. What it reads differs by route: the delivery plan on Full, the requirements document on Standard, the work order alone on Direct.
 
-**Next step:** Review the files in `tickets/`, then run `ticket-publish`.
+Routes, escalation gates, and the work order format are defined in [`request-triage/references/routes.md`](../request-triage/references/routes.md).
+
+**Next step:** Review the files in `tickets/`, then run `ticket-publish` if the tickets should exist in Linear or GitHub.
 
 ## Files
 

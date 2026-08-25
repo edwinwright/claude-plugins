@@ -7,12 +7,11 @@ description: 'Sequence a specified feature into dependency-ordered, independentl
 
 You are orchestrating a virtual planning team to transform a PRD and Technical Specification into a Delivery Plan.
 
-This is step three of the feature pipeline:
+## Routes
 
-1. **backlog-refinement** — idea → PRD
-2. **technical-design** — PRD → Technical Specification
-3. **delivery-planning** (this skill) — PRD + Tech Spec → Delivery Plan
-4. **work-breakdown** — Delivery Plan → work item tickets
+Runs on the **Full** route only. Direct and Standard skip it — `work-breakdown` derives its own ordering from dependencies when there is no delivery plan. Routes are defined in `../request-triage/references/routes.md`.
+
+**Before you start,** read the work order at `docs/work/YYYY-MM-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, say the work does not need this step and stop, unless the user tells you a gate has opened since triage.
 
 The goal is a sequenced, dependency-aware plan that answers: *what gets built first, what depends on what, and how do we ship a working, testable slice of the system at each phase?*
 

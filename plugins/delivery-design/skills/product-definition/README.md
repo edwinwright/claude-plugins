@@ -4,11 +4,7 @@ Turns a product idea into a Product Brief / Vision document and a MoSCoW-priorit
 
 ## When to use
 
-Use this at the start of a new product — before any feature work begins. It is the first step in the product workflow:
-
-```
-product-definition → domain-modelling → backlog-refinement (per backlog item) → technical-design → ...
-```
+Use this at the start of a new product, before any feature work begins — or cold, to revise an existing product definition.
 
 Invoke it with phrases like:
 - "I have an idea for a new product..."
@@ -16,7 +12,7 @@ Invoke it with phrases like:
 - "I want to build..."
 - "What should I build?"
 
-For a new feature on an **existing product** (product brief already exists), go directly to `backlog-refinement`.
+For a new feature on an **existing product** (the product definition already exists), start at `request-triage` instead.
 
 ## Inputs
 
@@ -57,15 +53,13 @@ Each backlog entry has a title, one-sentence user value, and an optional scope n
 
 The quality of the output depends on what you provide upfront. The more context about users, constraints, and goals, the fewer questions the skill needs to ask.
 
-## Pipeline
+## Routes
 
-```
-product-definition          →     domain-modelling          →     backlog-refinement (per backlog item)
-idea → vision.md             glossary.md               PRD for each feature
-       product-backlog.md    domain-model.md
-```
+Runs at the head of the **Full** route, once per product rather than once per piece of work. Also standalone — run it cold to revise an existing product definition.
 
-**Next step:** Run `domain-modelling` to bootstrap the glossary and domain model. Then run `backlog-refinement` for each backlog item, starting with the Must Haves.
+Routes, escalation gates, and the work order format are defined in [`request-triage/references/routes.md`](../request-triage/references/routes.md).
+
+**Next step:** Run `domain-modelling` to bootstrap the glossary and domain model. Then run `request-triage` on each backlog item.
 
 ## Files
 

@@ -48,11 +48,11 @@ docs/product/
 
 The quality of the output depends heavily on what you provide upfront. Attach your README, API docs, or existing codebase context for the richest result.
 
-## Pipeline
+## Routes
 
-```
-product-definition → domain-modelling → backlog-refinement → technical-design → ...
-```
+Standalone, on any route, at any point. `acceptance-review` also calls it in append mode to promote terms and invariants discovered during a build.
+
+Routes, escalation gates, and the work order format are defined in [`request-triage/references/routes.md`](../request-triage/references/routes.md).
 
 `domain-modelling` is standalone — it is not a pipeline step, but it feeds the pipeline. `technical-design` and `backlog-refinement` read the existing glossary and domain model as context when processing new features.
 

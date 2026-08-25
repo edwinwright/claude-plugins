@@ -7,12 +7,11 @@ description: 'Define a new product: vision, target users, the problem it solves,
 
 You are helping the user turn a product idea into a Product Brief, a product vision document, and an initial `product-backlog.md`.
 
-This is the first step in the product workflow:
+## Routes
 
-1. **product-definition** (this skill) — idea → Product Brief / Vision + `product-backlog.md`
-2. **domain-modelling** — bootstraps `glossary.md` + `domain-model.md`
-3. **request-triage** — triages each new idea against the backlog before it is scoped
-4. **backlog-refinement** — one PRD per backlog item → feeds the feature pipeline
+Runs at the head of the **Full** route, once per product rather than once per piece of work. It is also standalone — run it cold to revise an existing product definition. Routes are defined in `../request-triage/references/routes.md`.
+
+**Before you start,** read `docs/discovery/` if it exists — `requirements-discovery` produces the problem statement, stakeholder map, and current-state assessment this skill turns into a vision and a backlog. If it does not exist, work from what the user gives you; do not invent stakeholders.
 
 Your goal is a Product Brief clear enough to give a developer the "why" of the product, and a `product-backlog.md` rich enough for `backlog-refinement` to open any backlog item without further context.
 

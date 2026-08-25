@@ -4,11 +4,7 @@ Transforms a PRD and Technical Specification into a dependency-aware Delivery Pl
 
 ## When to use
 
-Use this after `technical-design` has produced a Technical Specification. It is step three of the feature pipeline:
-
-```
-backlog-refinement → technical-design → delivery-planning → work-breakdown
-```
+Use this after `technical-design` has produced a Technical Specification.
 
 Do not run this skill if the Tech Spec has unresolved Open Questions — anything that affects scope or architecture will produce incorrectly sequenced stories.
 
@@ -62,12 +58,11 @@ The **main orchestrating agent** handles synthesis and conflict resolution. **cl
 
 The quality of the plan depends on the Tech Spec. A sparse or ambiguous spec produces a plan with more open questions and vaguer phase boundaries. Resolve Tech Spec gaps before running this skill.
 
-## Pipeline
+## Routes
 
-```
-backlog-refinement     →     technical-design     →     delivery-planning     →     work-breakdown
-idea → PRD              PRD → Tech Spec          Tech Spec → Plan        Plan → tickets
-```
+Runs on the **Full** route only. Direct and Standard skip it — `work-breakdown` derives its own ordering from dependencies when there is no delivery plan.
+
+Routes, escalation gates, and the work order format are defined in [`request-triage/references/routes.md`](../request-triage/references/routes.md).
 
 **Next step:** Pass the saved Delivery Plan (and Tech Spec if available) to `work-breakdown`.
 

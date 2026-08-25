@@ -4,11 +4,7 @@ Publishes locally generated ticket files to Linear or GitHub Issues.
 
 ## When to use
 
-Use this after `work-breakdown` has generated local `.md` files and you have reviewed them. It is the final step in the feature pipeline:
-
-```
-backlog-refinement → technical-design → delivery-planning → work-breakdown → ticket-publish
-```
+Use this after `work-breakdown` has generated local `.md` files and you have reviewed them.
 
 Do not run this skill until you are satisfied with the ticket files. Tickets created in Linear or GitHub cannot be bulk-deleted easily — review the local files first.
 
@@ -55,12 +51,11 @@ This skill runs entirely within the main agent — no subagents are spawned. The
 
 The skill asks for explicit confirmation before creating anything. If the deployment fails partway through (e.g. a network error), re-running the skill may create duplicates — check the destination tool before retrying.
 
-## Pipeline
+## Routes
 
-```
-backlog-refinement  →  technical-design  →  delivery-planning  →  work-breakdown  →  ticket-publish
-idea → PRD        PRD → Tech Spec   Tech Spec → Plan  Plan → local files  files → tickets
-```
+Optional on every route, and not a route step. Run it when the tickets should exist in Linear or GitHub; skip it when local files are enough.
+
+Routes, escalation gates, and the work order format are defined in [`request-triage/references/routes.md`](../request-triage/references/routes.md).
 
 **This is the final step.** After deployment, pick up individual stories and pass them to an agent with the relevant codebase context to execute.
 

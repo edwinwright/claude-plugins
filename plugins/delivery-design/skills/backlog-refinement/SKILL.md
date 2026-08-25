@@ -7,16 +7,13 @@ description: 'Refine a backlog item or triaged request into a requirements docum
 
 You are helping the user turn a product or feature idea into a structured Product Requirements Document (PRD).
 
-This is the second step in the feature pipeline:
+## Routes
 
-1. **request-triage** — raw idea → triaged: scope now, or park in the backlog
-2. **backlog-refinement** (this skill) — idea → PRD
-3. **technical-design** — PRD → Technical Specification
-4. **delivery-planning** — PRD + Tech Spec → Delivery Plan
-5. **work-breakdown** — Delivery Plan → work item tickets
-6. **ticket-publish** — ticket files → Linear or GitHub Issues
+Runs on the **Standard** and **Full** routes. The Direct route skips it — on Direct, a requirements document would only restate the request. Routes are defined in `../request-triage/references/routes.md`.
 
-Your goal is a PRD that is clear, complete, and ready to hand to `technical-design` without further clarification.
+**Before you start,** read the work order at `docs/work/YYYY-MM-<slug>/work-order.md` for the route and the triaged request. If no work order exists, say so and offer to run `request-triage` first, or to proceed on the Standard route without one. Do not invent a work order.
+
+Your goal is a requirements document clear enough to hand on without further clarification — to `technical-design` on the Full route, or straight to `work-breakdown` on Standard.
 
 ---
 
