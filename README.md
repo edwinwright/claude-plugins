@@ -26,27 +26,27 @@ All three plugins are built around a small set of deliberate constraints rather 
 
 ```
 PRODUCT workflow  (new product)
-  product-brief → domain-doc → product-backlog
+  product-definition → domain-modelling → product-backlog
 
 FEATURE workflow  (per backlog item)
-  feature-request → feature-brief → feature-design → feature-plan → feature-tickets → feature-publish
+  request-triage → backlog-refinement → technical-design → delivery-planning → work-breakdown → ticket-publish
       intake          idea→PRD        PRD→spec         spec→plan       plan→files       files→Linear/GitHub
 
 decision-record is available throughout, at any point a costly, hard-to-reverse decision is made.
 ```
 
-A brand-new product runs the product workflow first, then pushes each backlog item through the feature workflow. A new feature on an existing product skips straight to `feature-brief`.
+A brand-new product runs the product workflow first, then pushes each backlog item through the feature workflow. A new feature on an existing product skips straight to `backlog-refinement`.
 
 | Skill | Does |
 |---|---|
-| `product-brief` | Idea → Product Brief + MoSCoW-prioritised backlog |
-| `domain-doc` | Bootstraps and maintains the glossary + domain model |
-| `feature-request` | Intake triage — the front door before a PRD |
-| `feature-brief` | Feature idea → PRD |
-| `feature-design` | PRD → Technical Specification (runs a virtual dev team of specialist lenses) |
-| `feature-plan` | PRD + Tech Spec → sequenced Delivery Plan |
-| `feature-tickets` | Delivery Plan → local Epic + Story ticket files |
-| `feature-publish` | Local ticket files → Linear or GitHub Issues |
+| `product-definition` | Idea → Product Brief + MoSCoW-prioritised backlog |
+| `domain-modelling` | Bootstraps and maintains the glossary + domain model |
+| `request-triage` | Intake triage — the front door before a PRD |
+| `backlog-refinement` | Feature idea → PRD |
+| `technical-design` | PRD → Technical Specification (runs a virtual dev team of specialist lenses) |
+| `delivery-planning` | PRD + Tech Spec → sequenced Delivery Plan |
+| `work-breakdown` | Delivery Plan → local Epic + Story ticket files |
+| `ticket-publish` | Local ticket files → Linear or GitHub Issues |
 | `decision-record` | MADR-style decision record with a significance gate that refuses trivial ones |
 
 ## engineering

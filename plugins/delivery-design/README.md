@@ -16,18 +16,18 @@ A Claude plugin (Claude Code and Cowork) that takes an idea through product → 
 ```
 PRODUCT workflow   (new product — bootstraps the early SDLC)
   idea
-   ├─ product-brief   → docs/product/vision.md + docs/product/product-backlog.md
-   ├─ domain-doc      → docs/product/glossary.md + docs/product/domain-model.md
+   ├─ product-definition   → docs/product/vision.md + docs/product/product-backlog.md
+   ├─ domain-modelling      → docs/product/glossary.md + docs/product/domain-model.md
    └─ (output)        → product-backlog.md (one entry per feature, MoSCoW prioritised)
                           │
                           ▼
 FEATURE workflow   (per backlog item)
-  feature-request → feature-brief → feature-design → feature-plan → feature-tickets → feature-publish
+  request-triage → backlog-refinement → technical-design → delivery-planning → work-breakdown → ticket-publish
   intake            idea → PRD       PRD → spec       spec → plan     plan → files      files → Linear/GitHub
 ```
 
 **New product:** run the product workflow, then push each backlog item through the feature workflow.
-**New feature on an existing product:** skip straight to `feature-brief`.
+**New feature on an existing product:** skip straight to `backlog-refinement`.
 
 ---
 
@@ -35,15 +35,15 @@ FEATURE workflow   (per backlog item)
 
 | Skill | Status | Notes |
 |---|---|---|
-| `feature-brief` | ships | idea → PRD |
-| `feature-design` | ships | PRD → Tech Spec; emits/updates `AGENTS.md` |
-| `feature-plan` | ships | PRD + Tech Spec → Delivery Plan |
-| `feature-tickets` | ships | Delivery Plan → local ticket files |
-| `feature-publish` | ships | local files → Linear or GitHub Issues |
+| `backlog-refinement` | ships | idea → PRD |
+| `technical-design` | ships | PRD → Tech Spec; emits/updates `AGENTS.md` |
+| `delivery-planning` | ships | PRD + Tech Spec → Delivery Plan |
+| `work-breakdown` | ships | Delivery Plan → local ticket files |
+| `ticket-publish` | ships | local files → Linear or GitHub Issues |
 | `decision-record` | ships | MADR-style; `architecture` / `product` / `process` scope; significance gate |
-| `domain-doc` | ships | bootstraps and maintains `glossary.md` + `domain-model.md` |
-| `product-brief` | ships | idea → Product Brief + `product-backlog.md` |
-| `feature-request` | ships | intake triage; the front door before `feature-brief` |
+| `domain-modelling` | ships | bootstraps and maintains `glossary.md` + `domain-model.md` |
+| `product-definition` | ships | idea → Product Brief + `product-backlog.md` |
+| `request-triage` | ships | intake triage; the front door before `backlog-refinement` |
 
 ---
 
@@ -53,10 +53,10 @@ FEATURE workflow   (per backlog item)
 AGENTS.md                          ← agent router (repo root — loaded automatically)
 docs/
   product/
-    vision.md                      ← product brief (product-brief)
-    glossary.md                    ← ubiquitous language (domain-doc)
-    domain-model.md                ← entities, relationships, invariants (domain-doc)
-    product-backlog.md             ← MoSCoW feature list (product-brief)
+    vision.md                      ← product brief (product-definition)
+    glossary.md                    ← ubiquitous language (domain-modelling)
+    domain-model.md                ← entities, relationships, invariants (domain-modelling)
+    product-backlog.md             ← MoSCoW feature list (product-definition)
   decisions/
     architecture/
       0001-<slug>.md
@@ -66,11 +66,11 @@ docs/
       0001-<slug>.md
   features/
     <feature-name>/
-      prd.md                       ← feature-brief
-      tech-spec.md                 ← feature-design
-      delivery-plan.md             ← feature-plan
+      prd.md                       ← backlog-refinement
+      tech-spec.md                 ← technical-design
+      delivery-plan.md             ← delivery-planning
       tickets/
-        _epic.md                   ← feature-tickets
+        _epic.md                   ← work-breakdown
         <story-name>.md
 ```
 
