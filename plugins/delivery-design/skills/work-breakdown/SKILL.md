@@ -1,6 +1,6 @@
 ---
 name: work-breakdown
-description: 'Break a Delivery Plan into an Epic and Story tickets saved as local Markdown files. Use this skill when the user has a Delivery Plan and wants to generate work item files ready for review before deployment. Triggers include: "create tickets from this plan", "break this into stories", "generate work items", "write up the tickets", or any time the user wants to turn a delivery plan into reviewable ticket files. Run ticket-publish afterwards to push the files to Linear or GitHub Issues. This is the fourth step in the feature pipeline: backlog-refinement → technical-design → delivery-planning → work-breakdown → ticket-publish.'
+description: 'Break a Delivery Plan into an Epic and Story ticket files saved locally as Markdown for review before anything is created in a project management tool. Each story carries its tasks, dependencies, and acceptance criteria. Triggers: "break this into stories", "create the tickets", "generate work items", "write up the tasks", "work breakdown", "turn this plan into tickets". Run ticket-publish afterwards to push the reviewed files to Linear or GitHub Issues.'
 ---
 
 # work-breakdown

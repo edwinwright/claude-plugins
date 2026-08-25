@@ -1,6 +1,6 @@
 ---
 name: request-triage
-description: 'Triage a raw feature idea or request before writing a PRD. Use this skill when the user has a rough idea and needs to decide whether to scope it fully (backlog-refinement) or park it in the backlog. The Product Owner lens lives here. Triggers: "I have an idea for", "new feature request", "should we build X", "add this to the backlog", "is this worth building", or any time the user wants to assess a request before committing to a PRD.'
+description: 'Triage an incoming request — a feature idea, a bug report, a change ask — and decide whether it is worth building, should be parked in the backlog, or needs clarifying first. Checks the existing backlog for duplicates before anything is scoped. The front door to any piece of delivery work, ahead of writing requirements or tickets. Triggers: "I have an idea for", "should we build X", "new feature request", "is this worth building", "add this to the backlog", "triage this request".'
 ---
 
 # request-triage

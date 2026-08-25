@@ -1,6 +1,6 @@
 ---
 name: backlog-refinement
-description: Write a Product Requirements Document (PRD) for a feature on an existing product. Use this skill when the user has a feature idea ready to scope — the product already exists and product-definition has been run (or is not needed). Trigger on "write a PRD", "feature requirements", "scope this feature", "new feature idea", or any time the user wants to formalise what a feature should do before handing it to the dev pipeline. For brand-new products with no prior product-definition, use product-definition first.
+description: 'Refine a backlog item or triaged request into a requirements document (PRD): scope, users, functional requirements written as user stories, non-functional requirements, and what is explicitly out of scope. Use when a request has been triaged and needs specifying before technical design or work breakdown. Triggers: "write a PRD", "refine this backlog item", "backlog refinement", "write the requirements", "scope this feature", "what are the acceptance criteria". Not for refining prose or notes — this produces a delivery requirements document.'
 ---
 
 # backlog-refinement

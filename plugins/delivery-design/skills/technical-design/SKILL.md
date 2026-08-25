@@ -1,6 +1,6 @@
 ---
 name: technical-design
-description: 'Produce a Technical Specification from a Product Requirements Document (PRD) by running a virtual dev team of specialist subagents. Use this skill when the user has a PRD and wants to generate a technical spec before planning delivery and creating tickets. Triggers include: "run the dev team on this PRD", "create a tech spec", "technical design for", "design this feature", "turn this PRD into a spec", or any time the user passes a PRD to be reviewed and translated into engineering decisions. This is the second step in the feature pipeline: backlog-refinement → technical-design → delivery-planning → work-breakdown.'
+description: 'Produce a Technical Specification from a requirements document by running a virtual dev team of specialist subagents — architect, frontend, backend, and QA. Settles stack, components, API contracts, data model, security, and test strategy before delivery is sequenced. Triggers: "create a tech spec", "technical design for", "run the dev team on this", "how should we build this technically", "turn this PRD into a spec", "what is the architecture for this feature".'
 ---
 
 # technical-design

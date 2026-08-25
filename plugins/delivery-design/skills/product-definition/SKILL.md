@@ -1,6 +1,6 @@
 ---
 name: product-definition
-description: 'Write a Product Brief and initial product backlog from a product idea. Use this skill when the user has a new product idea and wants to define the vision, target users, and a prioritised feature backlog before starting feature work. Triggers: "I have an idea for a new product", "write a product brief", "product vision", "what should I build", "I want to build an app". This is the first step in the product workflow: product-definition → domain-modelling → backlog-refinement (per backlog item).'
+description: 'Define a new product: vision, target users, the problem it solves, success metrics, guiding principles, and a MoSCoW-prioritised feature backlog. Also used to revise an existing product definition. Outputs docs/product/vision.md and docs/product/product-backlog.md. Triggers: "I have an idea for a new product", "define the product", "write a product brief", "product vision", "what should I build", "I want to build an app", "write the product backlog".'
 ---
 
 # product-definition

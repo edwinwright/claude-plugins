@@ -1,6 +1,6 @@
 ---
 name: domain-modelling
-description: 'Bootstrap or update the project glossary and domain model. Use this skill when starting a new product (after product-definition), when onboarding onto an existing codebase, or when a new feature introduces terms and entities that should be formalised. Outputs docs/product/glossary.md and docs/product/domain-model.md. Triggers: "write the glossary", "document the domain model", "bootstrap domain docs", "update the glossary with these new terms".'
+description: 'Establish or extend the project''s ubiquitous language and domain model — the glossary of terms that carry a specific meaning in this codebase, the entities and their relationships, and the invariants that must always hold. Use when bootstrapping a new product, onboarding onto an unfamiliar codebase, or when new work introduces domain concepts the glossary does not yet cover. Triggers: "write the glossary", "model the domain", "domain modelling", "document the entities", "what does this term mean here", "add these terms to the glossary".'
 ---
 
 # domain-modelling

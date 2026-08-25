@@ -1,6 +1,6 @@
 ---
 name: delivery-planning
-description: 'Produce a Delivery Plan from a PRD and Technical Specification by running a virtual planning team of specialist subagents. Use this skill when the user has a Technical Specification and wants to sequence the work before creating tickets. Triggers include: "plan the delivery", "sequence this feature", "how should we build this", "what order do we build things in", "sprint planning", "create a delivery plan", "break this into phases", "what gets built first", or any time the user has a Tech Spec and wants to understand dependencies and delivery order before creating tickets. This is the third step in the feature pipeline: backlog-refinement → technical-design → delivery-planning → work-breakdown.'
+description: 'Sequence a specified feature into dependency-ordered, independently deployable phases by running a virtual planning team of specialist subagents. Produces a Delivery Plan naming what gets built first, what blocks what, and what a tester can verify at the end of each phase. Use once a Technical Specification exists and before tickets are written. Triggers: "plan the delivery", "sequence this work", "what order do we build things in", "break this into phases", "what gets built first", "delivery plan".'
 ---
 
 # delivery-planning

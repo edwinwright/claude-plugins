@@ -1,6 +1,6 @@
 ---
 name: ticket-publish
-description: 'Publish locally generated ticket files to a connected project management tool (Linear or GitHub Issues). Use this skill after work-breakdown has generated local .md files and the user has reviewed them. Triggers include: "publish the tickets", "push tickets to Linear", "create GitHub issues from the ticket files", "upload the tickets", or any time the user is ready to create tickets in their project management tool after reviewing local files. This is the fifth and final step in the feature pipeline: backlog-refinement → technical-design → delivery-planning → work-breakdown → ticket-publish.'
+description: 'Publish locally generated ticket files to a connected project management tool — Linear or GitHub Issues — creating the Epic, each Story, and their blocking relations. Use after work-breakdown has written the ticket files and you have reviewed them. Triggers: "publish the tickets", "push these to Linear", "create GitHub issues from the ticket files", "upload the tickets". Not for publishing artifacts, notes, packages, or posts.'
 ---
 
 # ticket-publish
