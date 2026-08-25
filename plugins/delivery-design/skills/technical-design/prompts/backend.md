@@ -57,7 +57,7 @@ List any third-party services or internal services this feature calls. For each:
 
 ### Security
 
-Cover the security considerations relevant to this feature:
+The product-wide security posture lives in `docs/product/nfr.md`. Do not restate it — cover what is specific to this feature:
 - Authentication and authorisation rules
 - Input sanitisation and injection risks
 - Rate limiting requirements

@@ -25,15 +25,18 @@ For a new feature on an **existing product** (the product definition already exi
 
 ## Output
 
-Two files written to `docs/product/`:
+Three files written to `docs/product/`:
 
 ```
 docs/product/
   vision.md              ← Product Brief (vision, target users, problem, success metrics, principles, constraints)
   product-backlog.md     ← MoSCoW-prioritised feature list
+  nfr.md                 ← the product-wide non-functional baseline every feature inherits
 ```
 
 Each backlog entry has a title, one-sentence user value, and an optional scope note — sufficient for `backlog-refinement` to open without further context.
+
+`nfr.md` is written once here rather than restated per feature. Feature documents record only their **deltas** from it, which is also what makes the non-functional escalation gate in `request-triage` checkable: a delta has a number, a wish does not.
 
 ## How it works
 
@@ -42,7 +45,8 @@ Each backlog entry has a title, one-sentence user value, and an optional scope n
 3. Asks targeted clarifying questions (max 7)
 4. Writes the Product Brief using `vision-template.md`
 5. Writes the product backlog using `product-backlog-template.md`
-6. Advises on next steps (domain-modelling → backlog-refinement)
+6. Writes the non-functional baseline using `nfr-template.md`, asking for the numbers rather than inventing them
+7. Advises on next steps (`domain-modelling`, then `request-triage` per backlog item)
 
 ## Usage guidelines
 
@@ -69,3 +73,4 @@ Routes, escalation gates, and the work order format are defined in [`request-tri
 | `README.md` | This file |
 | `vision-template.md` | Output template for `docs/product/vision.md` |
 | `product-backlog-template.md` | Output template for `docs/product/product-backlog.md` |
+| `nfr-template.md` | Output template for `docs/product/nfr.md`, the product-wide non-functional baseline |

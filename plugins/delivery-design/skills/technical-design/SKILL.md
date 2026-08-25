@@ -35,6 +35,10 @@ Ask the user:
 
 If constraints are provided, keep them accessible — you will pass them to the Architect subagent.
 
+Also read `docs/product/nfr.md` if it exists. It is the product-wide non-functional baseline, and the requirements document only lists deltas from it. Pass both to every subagent: without the baseline they will restate it from scratch, differently, and the spec will contradict the product.
+
+If `docs/product/nfr.md` does not exist, say so and continue. Do not invent a baseline — flag it as an open question and suggest running `product-definition` to establish one.
+
 ---
 
 ## Step 3: Run the Architect subagent

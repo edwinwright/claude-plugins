@@ -60,7 +60,9 @@ Brief summary of what this spec covers and which PRD it implements. One paragrap
 
 ### Accessibility & Performance
 
-[Requirements and baselines.]
+Baseline: `docs/product/nfr.md`. Record only what this feature does *differently*, and how the frontend meets any delta the requirements document named.
+
+[Delta, or "Baseline applies unchanged".]
 
 ---
 
@@ -84,7 +86,9 @@ Brief summary of what this spec covers and which PRD it implements. One paragrap
 
 ### Security
 
-[Auth, input validation, rate limiting, data sensitivity.]
+Baseline: `docs/product/nfr.md`. Cover what is specific to this feature — auth on these endpoints, validation of these inputs, sensitivity of this data — not the product-wide security posture.
+
+[Feature-specific security design.]
 
 ### Error Handling
 

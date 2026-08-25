@@ -42,9 +42,11 @@ This is the contract the Backend engineer must fulfil. Be specific — vague con
 
 ### Accessibility & Performance
 
-List any accessibility requirements derived from the PRD (keyboard navigation, screen reader support, colour contrast, etc.). If the PRD does not specify, apply standard WCAG AA as the baseline.
+The product-wide bar lives in `docs/product/nfr.md`, and the requirements document lists only this feature's deltas from it. Do not restate the baseline — say how the frontend *meets* it, and give any delta the design work it needs.
 
-Note any performance requirements: initial load targets, lazy loading needs, real-time update behaviour, etc.
+Cover the parts that are a frontend problem: keyboard navigation, focus management, screen reader semantics, colour contrast, initial load, lazy loading, real-time update behaviour.
+
+If neither document sets a number and one is genuinely needed, say so in Risks & Open Questions rather than inventing a target. A fabricated latency budget looks like a decision and will be built against.
 
 ### UX Gaps & Open Questions
 

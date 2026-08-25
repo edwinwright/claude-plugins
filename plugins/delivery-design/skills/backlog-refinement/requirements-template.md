@@ -48,12 +48,23 @@ Write each requirement as a user story:
 
 ### Non-Functional Requirements
 
-- **Performance**: 
-- **Accessibility**: 
-- **Security**: 
-- **Platform**: 
-- **Integrations**: 
-- **Other**: 
+Baseline: `docs/product/nfr.md` — inherited in full unless listed below.
+
+**Deltas for this feature:**
+
+| Baseline ID | This feature requires | Why it differs |
+|---|---|---|
+| | | |
+
+*None* means the baseline applies unchanged. A delta needs a number — if you cannot put one on it, it is a wish and does not belong here.
+
+A genuine delta is also one of the five escalation gates. If this table has a row in it, check whether the work should be on the Full route.
+
+### Integrations
+
+Third-party or internal services this feature depends on. Name each one and what happens when it is unavailable.
+
+- 
 
 ## Assumptions & Dependencies
 

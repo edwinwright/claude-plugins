@@ -73,17 +73,34 @@ Typical backlog size for a first brief: 6–15 items across MoSCoW tiers. Do not
 
 ---
 
-## Step 6: Save and present
+## Step 6: Write the non-functional baseline
 
-Save the Product Brief to `docs/product/vision.md`. Save the product backlog to `docs/product/product-backlog.md`.
+Read the template at `nfr-template.md` and write `docs/product/nfr.md`.
 
-Present both files to the user.
+This is the product-wide bar — the performance, accessibility, security, and availability requirements that every feature meets unless it states otherwise. Writing it once here is what stops each feature document restating them differently.
+
+Two rules:
+
+- **Every requirement needs a number and a way to check it.** "Fast" is not a requirement; "p95 page load under 2s on a 4G connection, measured by Lighthouse CI" is. If you cannot put a number on something, leave it out rather than writing an adjective.
+- **Do not invent numbers the user has not given you.** Ask for the ones that matter and leave the rest as an explicit gap: `[not yet set — decide before the first release]`. A fabricated latency target is worse than a missing one, because it looks like a decision.
+
+Where the input is silent, ask. Cap this at three questions on top of the seven in Step 3 — accessibility standard, browser support, and whichever of performance or compliance the product most obviously depends on.
+
+---
+
+## Step 7: Save and present
+
+Save the Product Brief to `docs/product/vision.md`, the backlog to `docs/product/product-backlog.md`, and the baseline to `docs/product/nfr.md`.
+
+These are the default paths. Check the host project's `AGENTS.md` or `CLAUDE.md` first — see `../request-triage/references/artefacts.md`.
+
+Present all three files to the user.
 
 Tell the user:
 
-> "The product brief and backlog are ready. The recommended next steps are:
+> "The product brief, backlog, and non-functional baseline are ready. The recommended next steps are:
 >
-> 1. Run **`domain-modelling`** to bootstrap the glossary and domain model — this gives the feature pipeline the shared vocabulary it needs.
-> 2. Then run **`backlog-refinement`** for each backlog item, starting with the Must Haves.
+> 1. Run **`domain-modelling`** to bootstrap the glossary and domain model — this gives the pipeline the shared vocabulary it needs, and it is what the first escalation gate is checked against.
+> 2. Then run **`request-triage`** on each backlog item, starting with the Must Haves.
 >
-> If anything in the brief looks wrong, edit it now — the backlog and all downstream docs are built on top of these decisions."
+> If anything in the brief looks wrong, edit it now — the backlog and everything downstream is built on top of these decisions. Any gaps left in `nfr.md` are worth closing before the first feature ships; features inherit that file whether or not it is finished."
