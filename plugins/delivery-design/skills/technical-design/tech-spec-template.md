@@ -44,6 +44,34 @@ Brief summary of what this spec covers and which PRD it implements. One paragrap
 
 ---
 
+## Files & Boundaries
+
+Where this feature lives in the tree. This section is read by whoever — or whatever — writes the code, so name real paths, not component names.
+
+### Create
+
+| Path | Contains |
+|---|---|
+| | |
+
+### Modify
+
+| Path | Change |
+|---|---|
+| | |
+
+### Do not touch
+
+Paths an implementer might reasonably think are in scope but are not. Say why, briefly — "shared with billing, changing it breaks invoice export" stops someone from deciding the constraint was arbitrary.
+
+| Path | Why it is out of bounds |
+|---|---|
+| | |
+
+*If the codebase does not exist yet, describe the intended structure instead and say so.*
+
+---
+
 ## Frontend Design
 
 ### Component & Page Breakdown
@@ -100,7 +128,14 @@ Baseline: `docs/product/nfr.md`. Cover what is specific to this feature — auth
 
 ### Acceptance Test Scenarios
 
-[Given / When / Then scenarios mapped to PRD user stories.]
+Given / When / Then scenarios mapped to the requirements document's user stories. Every scenario carries a `Verify:` line naming the command or test that proves it — these become the acceptance criteria in the tickets, and they are what `acceptance-review` runs later.
+
+> **Given** [context]
+> **When** [action]
+> **Then** [outcome]
+> **Verify:** `[command, or the name of the test that covers it]`
+
+Where a scenario genuinely cannot be checked by a command, write `Verify: manual — [exactly what a person does and what they should see]`. Do not leave the line off.
 
 ### Integration Test Requirements
 
@@ -113,6 +148,17 @@ Baseline: `docs/product/nfr.md`. Cover what is specific to this feature — auth
 ### Test Coverage Plan
 
 [Unit / integration / E2E / manual breakdown.]
+
+### Verification Commands
+
+The commands that prove this feature works, in the order they should be run. These are copied into each story's Verification block, so they must be runnable as written.
+
+```
+lint:  [command]
+test:  [command]
+build: [command]
+e2e:   [command, or "none"]
+```
 
 ### Infrastructure Gaps
 

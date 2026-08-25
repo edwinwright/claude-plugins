@@ -32,7 +32,17 @@ If no constraints were provided, recommend a stack appropriate to the requiremen
 
 ### System Components
 
-List the high-level components that need to exist for this feature to work. For each component, describe its responsibility in one or two sentences. Identify which components are new vs. which extend existing ones (if the PRD describes a feature on an existing product).
+List the high-level components that need to exist for this feature to work. For each component, describe its responsibility in one or two sentences. Identify which components are new vs. which extend existing ones (if the requirements describe a feature on an existing product).
+
+### Files & Boundaries
+
+Say where this feature lives in the tree. The specification is read by whoever — or whatever — writes the code, and a component name is not an address.
+
+- **Create** — paths that do not exist yet, and what each will contain.
+- **Modify** — paths that exist and what changes in them.
+- **Do not touch** — paths an implementer might reasonably think are in scope but are not, with a one-line reason. "Shared with billing; changing it breaks invoice export" stops someone deciding the constraint was arbitrary.
+
+Follow the conventions the codebase already uses. If you can see the repository, read enough of it to place things where a maintainer would expect. If you cannot see it, describe the intended structure and say explicitly that you are proposing rather than describing.
 
 ### API Approach
 

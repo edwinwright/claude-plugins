@@ -19,13 +19,25 @@ Your output will be incorporated into the Technical Specification and will infor
 
 ### Acceptance Test Scenarios
 
-For each functional requirement in the PRD (each user story), write at least one acceptance test scenario. Use Given / When / Then format:
+For each functional requirement (each user story), write at least one acceptance test scenario. Use Given / When / Then, and give every scenario a `Verify:` line:
 
 > **Given** [initial context or state]
 > **When** [the user or system takes an action]
 > **Then** [the expected outcome]
+> **Verify:** `[the command that proves it, or the name of the test that covers it]`
 
-Cover the happy path first, then add scenarios for the most important edge cases and error paths.
+Cover the happy path first, then the most important edge cases and error paths.
+
+**The `Verify:` line is not optional.** These scenarios become the acceptance criteria in the tickets, and `acceptance-review` runs them when the work is closed out. A criterion nobody can check is a criterion nobody will honour.
+
+If you cannot bind a scenario to a check, one of two things is true and you should say which:
+
+- **It needs a person.** Write `Verify: manual — [exactly what someone does and what they should see]`. That is a legitimate answer.
+- **The scenario is too vague to test.** Rewrite it until it is specific enough, or raise it in Open Questions. Do not write a criterion you know cannot be evaluated — "the feature works correctly" passes review and fails everyone later.
+
+### Verification Commands
+
+Name the actual commands that prove this feature works — lint, test, build, and end-to-end if one exists. Take them from the repository if you can see it; if you cannot, say so and flag it rather than guessing at a package manager and a script name. These are copied verbatim into every story, so a wrong command is worse than a missing one.
 
 ### Integration Test Requirements
 

@@ -19,6 +19,7 @@ The Frontend engineer is working in parallel and will define the API contract th
 
 For each endpoint (or equivalent for the chosen API style), define:
 
+- **File path**: where the handler lives, e.g. `src/app/api/comments/[id]/like/route.ts`. Follow the conventions the codebase already uses and the boundaries the Architect set; do not invent a competing path for something already placed.
 - **Route & method**: e.g. `POST /api/comments/:id/like`
 - **Purpose**: What this endpoint does
 - **Authentication**: Whether it requires auth, and what kind

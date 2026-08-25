@@ -21,6 +21,10 @@ List the pages or screens this feature requires. For each page, list the key com
 
 If this is a feature on an existing product, identify which existing components are extended vs. which are new.
 
+**Give every component a file path**, following the conventions the codebase already uses and the boundaries the Architect set. `LikeButton` is a name; `src/features/comments/LikeButton.tsx` is an instruction. The specification is read by whoever writes the code, and a name leaves them guessing at placement.
+
+Where the Architect's Files & Boundaries section already places something, use that path — do not invent a competing one.
+
 ### State Management
 
 Describe how application state for this feature will be managed. Cover:

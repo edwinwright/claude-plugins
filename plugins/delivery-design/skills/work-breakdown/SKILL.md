@@ -116,6 +116,14 @@ For each story, draw the content from the richest source this route produced:
 
 **Do not invent acceptance criteria** on the Full or Standard routes — they are the contract `acceptance-review` verifies against later, and inventing them means verifying the work against a standard nobody agreed to. If the source document is silent on a criterion you think matters, add it to the story and say you added it.
 
+**Fill the Files block.** Take the paths from the tech spec's Files & Boundaries section where there is one; otherwise from the codebase itself. If you cannot name the files a story touches, the story is not yet specific enough to hand over — say so rather than leaving the table empty.
+
+**Fill the Verification block.** Copy the commands verbatim from the tech spec's Verification Commands block, or from the repo-root `AGENTS.md` where there is no tech spec. Do not guess at a package manager or a script name: check `package.json`, the `Makefile`, or whatever the project actually uses. A wrong command is worse than an absent one, because it will be run and believed.
+
+**Every acceptance criterion needs its `Verify:` line.** Carry it across from the tech spec. Where a criterion arrives without one, either bind it to a check yourself or mark it `Verify: manual — [what a person does and what they should see]`. These are what `acceptance-review` runs when the work order is closed out.
+
+**Keep the *why* in the ticket.** The requirements document and tech spec get archived at acceptance, so a ticket that only links to them loses its context. Write enough into Description and Technical Context that someone can make a judgement call the tasks did not anticipate. Link only to durable documents — the glossary, domain model, `nfr.md`, decision records.
+
 Also:
 - Include only the task sections that apply (omit Database if no schema changes are required)
 - `depends_on` must use the filename of the blocking story (e.g. `create-likes-table.md`), not the title
