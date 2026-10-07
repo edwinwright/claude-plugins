@@ -32,3 +32,4 @@ Skills that create or move files must **read the host's `CLAUDE.md`** for struct
 - Direct and concise skill instructions; British English; no personal or client-identifying content.
 - After changing a plugin's contents — including adding, renaming, or removing a skill — bump its `version` so installs detect the update.
 - Prefer widening a `description:` over adding a skill. See the `zettelkasten` merge above.
+- Keep `description:` under 1,024 characters: claude.ai truncates anything longer and Claude Desktop flags it as an error. The description says *when* to trigger; *how* the skill behaves belongs in the body.
