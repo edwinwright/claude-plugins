@@ -6,7 +6,7 @@ One sentence describing what this product is. → docs/product/vision.md
 
 ## Before you start — read for your task
 
-- Working on a work order → its `docs/work/<ID>-<slug>/PLAN.md`. Do one slice at a time, as its How to run section says.
+- Working on a work order → its `docs/work/WO-NNNN-<slug>/PLAN.md`. Do one slice at a time, as its How to run section says.
 - Touching a domain entity or term → `docs/domain/domain-model.md` + `docs/domain/glossary.md`
 - Meeting a performance, accessibility, or security bar → `docs/product/nfr.md`
 - Choosing a library, pattern, or structure → `docs/architecture/tech-stack.md` + `docs/architecture/conventions.md`
@@ -14,10 +14,6 @@ One sentence describing what this product is. → docs/product/vision.md
 - Adding a new feature → `docs/product/product-backlog.md` + `docs/product/vision.md`
 
 Entries under `docs/work/` are transient and are removed when the work order is accepted. Nothing here should ever point into `docs/work/_archive/`.
-
-## Work orders
-
-Work order prefix: [PREFIX, e.g. MD. Omit this line if IDs come from a connected tracker.]
 
 ## Commands
 

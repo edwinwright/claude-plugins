@@ -25,7 +25,7 @@ Runs at the close of the **Standard** and **Full** routes. Direct skips it: ther
 
 ## Step 1: Read the work order
 
-Read `docs/work/<ID>-<slug>/work-order.md`, then everything else in the folder: `requirements.md`, `tech-spec.md` and `delivery-plan.md` where the route produced them, and `PLAN.md`. Work started under version 3 of this plugin has a `tickets/` folder instead of `PLAN.md`; read every file in it.
+Read `docs/work/WO-NNNN-<slug>/work-order.md`, then everything else in the folder: `requirements.md`, `tech-spec.md` and `delivery-plan.md` where the route produced them, and `PLAN.md`. Work started under version 3 of this plugin has a `tickets/` folder instead of `PLAN.md`; read every file in it.
 
 Check the layout defaults in `../request-triage/references/artefacts.md` first. The host project may put work elsewhere, and older work may sit in a legacy layout, which that file names.
 
@@ -113,7 +113,7 @@ Record where each item landed. You need the paths for the `harvested_to` stamp i
 
 Read the repo-root `AGENTS.md` and delete the "Before you start" entry for this work order.
 
-The entry points into `docs/work/<ID>-<slug>/`, which is about to move. Leaving it produces a router that sends agents to a path that no longer exists — worse than no entry at all, because it looks authoritative.
+The entry points into `docs/work/WO-NNNN-<slug>/`, which is about to move. Leaving it produces a router that sends agents to a path that no longer exists — worse than no entry at all, because it looks authoritative.
 
 Change nothing else in the file.
 
@@ -124,7 +124,7 @@ Change nothing else in the file.
 **Never delete.** Move it:
 
 1. Confirm the working tree is clean and the work is committed. If it is not, stop and say so — archiving on top of uncommitted changes makes the move hard to undo.
-2. `git mv docs/work/<ID>-<slug> docs/work/_archive/<ID>-<slug>`
+2. `git mv docs/work/WO-NNNN-<slug> docs/work/_archive/WO-NNNN-<slug>`
 3. Stamp every file in the archived folder:
 
    ```yaml
@@ -143,7 +143,7 @@ The stamp is what stops an agent finding a superseded specification and treating
 
 ## Step 8: Report
 
-Write the completed report to `docs/work/_archive/<ID>-<slug>/acceptance-report.md` and present it.
+Write the completed report to `docs/work/_archive/WO-NNNN-<slug>/acceptance-report.md` and present it.
 
 Tell the user:
 
@@ -151,12 +151,12 @@ Tell the user:
 >
 > - **Verified:** [n] criteria passed[, m waived]
 > - **Promoted:** [what went where, as paths]
-> - **Archived:** `docs/work/_archive/<ID>-<slug>/`
+> - **Archived:** `docs/work/_archive/WO-NNNN-<slug>/`
 >
 > Nothing was deleted. When you are satisfied nothing was lost:
 >
 > ```
-> rm -rf docs/work/_archive/<ID>-<slug>
+> rm -rf docs/work/_archive/WO-NNNN-<slug>
 > ```
 >
 > The durable documents are now current as of this work. That is the point of this step — they go stale one unharvested feature at a time."

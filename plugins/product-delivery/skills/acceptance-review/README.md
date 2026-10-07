@@ -24,13 +24,13 @@ Routes, escalation gates, and the work order format are defined in [`request-tri
 
 | Input | Required | Notes |
 |---|---|---|
-| The work order folder | Yes | `docs/work/<ID>-<slug>/`: work order, requirements, tech spec, `PLAN.md` |
+| The work order folder | Yes | `docs/work/WO-NNNN-<slug>/`: work order, requirements, tech spec, `PLAN.md` |
 | The repository | Yes | The Verification Lens reads it and runs the verification commands |
 | The diff or commit range | Helpful | `git log` since the work order was opened is a reasonable default |
 
 ## Output
 
-- An acceptance report at `docs/work/_archive/<ID>-<slug>/acceptance-report.md`
+- An acceptance report at `docs/work/_archive/WO-NNNN-<slug>/acceptance-report.md`
 - Additions to `docs/domain/glossary.md`, `docs/domain/domain-model.md`, and `docs/product/nfr.md`
 - New records under `docs/architecture/decisions/` or `docs/product/decisions/`
 - The work order's `AGENTS.md` entry removed

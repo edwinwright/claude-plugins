@@ -11,7 +11,7 @@ You are orchestrating a virtual dev team to transform a PRD into a Technical Spe
 
 Runs on the **Full** route only. Direct and Standard skip it — a feature in a well-understood domain, with no escalation gate open, does not need a technical specification to be broken into slices. Routes are defined in `../request-triage/references/routes.md`.
 
-**Before you start,** read the work order at `docs/work/<ID>-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, ask whether a gate has opened since triage — if one has, update the work order and continue; if not, say the work does not need this step and stop.
+**Before you start,** read the work order at `docs/work/WO-NNNN-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, ask whether a gate has opened since triage — if one has, update the work order and continue; if not, say the work does not need this step and stop.
 
 **Steps.** If a work order exists, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
 
@@ -116,7 +116,7 @@ During synthesis:
 Save the Technical Specification into the work order's folder:
 
 ```
-docs/work/<ID>-<slug>/tech-spec.md
+docs/work/WO-NNNN-<slug>/tech-spec.md
 ```
 
 Use the ID and slug from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.

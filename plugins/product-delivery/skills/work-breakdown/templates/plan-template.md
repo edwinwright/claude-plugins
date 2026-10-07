@@ -1,12 +1,12 @@
 ---
-id: [ID, from the work order]
+id: WO-NNNN
 slug: [slug, from the work order]
 route: direct | standard | full
 status: draft | in-progress | built
 tracker:
 ---
 
-# [ID]: [Title]
+# WO-NNNN: [Title]
 
 ## How to run this
 
@@ -14,15 +14,17 @@ tracker:
 
 [N] slices, numbered from 1, ordered by dependency. Each one leaves the build green.
 
+**Branch:** `[branch name]`
+
 1. **Do one slice at a time, in order.** Not two because the second looks small.
 2. **Run the slice's Check before stopping.** If it fails, fix it inside the same slice. If it fails twice, stop and report what you ran, what failed, and what you tried.
 3. **Never improvise a substitute and never skip ahead.** If a slice turns out to be wrong or blocked, stop there and say so. Do not start the next slice to work around this one.
 4. **Each slice names its review mode.**
    - `review: stop`: after the Check passes, do not commit or stage. Show the diff (`git diff`, plus `git status` for new or deleted files), say which slice is next, and wait for the author to review and commit.
-   - `review: continue`: after the Check passes, commit the slice as `[ID] slice N: [goal]` and carry on to the next.
-5. **Running in a cloud or background agent,** treat every slice as `review: continue`. Work on a branch, and end with one pull request titled `[ID]: [Title]` that links this file.
+   - `review: continue`: after the Check passes, commit the slice as `WO-NNNN slice N: [goal]` and carry on to the next.
+5. **Running in a cloud or background agent,** treat every slice as `review: continue`. Work on the branch named above, and end with one pull request titled `WO-NNNN: [Title]` that links this file and, for each slice with an issue, says `Fixes [issue]`.
 6. **When the last slice's Check passes,** tick `build` in the Steps of `work-order.md`, and set this file's `status: built`.
-7. **[Direct route only] Then archive the work folder,** because no review step will: delete this work order's line from `AGENTS.md`, set `status: done` in `work-order.md`, and `git mv docs/work/[ID]-[slug] docs/work/_archive/[ID]-[slug]`. Under `review: stop`, leave the move uncommitted with the rest of the slice.
+7. **[Direct route only] Then archive the work folder,** because no review step will: delete this work order's line from `AGENTS.md`, set `status: done` in `work-order.md`, and `git mv docs/work/WO-NNNN-[slug] docs/work/_archive/WO-NNNN-[slug]`. Under `review: stop`, leave the move uncommitted with the rest of the slice.
 
 ## Context
 

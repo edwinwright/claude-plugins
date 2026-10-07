@@ -1,5 +1,6 @@
 ---
-id: [ID, e.g. MD-123]
+id: WO-NNNN
+source: [tracker issue the request arrived as, e.g. MIT-42, or leave empty]
 route: direct | standard | full
 escalation_gates: []
 slug: [kebab-case-slug]

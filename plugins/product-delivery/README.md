@@ -5,7 +5,7 @@
 A Claude plugin (Claude Code and Cowork) that takes work from an incoming request through to verified, accepted delivery, with the source-of-truth documents co-located with the code.
 
 > [!model] Mental Model
-> - **Markdown in the repo is the source of truth for content; the tracker, when used, owns IDs and status.** Linear and GitHub Issues mirror the plan; they never originate it.
+> - **The repo is the source of truth for content and work order IDs; the tracker owns the IDs and status of published issues.** Linear and GitHub Issues mirror the plan; they never originate it.
 > - **The work order is the map.** Its Steps list says which skills apply and what comes next.
 > - **Docs that explain the code live with the code.** Decision records, glossary, domain model, agent instructions: in-repo.
 > - **Durable and transient documents are kept apart.** A glossary describes how things *are*; a requirements document describes a change we *propose to make*. Mixing them is how a `docs/` directory stops being trusted.
@@ -21,7 +21,8 @@ A Claude plugin (Claude Code and Cowork) that takes work from an incoming reques
 
 ```
 A — Direct     request-triage → work-breakdown → build
-                 a bug fix, a copy change: a requirements doc would only restate the request
+                 a bug fix, a copy change: a requirements doc would only restate the request;
+                 with a tracker connected it can go straight there as one issue, no work order
 
 B — Standard   request-triage → backlog-refinement → work-breakdown → build → acceptance-review
                  the default: a feature, days of work, a domain the team already understands
@@ -48,7 +49,7 @@ A Standard work order looks like this:
 - [ ] acceptance-review
 ```
 
-Run a skill out of order and it names the unticked step above it and asks whether to go ahead. Ask `request-triage` "what's next on MD-123" and it reports the list without re-triaging.
+Run a skill out of order and it names the unticked step above it and asks whether to go ahead. Ask `request-triage` "what's next on WO-0004" and it reports the list without re-triaging.
 
 ### Escalation gates
 
@@ -111,17 +112,17 @@ docs/
     nfr.md                        ← product-definition; the baseline every feature inherits
     decisions/                    ← decision-record (product)
   work/                           TRANSIENT, committed
-    MD-123-csv-export/            one folder per work order: <ID>-<slug>
+    WO-0004-csv-export/           one folder per work order: WO-NNNN-<slug>
       work-order.md               ← request-triage: route, gates, Steps
       requirements.md             ← backlog-refinement (B, C)
       tech-spec.md                ← technical-design (C)
       delivery-plan.md            ← delivery-planning (C)
       PLAN.md                     ← work-breakdown (all routes)
     _archive/
-      MD-117-stripe-billing/      ← moved here by acceptance-review, stamped superseded
+      WO-0003-stripe-billing/     ← moved here by acceptance-review, stamped superseded
 ```
 
-The ID follows the project's ticketing prefix. With a tracker connected it is the tracker's issue ID; without one, the prefix declared in `AGENTS.md` and the next free number. If neither exists, `request-triage` asks once and tells you to record the prefix in `AGENTS.md`.
+Work orders are numbered `WO-NNNN`: the highest number across `docs/work/` and `docs/work/_archive/`, plus one. A request that arrives as a tracker issue records it as `source:` in the work order. Tracker IDs name the branch when a branch carries a single published slice.
 
 Work folders are committed so cloud agents can read them.
 

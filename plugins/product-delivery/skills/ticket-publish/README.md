@@ -32,7 +32,7 @@ A connected tracker MCP:
 | Dependencies | Blocked-by relations | Blocking relations, or `Blocked by #N` |
 | Direct-route work order | One issue | One issue |
 
-The created IDs are written back into `PLAN.md`, beside each slice and in the plan's `tracker:` field.
+The created IDs are written back into `PLAN.md`, beside each slice and in the plan's `tracker:` field. The project or milestone description links back to the work order folder.
 
 ## How it works
 
@@ -46,7 +46,7 @@ The created IDs are written back into `PLAN.md`, beside each slice and in the pl
 
 ## Source of truth
 
-Markdown in the repo is the source of truth for content; the tracker owns IDs and status. Issues carry the goal and the acceptance criteria so they can be worked from a board, and link to the plan for the files, tasks, and check commands. Those are not copied: a second copy goes stale the first time the plan is edited.
+The repo is the source of truth for content and work order IDs; the tracker owns the IDs and status of published issues. Issues carry the goal and the acceptance criteria so they can be worked from a board, and link to the plan for the files, tasks, and check commands. Those are not copied: a second copy goes stale the first time the plan is edited.
 
 ## Usage guidelines
 

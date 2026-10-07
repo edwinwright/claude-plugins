@@ -39,10 +39,10 @@ No renames. (`templates/` keeps one file; flattening it to `plan-template.md` be
 | `S/request-triage/prompts/product-lens.md` | 3 | "Too broad / new product" stops recommending Park-then-`product-definition`; it recommends Build now, Full, product bootstrap (Q5) |
 | `S/request-triage/README.md` | 1, 3 | Output path, Steps |
 | `S/work-breakdown/SKILL.md` | 1, 2, 3 | Paths, then full rewrite of Steps 1–5 and 7 around `PLAN.md`; Step 6 (`AGENTS.md`) points at `PLAN.md` and creates the `CLAUDE.md` symlink. Phase 3: tick + next |
-| `S/work-breakdown/agents-template.md` | 1, 2 | New paths; `Work order prefix:` line; architecture docs; "current work → its `PLAN.md`, one slice at a time" |
+| `S/work-breakdown/agents-template.md` | 1, 2 | New paths; architecture docs; "current work → its `PLAN.md`, one slice at a time" |
 | `S/work-breakdown/README.md` | 2 | Output, inputs, how it works |
 | `S/ticket-publish/SKILL.md`, `README.md` | 1, 4 | Path swap in 1; rewrite in 4 |
-| `S/acceptance-review/SKILL.md`, `README.md` | 1, 2, 3 | Paths and `_archive/<ID>-<slug>/`; reads `PLAN.md` (legacy `tickets/` fallback); ticks its Steps line, sets `status: accepted` |
+| `S/acceptance-review/SKILL.md`, `README.md` | 1, 2, 3 | Paths and `_archive/WO-NNNN-<slug>/`; reads `PLAN.md` (legacy `tickets/` fallback); ticks its Steps line, sets `status: accepted` |
 | `S/acceptance-review/acceptance-report-template.md`, `archive-readme-template.md`, `prompts/harvest-lens.md`, `prompts/verification-lens.md` | 1, 2 | Durable paths; criteria source is `PLAN.md` slices |
 | `S/backlog-refinement/SKILL.md`, `README.md` | 1, 3 | Paths; hand-off; tick + next |
 | `S/technical-design/SKILL.md` | 1, 3 | Paths; Step 2 reads `docs/architecture/tech-stack.md` and `conventions.md` before asking for constraints; tick + next |
@@ -81,12 +81,11 @@ I've swapped your phases 2 and 3: the Steps lines name `PLAN.md`, so `PLAN.md` s
 
 ### ID rule (owned by `artefacts.md`)
 
-1. Request arrived as a tracker issue → use its ID (`MD-123`).
-2. Tracker connected, no issue yet → ask once whether to create one (outward-facing, so confirm). If yes, use its ID. If no, fall to 3.
-3. `AGENTS.md` declares a work-order prefix → prefix + next free number across `docs/work/` **and** `docs/work/_archive/` (highest number + 1, same logic `decision-record` uses for `NNNN`).
-4. Neither → ask once, use the answer, tell the user to add `Work order prefix: XX` to `AGENTS.md`.
+Every work order is `WO-NNNN`, zero-padded to four digits: the highest `WO-` number across `docs/work/` **and** `docs/work/_archive/`, plus one (same logic `decision-record` uses for `NNNN`). Folder: `docs/work/WO-NNNN-<slug>/`. Frontmatter gains `id:`, and `source:` when the request arrived as a tracker issue (`source: MIT-42`). `opened:` stays.
 
-Folder: `docs/work/<ID>-<slug>/`. Frontmatter gains `id:`; `opened:` stays, so the dropped `YYYY-MM` prefix costs nothing for pruning. Collision risk in Q4.
+The only clash possible is a tracker whose own team key is `WO`, so recommend three-letter team keys.
+
+**Branch names**, also owned by `artefacts.md`: a branch carrying one published slice takes that slice's issue ID (Linear links pull requests by the ID in the branch name); every other branch takes the WO ID, and a branch carrying several published slices lists each as `Fixes <issue>` in its pull request. `PLAN.md` carries the resolved name in a `Branch:` line, filled by `work-breakdown` and updated by `ticket-publish`, because the agent executing a plan may not have the plugin installed.
 
 ### Steps (owned by `routes.md`)
 
@@ -130,7 +129,7 @@ That three-line block repeats across nine `SKILL.md` files, which brushes agains
 - Full: each item in the delivery plan's Full Story List becomes a slice; two that cannot ship apart merge. The delivery plan's phases are a natural split line if the size rule trips.
 - Existing `PLAN.md` → ask overwrite or cancel.
 - Kept from the story template: do not invent AC on Standard/Full (say when you add one); Files from the tech spec's Files & Boundaries or the codebase, and "if you cannot name the files, the slice is not ready"; Check commands copied verbatim from the tech spec or `AGENTS.md`, never guessed; every AC has `Verify:` or `Verify: manual — …`; link only durable docs.
-- Step 6 (`AGENTS.md`): entry points at `docs/work/<ID>-<slug>/PLAN.md`. When creating `AGENTS.md`, also `ln -s AGENTS.md CLAUDE.md` if no `CLAUDE.md` exists; if a real `CLAUDE.md` exists, leave it and say so.
+- Step 6 (`AGENTS.md`): entry points at `docs/work/WO-NNNN-<slug>/PLAN.md`. When creating `AGENTS.md`, also `ln -s AGENTS.md CLAUDE.md` if no `CLAUDE.md` exists; if a real `CLAUDE.md` exists, leave it and say so.
 
 **Description rewrite (draft):**
 > Break specified work into a PLAN.md for one work order: numbered, dependency-ordered vertical slices a coding agent executes one at a time, each with its files, acceptance criteria and exact check commands. The slices are the tickets, reviewed locally before anything reaches Linear or GitHub. Triggers: "break this into stories", "break this into tickets", "create the tickets", "write up the tasks", "generate work items", "work breakdown", "slice this work", "write the PLAN.md". Run ticket-publish afterwards to mirror the slices into a tracker.
@@ -141,11 +140,12 @@ Triggering risk: keeps every current trigger phrase, so "break this into tickets
 
 ## 5. ticket-publish
 
-- Source: `docs/work/<ID>-<slug>/PLAN.md` (+ `work-order.md` for title and ID). No plan → offer `work-breakdown`; no work order → offer `request-triage`.
-- **Linear**: ask Project or parent issue (default per Q3). Each slice → issue: title `Slice N: <goal>`, body = goal, AC with `Verify:`, link to `PLAN.md` on the default branch (`https://github.com/<owner>/<repo>/blob/<default>/docs/work/<ID>-<slug>/PLAN.md`, resolved from `git remote` and `git symbolic-ref refs/remotes/origin/HEAD`; if unresolvable, ask). `blocked by` relations from slice order/depends-on. "Issue type Epic" instruction removed.
+- Source: `docs/work/WO-NNNN-<slug>/PLAN.md` (+ `work-order.md` for title and ID). No plan → offer `work-breakdown`; no work order → offer `request-triage`.
+- **Linear**: ask Project or parent issue (default per Q4). Each slice → issue: title `Slice N: <goal>`, body = goal, AC with `Verify:`, link to `PLAN.md` on the default branch (`https://github.com/<owner>/<repo>/blob/<default>/docs/work/WO-NNNN-<slug>/PLAN.md`, resolved from `git remote` and `git symbolic-ref refs/remotes/origin/HEAD`; if unresolvable, ask). `blocked by` relations from slice order/depends-on. "Issue type Epic" instruction removed.
 - **GitHub Issues**: work order → milestone; slice → issue in that milestone; blocking via native relation if available, else a "Blocked by #n" line.
 - Write-back: each slice's `**Issue:**` line in `PLAN.md` gets the ID/URL; `PLAN.md` frontmatter gets `tracker:` (project/milestone/parent). Offer to commit that edit; never push.
-- **Route A**: one issue for the whole work order (title from work order, body = the single slice). If the work order's ID already *is* a tracker issue, update that issue with the plan link instead of creating a duplicate.
+- **Route A**: one issue for the whole work order (title from work order, body = the single slice). If the work order has a `source:` issue, update that issue with the plan link instead of creating a duplicate.
+- The Linear Project or GitHub milestone description links the work order folder on the default branch.
 - Re-run safety: slices with an `Issue:` already set are skipped, which fixes the current "re-running may create duplicates" warning.
 - Confirmation before any create stays.
 
@@ -162,26 +162,28 @@ Triggering risk: low. I've left out "put this bug in Linear": it would let a raw
 
 ```markdown
 ---
-id: <ID>
+id: WO-NNNN
 slug: <slug>
 route: direct | standard | full
 status: draft | in-progress | built
 tracker:            # set by ticket-publish
 ---
 
-# <ID>: <Title>
+# WO-NNNN: <Title>
 
 ## How to run this
 
 Read this before starting. It overrides default working habits.
+
+**Branch:** `WO-NNNN-<slug>` (resolved by work-breakdown; see Branch names)
 
 1. One slice at a time, in order. Not two because the second looks small.
 2. Run the slice's Check before stopping. If it fails, fix it inside the slice.
    If it fails twice, stop and report what ran, what failed, what you tried.
 3. Never improvise a substitute, never skip ahead, never start the next slice to fix this one.
 4. `review: stop`: after the Check, do not commit or stage. Show `git diff` and `git status`, say which slice is next, and wait.
-   `review: continue`: commit the slice as `<ID> slice N: <goal>` and carry on.
-5. Cloud or background agent: treat every slice as `continue`, work on a branch, and end with one PR titled `<ID>: <Title>`.
+   `review: continue`: commit the slice as `WO-NNNN slice N: <goal>` and carry on.
+5. Cloud or background agent: treat every slice as `continue`, work on the branch named above, and end with one PR titled `WO-NNNN: <Title>`, with `Fixes <issue>` for each published slice.
 6. After the last slice's Check passes, tick `build` in `work-order.md`.
 
 ## Context
@@ -257,9 +259,9 @@ Plus:
 
 **Q2. Where do product and process decision records go?** Recommend: architecture → `docs/architecture/decisions/`, product → `docs/product/decisions/`, process → `docs/architecture/decisions/` with `scope: process` in frontmatter (already a template field). Each lens owns its decisions, no new top-level folder, and in a code repo the process decisions that clear the gate (branching, CI, review policy) sit with conventions. Numbering per folder. Alternative: a single `docs/architecture/decisions/` for all scopes; simpler, but buries product decisions in the technical lens.
 
-**Q3. Route A bugs: open a folder, or straight to Linear?** Recommend **always open the folder**. It is what makes "every piece of work starts with `request-triage`" true, it gives the bug an ID and a one-slice `PLAN.md` a cloud agent can run, and `ticket-publish` already handles the one-issue case. Cost: two small files per bug. Gap this exposes: Route A skips `acceptance-review`, so nothing archives its folder today. Recommend the single slice's Check is followed by `git mv` to `_archive/` with `status: done`, as the last step of How to run on Route A only. No skill change.
+**Q3. Route A bugs: open a folder, or straight to the tracker?** With a tracker connected, `request-triage` offers both on Direct: a single tracker issue with no work order, for a bug that needs nothing more, or a `WO-NNNN` folder with a one-slice `PLAN.md` a cloud agent can run. Without a tracker it opens the folder. Either way the work started at `request-triage`. Route A skips `acceptance-review`, so a Route A folder is archived by the executing agent as the last step of How to run (`git mv` to `_archive/`, `status: done`). No extra skill.
 
-**Q4. ID collisions and Linear Project vs parent issue.** If a project declares local prefix `MD` and Linear's team key is also `MD`, local `MD-5` and Linear `MD-5` will be different things. Recommend: when a tracker exists for the project, IDs always come from it (rule steps 1–2), and the local prefix is only for tracker-less projects, documented as "must differ from any tracker key". Knock-on: if the work order's ID is a Linear issue, that issue already *is* the work order, so **parent issue** is the natural default for Linear and Project the option for large Route C work. You specified Project as default: I'll follow you unless you agree to flip it.
+**Q4. Linear Project or parent issue?** Project is the default: one work order becomes a Linear project with one issue per slice. Parent issue is the option, with each slice as a sub-issue; when the work order has a `source:` Linear issue, that issue is offered as the parent rather than creating another.
 
 **Q5. Route C and "triage first".** Route C currently starts at `requirements-discovery`, before triage. Recommend: triage first everywhere, and split Full into two shapes that `request-triage` chooses between:
 - *Full feature*: Steps as in §3.

@@ -11,7 +11,7 @@ You are orchestrating a virtual planning team to transform a PRD and Technical S
 
 Runs on the **Full** route only. Direct and Standard skip it — `work-breakdown` derives its own ordering from dependencies when there is no delivery plan. Routes are defined in `../request-triage/references/routes.md`.
 
-**Before you start,** read the work order at `docs/work/<ID>-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, say the work does not need this step and stop, unless the user tells you a gate has opened since triage.
+**Before you start,** read the work order at `docs/work/WO-NNNN-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, say the work does not need this step and stop, unless the user tells you a gate has opened since triage.
 
 **Steps.** If a work order exists, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
 
@@ -91,7 +91,7 @@ Wait for confirmation before proceeding.
 Save the Delivery Plan into the work order's folder:
 
 ```
-docs/work/<ID>-<slug>/delivery-plan.md
+docs/work/WO-NNNN-<slug>/delivery-plan.md
 ```
 
 Use the ID and slug from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.

@@ -1,5 +1,5 @@
 ---
-work_order: [ID-slug]
+work_order: WO-NNNN-[slug]
 reviewed: YYYY-MM-DD
 outcome: accepted | accepted with waivers | not accepted
 ---
@@ -90,12 +90,12 @@ Candidates that were raised and rejected, with the reason. Recorded so the same 
 
 ## Archive
 
-- **Moved to:** `docs/work/_archive/[ID-slug]/`
+- **Moved to:** `docs/work/_archive/WO-NNNN-[slug]/`
 - **`AGENTS.md` entry removed:** yes / no
-- **Recover with:** `git log --diff-filter=D -- docs/work/[ID-slug]`
+- **Recover with:** `git log --diff-filter=D -- docs/work/WO-NNNN-[slug]`
 
 Nothing was deleted. Delete the archived folder by hand once you are satisfied nothing was lost:
 
 ```
-rm -rf docs/work/_archive/[ID-slug]
+rm -rf docs/work/_archive/WO-NNNN-[slug]
 ```

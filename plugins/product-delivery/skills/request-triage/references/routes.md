@@ -36,6 +36,8 @@ Steps in brackets run only when the work needs them; see **Steps** below.
 
 A bug fix, a copy change, a config change, a version bump — work where writing a requirements document would produce a document that says nothing the original request did not. If you cannot name what a requirements document would add, there is nothing to add.
 
+With a tracker connected, a Route A request may go straight to the tracker as a single issue, with no work order at all: a bug that needs nothing more than an issue on a board. `request-triage` offers that choice; it is still where the work started.
+
 Route A skips `acceptance-review` because there is no requirements document to verify against and nothing durable to harvest. The tests and the code review are the acceptance. Without that step nothing else archives the work folder, so on Route A the executing agent does it as the last instruction in `PLAN.md`'s How to run.
 
 ### Take Route C only when you can name a gate
@@ -62,11 +64,12 @@ When there is no `docs/product/vision.md` for the product, or the request is a w
 
 ## Recording the decision
 
-On any verdict that proceeds, `request-triage` writes a work order to `docs/work/<ID>-<slug>/work-order.md`. How the ID is chosen, and where the folder lives, is in `artefacts.md`.
+On any verdict that proceeds, `request-triage` writes a work order to `docs/work/WO-NNNN-<slug>/work-order.md`. How the ID is chosen, and where the folder lives, is in `artefacts.md`.
 
 ```yaml
 ---
-id: <ID>                    # e.g. MD-123, see artefacts.md
+id: WO-NNNN                 # e.g. WO-0004, see artefacts.md
+source:                     # tracker issue the request arrived as, e.g. MIT-42; else empty
 route: direct | standard | full
 escalation_gates: []        # required and non-empty when route is full
 slug: <kebab-case>

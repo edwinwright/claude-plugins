@@ -11,7 +11,7 @@ You are helping the user turn a product or feature idea into a structured Produc
 
 Runs on the **Standard** and **Full** routes. The Direct route skips it — on Direct, a requirements document would only restate the request. Routes are defined in `../request-triage/references/routes.md`.
 
-**Before you start,** read the work order at `docs/work/<ID>-<slug>/work-order.md` for the route and the triaged request. If no work order exists, say so and offer to run `request-triage` first, or to proceed on the Standard route without one. Do not invent a work order.
+**Before you start,** read the work order at `docs/work/WO-NNNN-<slug>/work-order.md` for the route and the triaged request. If no work order exists, say so and offer to run `request-triage` first, or to proceed on the Standard route without one. Do not invent a work order.
 
 **Steps.** If a work order exists, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
 
@@ -72,7 +72,7 @@ The **Open Questions** section matters — use it for anything that remains unre
 Save the requirements document into the work order's folder, alongside the work order that opened it:
 
 ```
-docs/work/<ID>-<slug>/requirements.md
+docs/work/WO-NNNN-<slug>/requirements.md
 ```
 
 Use the ID and slug from the work order rather than deriving new ones — everything for one piece of work lives in one folder and moves together. If there is no work order, find an ID as **Work order IDs** in `../request-triage/references/artefacts.md` describes, and derive the slug from the feature name.

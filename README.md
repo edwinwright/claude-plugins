@@ -16,7 +16,7 @@ They install independently and share no files. Install any combination.
 
 All three plugins are built around a small set of deliberate constraints rather than an accumulation of features:
 
-- **Markdown in the repo is the source of truth for content; the tracker, when used, owns IDs and status.** Linear and GitHub Issues mirror the plan, never originate it. Documents live where the code lives.
+- **The repo is the source of truth for content and work order IDs; the tracker owns the IDs and status of published issues.** Linear and GitHub Issues mirror the plan, never originate it. Documents live where the code lives.
 - **A document is worth writing only if its "why" can't be recovered from the code.** That single test gates every decision record — it keeps documentation from drifting into noise.
 - **Durable and transient documents are kept apart.** A glossary describes how things *are*; a requirements document describes a change we *propose to make*. Filed together, the second quietly rots the first.
 - **The heaviest process must never be the default.** Small work takes a short route, and escalating to the long one requires naming a reason that is actually true.
@@ -126,7 +126,7 @@ Skills then trigger on natural language — see each skill's `SKILL.md` for its 
 
 All seventeen skills ship and are in active use. `CLAUDE.md` carries the conventions these plugins are developed under, including why two overlapping skills were merged into one.
 
-`product-delivery` 4.0 makes the work order the map and changes the layout. `request-triage` writes a `## Steps` checklist into every work order; `work-breakdown` writes one `PLAN.md` of slices instead of Epic and Story files; `ticket-publish` publishes slices and writes their IDs back. Documents move to `docs/architecture/`, `docs/domain/` and `docs/product/`, and work folders are named `<ID>-<slug>` after the project's ticket prefix rather than the date. Projects on the 3.x layout are still read, and nothing is migrated without you; no skill was renamed.
+`product-delivery` 4.0 makes the work order the map and changes the layout. `request-triage` writes a `## Steps` checklist into every work order; `work-breakdown` writes one `PLAN.md` of slices instead of Epic and Story files; `ticket-publish` publishes slices and writes their IDs back. Documents move to `docs/architecture/`, `docs/domain/` and `docs/product/`, and work folders are named `WO-NNNN-<slug>` rather than by date. Projects on the 3.x layout are still read, and nothing is migrated without you; no skill was renamed.
 
 `product-delivery` 3.0 is `delivery-design` renamed. The plugin grew past the old name: `requirements-discovery` runs before anything is designed and `acceptance-review` runs after the code is built, leaving design as three skills of eleven rather than the shape of the whole. No skill was renamed and nothing inside them changed — but the namespace every skill is invoked under did, so `delivery-design:request-triage` is now `product-delivery:request-triage`. There is no alias mechanism for plugin names any more than for skill names, so remove the old plugin and install `product-delivery` fresh.
 

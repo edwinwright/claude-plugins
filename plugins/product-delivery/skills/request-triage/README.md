@@ -26,7 +26,8 @@ One of three outcomes:
 
 | Outcome | What happens |
 |---|---|
-| **Build now** | A work order at `docs/work/<ID>-<slug>/work-order.md` naming the route, the gates that opened on Full, and a `## Steps` checklist of the skills to run, in order |
+| **Build now** | A work order at `docs/work/WO-NNNN-<slug>/work-order.md` naming the route, the gates that opened on Full, and a `## Steps` checklist of the skills to run, in order |
+| **Build now, Direct, tracker only** | With a tracker connected, a Direct request can go straight to it as one issue, with no work order |
 | **Park** | A new row appended to the appropriate MoSCoW section in `docs/product/product-backlog.md` |
 | **Won't build** | The lens's reasoning presented to the user; nothing written to disk |
 
@@ -67,6 +68,6 @@ Routes, escalation gates, and the work order format are defined in [`references/
 | `README.md` | This file |
 | `references/artefacts.md` | The docs layout, work order IDs, and how legacy layouts are read |
 | `references/routes.md` | The three delivery routes, the escalation gates, and the work order format — owned here, referenced everywhere else |
-| `work-order-template.md` | Template for `docs/work/<ID>-<slug>/work-order.md` |
+| `work-order-template.md` | Template for `docs/work/WO-NNNN-<slug>/work-order.md` |
 | `backlog-entry-template.md` | Template for a single MoSCoW backlog row |
 | `prompts/product-lens.md` | Product Owner triage persona (subagent) |

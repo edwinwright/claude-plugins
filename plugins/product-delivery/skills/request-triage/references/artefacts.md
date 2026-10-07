@@ -29,7 +29,7 @@ docs/
 │   ├── nfr.md                        product-definition; amended by acceptance-review
 │   └── decisions/NNNN-<slug>.md      decision-record (product scope)
 └── work/                             TRANSIENT, and committed
-    ├── <ID>-<slug>/                  one folder per work order
+    ├── WO-NNNN-<slug>/               one folder per work order
     │   ├── work-order.md             request-triage
     │   ├── requirements.md           backlog-refinement (Standard, Full)
     │   ├── tech-spec.md              technical-design (Full)
@@ -37,7 +37,7 @@ docs/
     │   └── PLAN.md                   work-breakdown (every route)
     └── _archive/
         ├── README.md
-        └── <ID>-<slug>/              moved here by acceptance-review
+        └── WO-NNNN-<slug>/           moved here by acceptance-review
 ```
 
 Work folders are **committed**. A cloud or background agent only sees what is in the repository, so a work order kept outside it cannot be picked up by one.
@@ -46,18 +46,19 @@ Work folders are **committed**. A cloud or background agent only sees what is in
 
 ## Work order IDs
 
-A work folder is named `<ID>-<slug>`: the work order's ID, then a short kebab-case slug of three words at most (`MD-123-csv-export`). The ID follows the project's ticketing prefix, so the folder, the branch, the commits, and any tracker issue all carry the same identifier.
+Every work order is numbered `WO-NNNN`, zero-padded to four digits: `WO-0001`, `WO-0002`. Its folder is `docs/work/WO-NNNN-<slug>/`, where the slug is short and kebab-case, three words at most (`WO-0004-csv-export`).
 
-Find the ID in this order:
+To number a new work order, read the highest `WO-` number in use across `docs/work/` **and** `docs/work/_archive/`, and add one. Read the highest rather than counting folders, which mis-numbers as soon as one is deleted. If there is no `WO-` folder yet, start at `WO-0001`. Folders from earlier layouts, which have no `WO-` prefix, do not count.
 
-1. **The request arrived as a tracker issue.** Use that issue's ID.
-2. **A tracker is connected but there is no issue yet.** Ask once whether to create one. Creating an issue is visible to other people, so do not do it without a yes. If yes, use the new issue's ID; if no, go on to 3.
-3. **The host's `AGENTS.md` declares a work order prefix** (`Work order prefix: MD`). Use the prefix and the next free number: read the highest number in use across `docs/work/` *and* `docs/work/_archive/`, and add one. Read the highest rather than counting folders, which mis-numbers as soon as one is deleted.
-4. **Neither.** Ask once for the prefix, use it, and tell the user to record it in `AGENTS.md` as `Work order prefix: <PREFIX>` so the question is not asked again.
+The only clash possible is with a tracker whose own team key is `WO`. Give tracker teams a three-letter key (`MIT`, not `WO`).
 
-A local prefix must differ from any tracker's own key. If the project's Linear team key is `MD` and work orders are numbered locally as `MD-5`, then `MD-5` names two different things. When a project has a tracker, take IDs from the tracker (steps 1 and 2); the local prefix is for projects without one.
+When a request arrives as a tracker issue, record it in the work order's frontmatter as `source: MIT-42`.
 
-The work order's `opened:` date stays in its frontmatter, so nothing is lost by not putting the date in the folder name.
+### Branch names
+
+A branch that carries one published slice is named after that slice's tracker issue: `MIT-42-csv-export`. Linear links a pull request to an issue by the ID in its branch name. Every other branch is named after the work order: `WO-0004-csv-export`. That includes a branch carrying several slices, such as a cloud run that ends in one pull request; its pull request description names each published slice's issue (`Fixes MIT-42`, `Fixes MIT-43`) so the tracker still links them.
+
+`work-breakdown` writes the resolved branch name into `PLAN.md`, and `ticket-publish` rewrites it if publishing changes it. The plan carries the name, not this rule, because the agent executing a plan may not have this plugin installed.
 
 ---
 
@@ -75,7 +76,7 @@ Work and documents written under earlier versions of this plugin are still valid
 
 | Look here first | Then fall back to |
 |---|---|
-| `docs/work/<ID>-<slug>/` | `docs/work/YYYY-MM-<slug>/` (version 3), then `docs/features/<slug>/` (version 1, which used `prd.md` for `requirements.md`) |
+| `docs/work/WO-NNNN-<slug>/` | `docs/work/YYYY-MM-<slug>/` (version 3), then `docs/features/<slug>/` (version 1, which used `prd.md` for `requirements.md`) |
 | `docs/domain/glossary.md`, `docs/domain/domain-model.md` | `docs/product/glossary.md`, `docs/product/domain-model.md` |
 | `docs/architecture/decisions/`, `docs/product/decisions/` | `docs/decisions/<scope>/` |
 
@@ -87,7 +88,7 @@ New documents always use the current layout.
 
 ## The end of a transient document
 
-`acceptance-review` closes a work order out. It moves the folder to `docs/work/_archive/<ID>-<slug>/` and stamps every file:
+`acceptance-review` closes a work order out. It moves the folder to `docs/work/_archive/WO-NNNN-<slug>/` and stamps every file:
 
 ```yaml
 status: superseded

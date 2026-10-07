@@ -13,7 +13,7 @@ The plan is the tickets. Each slice is what would otherwise be a story, and `tic
 
 Runs on **every route**: it is the one step no route skips. What it reads differs by route. Routes are defined in `../request-triage/references/routes.md`.
 
-**Before you start,** read the work order at `docs/work/<ID>-<slug>/work-order.md` for its ID, route, and the triaged request. If no work order exists, say so and offer to run `request-triage` first. Do not invent one.
+**Before you start,** read the work order at `docs/work/WO-NNNN-<slug>/work-order.md` for its ID, route, and the triaged request. If no work order exists, say so and offer to run `request-triage` first. Do not invent one.
 
 **Steps.** If a work order exists, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
 
@@ -69,7 +69,7 @@ Wait for confirmation before proceeding.
 Write the plan into the work order's folder:
 
 ```
-docs/work/<ID>-<slug>/PLAN.md
+docs/work/WO-NNNN-<slug>/PLAN.md
 ```
 
 Use the ID and slug from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.
@@ -102,6 +102,8 @@ Read `templates/plan-template.md` and fill it. Copy the How to run section as it
 
 **Check.** Exact commands, copied verbatim from the tech spec's Verification Commands block, or from the repo-root `AGENTS.md` where there is no tech spec. Do not guess at a package manager or a script name: check `package.json`, the `Makefile`, or whatever the project actually uses. A wrong command is worse than an absent one, because it will be run and believed. A slice whose result can only be judged by eye says so in its Check, with what to look at.
 
+Fill the **Branch** line in How to run, following **Branch names** in `../request-triage/references/artefacts.md`. Before anything is published that is the work order's ID and slug (`WO-0004-csv-export`).
+
 Set the frontmatter `status: draft`, and leave each slice's `Issue:` line and the `tracker:` field as the template has them. `ticket-publish` fills them in.
 
 ---
@@ -117,7 +119,6 @@ Check whether an `AGENTS.md` exists at the repo root.
 **If it does not exist:** read the template at `agents-template.md` and create it. Fill in:
 - The "What this is" line from `docs/product/vision.md` if it exists, or a one-line summary from the work order
 - A "Before you start" entry for this work order
-- The work order prefix, if one was chosen when the work order was opened
 - Build, test, and run commands if they are known
 
 Then, if there is no `CLAUDE.md` at the repo root, create it as a symlink so both names load the same file: `ln -s AGENTS.md CLAUDE.md`. If a `CLAUDE.md` already exists as a real file, leave it alone and tell the user the two now overlap.
@@ -125,7 +126,7 @@ Then, if there is no `CLAUDE.md` at the repo root, create it as a symlink so bot
 **If it already exists:** read it, then append or update only the "Before you start" entry for this work order. Do not touch any other section. One line per work order:
 
 ```
-- Working on [ID]: [Title] → docs/work/<ID>-<slug>/PLAN.md, one slice at a time
+- Working on WO-NNNN: [Title] → docs/work/WO-NNNN-<slug>/PLAN.md, one slice at a time
 ```
 
 Never point into `docs/work/_archive/`. `acceptance-review` removes this entry when it archives the folder, so no entry outlives what it points at.
@@ -142,7 +143,7 @@ Present the plan's path and its slice list.
 
 Tell the user:
 
-> "The plan is saved to `docs/work/<ID>-<slug>/PLAN.md`. Review and edit it before anything runs: renaming, merging, or reordering slices costs nothing at this stage. To build, point an agent at the plan; it runs one slice at a time under the How to run rules. If the slices should exist as tracker issues, run `ticket-publish` first."
+> "The plan is saved to `docs/work/WO-NNNN-<slug>/PLAN.md`. Review and edit it before anything runs: renaming, merging, or reordering slices costs nothing at this stage. To build, point an agent at the plan; it runs one slice at a time under the How to run rules. If the slices should exist as tracker issues, run `ticket-publish` first."
 
 ---
 

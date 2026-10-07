@@ -12,7 +12,7 @@ Do not run it while the input document has unresolved Open Questions. They produ
 
 | Input | Required | Notes |
 |---|---|---|
-| Work order | Yes | `docs/work/<ID>-<slug>/work-order.md`, for the ID, route, and request |
+| Work order | Yes | `docs/work/WO-NNNN-<slug>/work-order.md`, for the ID, route, and request |
 | Requirements document | Standard, Full | From `backlog-refinement` |
 | Delivery Plan + Technical Specification | Full | From `delivery-planning` and `technical-design`; the spec supplies acceptance criteria, files, and check commands |
 
@@ -21,7 +21,7 @@ Do not run it while the input document has unresolved Open Questions. They produ
 One file in the work order's folder:
 
 ```
-docs/work/<ID>-<slug>/PLAN.md
+docs/work/WO-NNNN-<slug>/PLAN.md
 ```
 
 - **How to run this**: the rules an executing agent follows. One slice at a time, run the slice's Check before stopping, stop and report after two failed Checks, never improvise a substitute or skip ahead. `review: stop` slices wait for the author to commit; `review: continue` slices commit and carry on; a cloud or background agent treats every slice as `continue` and ends with one pull request.

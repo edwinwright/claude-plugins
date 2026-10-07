@@ -7,7 +7,7 @@ description: 'Publish a work order''s PLAN.md to Linear or GitHub Issues: the wo
 
 You are mirroring a work order's `PLAN.md` into the user's tracker, one issue per slice.
 
-**Markdown in the repo is the source of truth for content; the tracker owns IDs and status.** The issues carry enough to be worked from a board, and link back to `PLAN.md` for the rest. Nothing is written in the tracker that the plan does not already say.
+**The repo is the source of truth for content and work order IDs; the tracker owns the IDs and status of published issues.** The issues carry enough to be worked from a board, and link back to `PLAN.md` for the rest. Nothing is written in the tracker that the plan does not already say.
 
 ## Routes
 
@@ -22,8 +22,8 @@ Optional on every route, and not a route step. Run it when the slices should exi
 Read both:
 
 ```
-docs/work/<ID>-<slug>/work-order.md
-docs/work/<ID>-<slug>/PLAN.md
+docs/work/WO-NNNN-<slug>/work-order.md
+docs/work/WO-NNNN-<slug>/PLAN.md
 ```
 
 Placement is covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first. Work started under version 3 of this plugin has a `tickets/` folder and no `PLAN.md`; this skill does not publish that shape. Say so, and offer to run `work-breakdown` to produce a plan from the same inputs.
@@ -49,16 +49,16 @@ If both are connected, ask which to use. If neither is, tell the user and stop.
 
 **Linear.** Ask for the team, then how to group the slices:
 
-> - **Project** (default): a Linear project named `[ID]: [Title]`, with one issue per slice in it.
+> - **Project** (default): a Linear project named `WO-NNNN: [Title]`, with one issue per slice in it.
 > - **Parent issue**: one issue for the work order, with each slice as a sub-issue.
 
-If the work order's ID is already a Linear issue (it arrived as one, or `request-triage` created it), that issue *is* the work order. Use it as the parent and do not create another; offer to add it and its sub-issues to a project as well, for large work.
+If the work order has a `source:` Linear issue (the request arrived as one), offer that issue as the parent rather than creating another.
 
 Linear has no Epic issue type. Do not look for one.
 
-**GitHub Issues.** Ask for the repository (`owner/repo`). The work order becomes a milestone named `[ID]: [Title]`, and each slice an issue in it.
+**GitHub Issues.** Ask for the repository (`owner/repo`). The work order becomes a milestone named `WO-NNNN: [Title]`, and each slice an issue in it.
 
-**Direct route.** One issue for the whole work order, with no project, parent, or milestone. If the work order's ID is already a tracker issue, update that issue instead of creating one: add the plan link and the acceptance criteria to it.
+**Direct route.** One issue for the whole work order, with no project, parent, or milestone. If the work order has a `source:` tracker issue, update that issue instead of creating one: add the plan link and the acceptance criteria to it.
 
 ---
 
@@ -67,7 +67,7 @@ Linear has no Epic issue type. Do not look for one.
 Each issue links to `PLAN.md` on the default branch, so the link still works after the work branch is merged:
 
 ```
-https://github.com/<owner>/<repo>/blob/<default-branch>/docs/work/<ID>-<slug>/PLAN.md
+https://github.com/<owner>/<repo>/blob/<default-branch>/docs/work/WO-NNNN-<slug>/PLAN.md
 ```
 
 Read `<owner>/<repo>` from `git remote get-url origin`, and the default branch from `git symbolic-ref refs/remotes/origin/HEAD`. If either cannot be read, or the remote is not on GitHub, ask the user for the base URL.
@@ -93,7 +93,7 @@ Wait for explicit confirmation before creating anything.
 
 ## Step 6: Create the grouping
 
-Create the Linear project, the parent issue, or the GitHub milestone. Skip this on the Direct route, and skip it if the grouping already exists (the plan's `tracker:` field names it). Save its ID or URL.
+Create the Linear project, the parent issue, or the GitHub milestone. Its description links the work order folder on the default branch (`https://github.com/<owner>/<repo>/tree/<default-branch>/docs/work/WO-NNNN-<slug>/`, built as in Step 4), so anyone on the board can find the plan and its documents. Skip this on the Direct route, and skip it if the grouping already exists (the plan's `tracker:` field names it). Save its ID or URL.
 
 ---
 
@@ -101,7 +101,7 @@ Create the Linear project, the parent issue, or the GitHub milestone. Skip this 
 
 In slice order. For each:
 
-- **Title:** `Slice N: [goal]`, prefixed with the work order ID where the tracker does not show the grouping in the title (`[ID] slice N: [goal]`).
+- **Title:** `Slice N: [goal]`, prefixed with the work order ID where the tracker does not show the grouping in the title (`WO-NNNN slice N: [goal]`).
 - **Body:**
   - The slice's goal and its why-line
   - Its acceptance criteria, each with its `Verify:` line, as a checklist
@@ -110,7 +110,7 @@ In slice order. For each:
 
 Do not copy Files, Tasks, or the Check block into the issue. They live in the plan, which is what an agent works from; a second copy in the tracker goes stale the first time the plan is edited.
 
-After each issue is created, **write its ID back into `PLAN.md` immediately**, on that slice's `Issue:` line (`**Issue:** MD-124`, or the URL for GitHub). Writing as you go, rather than at the end, is what lets a failed run resume.
+After each issue is created, **write its ID back into `PLAN.md` immediately**, on that slice's `Issue:` line (`**Issue:** MIT-42`, or the URL for GitHub). Writing as you go, rather than at the end, is what lets a failed run resume.
 
 ---
 
@@ -126,6 +126,8 @@ For each slice that depends on another, create a "blocked by" relation between t
 ## Step 9: Record and summarise
 
 Set the plan's frontmatter `tracker:` to the grouping: the project URL, parent issue ID, or milestone URL. On the Direct route, the single issue's ID.
+
+Update the plan's **Branch** line if publishing changed it, following **Branch names** in `../request-triage/references/artefacts.md`. In practice that is a plan with a single slice, which now takes its issue's ID.
 
 If the user added a `ticket-publish` line to the work order's Steps, tick it.
 

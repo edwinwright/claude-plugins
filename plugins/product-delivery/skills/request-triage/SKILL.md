@@ -18,9 +18,9 @@ This is the front door to every piece of delivery work: everything starts here. 
 
 ## Step 0: Is there already a work order?
 
-If the user points at an existing work order, or asks where a piece of work has got to ("what's next on MD-123", "where was I"), do not triage it again. Read `docs/work/<ID>-<slug>/work-order.md` and report:
+If the user points at an existing work order, or asks where a piece of work has got to ("what's next on WO-0004", "where was I"), do not triage it again. Read `docs/work/WO-NNNN-<slug>/work-order.md` and report:
 
-> **[ID]: [Title]** ([route])
+> **WO-NNNN: [Title]** ([route])
 >
 > [The Steps list as it stands, ticked and unticked]
 >
@@ -100,15 +100,22 @@ The lens's `ROUTE` and `GATES` fields are an input to this decision, not the dec
 
 Derive a slug from the request: lowercase, kebab-case, three words at most (`csv-export`, `stripe-subscriptions`, `pricing-page-typo`).
 
-Find the work order's ID. Read **Work order IDs** in `references/artefacts.md` and follow it in order: a tracker issue the request arrived as, then a tracker issue created with the user's agreement, then the prefix declared in `AGENTS.md`, and only then ask. Never create a tracker issue without a yes.
+**On Direct with a tracker connected,** offer the choice before writing anything:
+
+> 1. **Tracker issue only**: one issue with the request and why it is Direct. No work order, no folder.
+> 2. **Work order**: a `WO-NNNN` folder with a one-slice `PLAN.md`, for when an agent should run it from a plan.
+
+If the user picks 1, create the issue (title from the request, body the request and the **Why this route** line) and stop: there are no Steps and no folder. If the request arrived as a tracker issue, create nothing and say that issue is the record. Never create an issue without a yes. With no tracker connected, open the work order without asking.
+
+Number the work order as **Work order IDs** in `references/artefacts.md` describes: the highest `WO-` number across `docs/work/` and `docs/work/_archive/`, plus one. If the request arrived as a tracker issue, record it as `source:`.
 
 Read `work-order-template.md` and write it to:
 
 ```
-docs/work/<ID>-<slug>/work-order.md
+docs/work/WO-NNNN-<slug>/work-order.md
 ```
 
-Set `id`, `route`, and `escalation_gates`: the named gates, non-empty whenever `route: full`, empty otherwise.
+Set `id`, `source` (or leave it empty), `route`, and `escalation_gates`: the named gates, non-empty whenever `route: full`, empty otherwise.
 
 Fill `## Steps` from the list for this route in `references/routes.md`, copied line for line. On Full, include the `domain-modelling` line only if the new-domain-concepts gate is named; on a product bootstrap, include `requirements-discovery` only if the problem is not yet agreed. Do not add `ticket-publish` or `decision-record` lines; the user adds those if they want them tracked.
 
@@ -126,7 +133,7 @@ Present this to the user:
 >
 > **Why this route:** [One or two sentences. On Full, name each gate and what makes it true. On Direct, say what a requirements document would have added and why the answer is nothing.]
 >
-> Work order written to `docs/work/<ID>-<slug>/work-order.md`.
+> Work order written to `docs/work/WO-NNNN-<slug>/work-order.md`.
 >
 > [The Steps list]
 >
