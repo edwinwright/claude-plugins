@@ -11,9 +11,11 @@ Discovery is elicitation, not collection. Requirements are rarely sitting somewh
 
 ## Routes
 
-Runs at the head of the **Full** route, ahead of `product-definition`. Routes are defined in `../request-triage/references/routes.md`.
+Runs on the new-product shape of the **Full** route, ahead of `product-definition`, when the problem itself is not yet agreed. `request-triage` decides that and lists it in the work order's Steps. Routes are defined in `../request-triage/references/routes.md`.
 
 It is also worth running standalone whenever a request arrives with a solution already attached and no agreed problem behind it.
+
+**Steps.** If a work order lists `requirements-discovery` in its Steps, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
 
 ---
 
@@ -138,3 +140,9 @@ Tell the user:
 > **Next:** run `product-definition` to turn this into a vision, a non-functional baseline, and a prioritised backlog. Then `domain-modelling` for the glossary.
 >
 > [If any gaps were recorded:] Before that, these are still open: [list]. They will limit how much of the backlog can be prioritised with confidence."
+
+---
+
+## Finally: tick your step
+
+If there is a work order that lists `requirements-discovery`, tick `requirements-discovery` in its `## Steps` and end with `Next: <first unticked step>`, or say the work order is complete if nothing is left. Change nothing else in the work order.

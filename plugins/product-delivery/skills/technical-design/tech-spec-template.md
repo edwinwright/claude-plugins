@@ -151,7 +151,7 @@ Where a scenario genuinely cannot be checked by a command, write `Verify: manual
 
 ### Verification Commands
 
-The commands that prove this feature works, in the order they should be run. These are copied into each story's Verification block, so they must be runnable as written.
+The commands that prove this feature works, in the order they should be run. These are copied into each slice's Check block in `PLAN.md`, so they must be runnable as written.
 
 ```
 lint:  [command]

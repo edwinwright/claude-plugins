@@ -9,9 +9,11 @@ You are helping the user turn a product idea into a Product Brief, a product vis
 
 ## Routes
 
-Runs at the head of the **Full** route, once per product rather than once per piece of work. It is also standalone — run it cold to revise an existing product definition. Routes are defined in `../request-triage/references/routes.md`.
+Runs on the new-product shape of the **Full** route, once per product rather than once per piece of work: `request-triage` opens a product bootstrap work order and this is one of its Steps. It is also standalone — run it cold to revise an existing product definition. Routes are defined in `../request-triage/references/routes.md`.
 
 **Before you start,** read `docs/discovery/` if it exists — `requirements-discovery` produces the problem statement, stakeholder map, and current-state assessment this skill turns into a vision and a backlog. If it does not exist, work from what the user gives you; do not invent stakeholders.
+
+**Steps.** If a work order lists `product-definition` in its Steps, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
 
 Your goal is a Product Brief clear enough to give a developer the "why" of the product, and a `product-backlog.md` rich enough for `backlog-refinement` to open any backlog item without further context.
 
@@ -104,3 +106,9 @@ Tell the user:
 > 2. Then run **`request-triage`** on each backlog item, starting with the Must Haves.
 >
 > If anything in the brief looks wrong, edit it now — the backlog and everything downstream is built on top of these decisions. Any gaps left in `nfr.md` are worth closing before the first feature ships; features inherit that file whether or not it is finished."
+
+---
+
+## Finally: tick your step
+
+If there is a work order that lists `product-definition`, tick `product-definition` in its `## Steps` and end with `Next: <first unticked step>`, or say the work order is complete if nothing is left. Change nothing else in the work order.

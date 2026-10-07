@@ -8,8 +8,12 @@ description: 'Establish or extend the project''s ubiquitous language and domain 
 You are helping the user establish or maintain the project's shared vocabulary and domain model.
 
 This skill produces two files:
-- `docs/product/glossary.md` — the project's ubiquitous language
-- `docs/product/domain-model.md` — entities, relationships, and invariants
+- `docs/domain/glossary.md` — the project's ubiquitous language
+- `docs/domain/domain-model.md` — entities, relationships, and invariants
+
+Check the host project's `AGENTS.md` or `CLAUDE.md` for a different location first. If the files exist only at the version 3 paths (`docs/product/glossary.md`, `docs/product/domain-model.md`), read and edit them there and offer the user the `git mv` to `docs/domain/`; do not move them yourself. See `../request-triage/references/artefacts.md`.
+
+`docs/domain/context-map.md`, where a project has one, maps the bounded contexts. It is hand-written and this skill does not create it, but read it when deciding whether a term means different things in different contexts.
 
 These files are the highest-leverage agent-context docs in the repository. They stop implementation agents from inventing the wrong meaning for a term.
 
@@ -21,11 +25,13 @@ This skill is standalone and runs on any route, at any point:
 
 The glossary is also what the first escalation gate is checked against — work that introduces a term not in this file escalates to the Full route. Keeping it current is what keeps that gate honest. Routes are defined in `../request-triage/references/routes.md`.
 
+**Steps.** If a work order lists `domain-modelling` in its Steps, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
+
 ---
 
 ## Step 1: Detect the current state
 
-Check whether `docs/product/glossary.md` and `docs/product/domain-model.md` already exist.
+Check whether `docs/domain/glossary.md` and `docs/domain/domain-model.md` already exist.
 
 - **Neither exists** → bootstrap mode (go to Step 2)
 - **Both exist** → append mode (go to Step 3)
@@ -72,7 +78,7 @@ Read `glossary-template.md` and `domain-model-template.md`. Write both files.
 
 ### 3a: Read the existing files
 
-Read both `docs/product/glossary.md` and `docs/product/domain-model.md` in full.
+Read both `docs/domain/glossary.md` and `docs/domain/domain-model.md` in full.
 
 ### 3b: Identify gaps from the input
 
@@ -108,6 +114,12 @@ Present the written or updated files to the user.
 
 Tell the user:
 
-> "Glossary and domain model are updated at `docs/product/`. These files are read automatically by the feature pipeline — `technical-design` and `backlog-refinement` will use them as context when processing new features.
+> "Glossary and domain model are updated at `docs/domain/`. These files are read automatically by the feature pipeline — `technical-design` and `backlog-refinement` will use them as context when processing new features.
 >
 > When you introduce new domain concepts in future features, run `domain-modelling` again to keep these files current."
+
+---
+
+## Finally: tick your step
+
+If there is a work order that lists `domain-modelling`, tick `domain-modelling` in its `## Steps` and end with `Next: <first unticked step>`, or say the work order is complete if nothing is left. Change nothing else in the work order.

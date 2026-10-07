@@ -62,7 +62,7 @@ If you have a large or architecturally complex PRD, consider upgrading the Archi
 
 ## Routes
 
-Runs on the **Full** route only. Direct and Standard skip it — a feature in a well-understood domain, with no escalation gate open, does not need a technical specification to be broken into stories.
+Runs on the **Full** route only. Direct and Standard skip it — a feature in a well-understood domain, with no escalation gate open, does not need a technical specification to be broken into slices.
 
 Routes, escalation gates, and the work order format are defined in [`request-triage/references/routes.md`](../request-triage/references/routes.md).
 

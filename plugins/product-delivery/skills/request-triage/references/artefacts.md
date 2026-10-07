@@ -13,27 +13,51 @@ Keeping them in the same folder is how a repository ends up with a `docs/` direc
 ## Layout
 
 ```
+AGENTS.md                             agent router (CLAUDE.md symlinks to it)
 docs/
-├── product/                          DURABLE
-│   ├── vision.md                     product-definition
-│   ├── product-backlog.md            product-definition; appended by request-triage
+├── architecture/                     DURABLE: the technical lens
+│   ├── tech-stack.md                 hand-written; read by technical-design
+│   ├── conventions.md                hand-written; read by technical-design
+│   └── decisions/NNNN-<slug>.md      decision-record (architecture and process scopes)
+├── domain/                           DURABLE: the shared ground
 │   ├── glossary.md                   domain-modelling; appended by acceptance-review
 │   ├── domain-model.md               domain-modelling; appended by acceptance-review
-│   └── nfr.md                        product-definition; amended by acceptance-review
-├── decisions/<scope>/NNNN-<slug>.md  DURABLE — decision-record; fed by acceptance-review
-└── work/                             TRANSIENT
-    ├── 2026-08-csv-export/           one folder per work order
+│   └── context-map.md                optional, hand-written: the bounded contexts
+├── product/                          DURABLE: the value lens
+│   ├── vision.md                     product-definition
+│   ├── product-backlog.md            product-definition; appended by request-triage
+│   ├── nfr.md                        product-definition; amended by acceptance-review
+│   └── decisions/NNNN-<slug>.md      decision-record (product scope)
+└── work/                             TRANSIENT, and committed
+    ├── <ID>-<slug>/                  one folder per work order
     │   ├── work-order.md             request-triage
-    │   ├── requirements.md           backlog-refinement
-    │   ├── tech-spec.md              technical-design
-    │   ├── delivery-plan.md          delivery-planning
-    │   └── tickets/                  work-breakdown
+    │   ├── requirements.md           backlog-refinement (Standard, Full)
+    │   ├── tech-spec.md              technical-design (Full)
+    │   ├── delivery-plan.md          delivery-planning (Full)
+    │   └── PLAN.md                   work-breakdown (every route)
     └── _archive/
         ├── README.md
-        └── 2026-08-stripe-billing/   moved here by acceptance-review
+        └── <ID>-<slug>/              moved here by acceptance-review
 ```
 
-The work folder is named `YYYY-MM-<slug>` — the year and month it was opened, then a short kebab-case slug. The date prefix is not decoration: it is what makes a cold folder obvious at a glance and gives you something to prune by.
+Work folders are **committed**. A cloud or background agent only sees what is in the repository, so a work order kept outside it cannot be picked up by one.
+
+---
+
+## Work order IDs
+
+A work folder is named `<ID>-<slug>`: the work order's ID, then a short kebab-case slug of three words at most (`MD-123-csv-export`). The ID follows the project's ticketing prefix, so the folder, the branch, the commits, and any tracker issue all carry the same identifier.
+
+Find the ID in this order:
+
+1. **The request arrived as a tracker issue.** Use that issue's ID.
+2. **A tracker is connected but there is no issue yet.** Ask once whether to create one. Creating an issue is visible to other people, so do not do it without a yes. If yes, use the new issue's ID; if no, go on to 3.
+3. **The host's `AGENTS.md` declares a work order prefix** (`Work order prefix: MD`). Use the prefix and the next free number: read the highest number in use across `docs/work/` *and* `docs/work/_archive/`, and add one. Read the highest rather than counting folders, which mis-numbers as soon as one is deleted.
+4. **Neither.** Ask once for the prefix, use it, and tell the user to record it in `AGENTS.md` as `Work order prefix: <PREFIX>` so the question is not asked again.
+
+A local prefix must differ from any tracker's own key. If the project's Linear team key is `MD` and work orders are numbered locally as `MD-5`, then `MD-5` names two different things. When a project has a tracker, take IDs from the tracker (steps 1 and 2); the local prefix is for projects without one.
+
+The work order's `opened:` date stays in its frontmatter, so nothing is lost by not putting the date in the folder name.
 
 ---
 
@@ -47,28 +71,30 @@ This matters more than it looks. A skill that hardcodes a folder tree only works
 
 ## Reading legacy layouts
 
-Earlier versions of this plugin wrote to `docs/features/<slug>/` with `prd.md` rather than `requirements.md`. Work started under that layout is still valid.
+Work and documents written under earlier versions of this plugin are still valid. When looking for an input:
 
-When looking for an input document:
+| Look here first | Then fall back to |
+|---|---|
+| `docs/work/<ID>-<slug>/` | `docs/work/YYYY-MM-<slug>/` (version 3), then `docs/features/<slug>/` (version 1, which used `prd.md` for `requirements.md`) |
+| `docs/domain/glossary.md`, `docs/domain/domain-model.md` | `docs/product/glossary.md`, `docs/product/domain-model.md` |
+| `docs/architecture/decisions/`, `docs/product/decisions/` | `docs/decisions/<scope>/` |
 
-1. Look in `docs/work/YYYY-MM-<slug>/` first.
-2. Fall back to `docs/features/<slug>/`, and accept `prd.md` where you expected `requirements.md`.
-3. If you find one, say which layout you are reading and carry on. **Do not migrate it** — moving files out from under work that is in flight breaks the links in tickets that already exist.
+If you find a document in a legacy location, say which one you are reading and carry on. **Do not migrate it unprompted.** Moving files out from under work that is in flight breaks the links in plans and tracker issues that already exist. Offer the user a list of `git mv` commands for a one-off migration instead, and let them run it.
 
-New work orders always use the current layout.
+New documents always use the current layout.
 
 ---
 
 ## The end of a transient document
 
-`acceptance-review` closes a work order out. It moves the folder to `docs/work/_archive/<slug>/` and stamps every file:
+`acceptance-review` closes a work order out. It moves the folder to `docs/work/_archive/<ID>-<slug>/` and stamps every file:
 
 ```yaml
 status: superseded
 archived: YYYY-MM-DD
-harvested_to: [docs/product/glossary.md, docs/decisions/architecture/0007-webhook-retries.md]
+harvested_to: [docs/domain/glossary.md, docs/architecture/decisions/0007-webhook-retries.md]
 ```
 
 It never deletes. Archived work is deleted by hand, once you are satisfied nothing was lost.
 
-Nothing should link *into* `_archive/`. `AGENTS.md` entries point at live work folders and are removed when the work is accepted; tickets link to durable documents, not transient ones. An archived document that something still depends on was not finished being harvested.
+Nothing should link *into* `_archive/`. `AGENTS.md` entries point at live work folders and are removed when the work is accepted; plans and tracker issues link to durable documents, or to a live `PLAN.md`, never into the archive. An archived document that something still depends on was not finished being harvested.

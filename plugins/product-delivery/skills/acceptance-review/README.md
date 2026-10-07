@@ -12,7 +12,7 @@ This skill is the mechanism that stops that.
 
 ## When to use
 
-When a work order is built and before it is considered done. **Once per work order,** after the last story — not per story, which fragments the harvest and makes the archive step incoherent.
+When a work order is built and before it is considered done. **Once per work order,** after the last slice in `PLAN.md`, not per slice, which fragments the harvest and makes the archive step incoherent.
 
 ## Routes
 
@@ -24,17 +24,18 @@ Routes, escalation gates, and the work order format are defined in [`request-tri
 
 | Input | Required | Notes |
 |---|---|---|
-| The work order folder | Yes | `docs/work/YYYY-MM-<slug>/` — work order, requirements, tech spec, tickets |
+| The work order folder | Yes | `docs/work/<ID>-<slug>/`: work order, requirements, tech spec, `PLAN.md` |
 | The repository | Yes | The Verification Lens reads it and runs the verification commands |
 | The diff or commit range | Helpful | `git log` since the work order was opened is a reasonable default |
 
 ## Output
 
-- An acceptance report at `docs/work/_archive/YYYY-MM-<slug>/acceptance-report.md`
-- Additions to `docs/product/glossary.md`, `domain-model.md`, and `nfr.md`
-- New records under `docs/decisions/`
+- An acceptance report at `docs/work/_archive/<ID>-<slug>/acceptance-report.md`
+- Additions to `docs/domain/glossary.md`, `docs/domain/domain-model.md`, and `docs/product/nfr.md`
+- New records under `docs/architecture/decisions/` or `docs/product/decisions/`
 - The work order's `AGENTS.md` entry removed
 - The work folder moved to `docs/work/_archive/`, every file stamped `status: superseded`
+- The `acceptance-review` line ticked in the work order's Steps, which completes it
 
 ## How it works
 
@@ -67,7 +68,7 @@ The work folder is moved to `docs/work/_archive/`, not removed. Every file is st
 ```yaml
 status: superseded
 archived: YYYY-MM-DD
-harvested_to: [docs/product/glossary.md, docs/decisions/architecture/0007-webhook-retries.md]
+harvested_to: [docs/domain/glossary.md, docs/architecture/decisions/0007-webhook-retries.md]
 ```
 
 The stamp is what stops an agent finding a superseded specification and treating it as current — the one real cost of archiving rather than deleting, and worth paying to get content back without git archaeology. The skill prints the `rm -rf` for you to run once you are satisfied nothing was lost.

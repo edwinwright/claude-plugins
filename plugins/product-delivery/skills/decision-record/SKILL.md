@@ -69,11 +69,21 @@ Wait for the subagent(s) to complete. If a lens identifies that the gate does no
 
 ## Step 5: Determine the file number
 
-Look at the existing files in `docs/decisions/<scope>/`. Find the **highest** four-digit prefix already in use and increment it by one. Use a four-digit zero-padded number (e.g. `0001`, `0002`).
+The record's folder depends on its scope:
+
+| Scope | Folder |
+|---|---|
+| `architecture` | `docs/architecture/decisions/` |
+| `process` | `docs/architecture/decisions/`, with `scope: process` in the frontmatter |
+| `product` | `docs/product/decisions/` |
+
+Process decisions share the architecture folder because the ones that clear the gate in a code repository (branching, CI, review policy) sit with the engineering conventions. Check the host project's `AGENTS.md` or `CLAUDE.md` first; projects can put records elsewhere. Earlier versions of this plugin wrote to `docs/decisions/<scope>/`: see `../request-triage/references/artefacts.md` for reading those.
+
+Look at the existing files in that folder. Find the **highest** four-digit prefix already in use and increment it by one. Use a four-digit zero-padded number (e.g. `0001`, `0002`).
 
 Read the highest prefix rather than counting files — counting mis-numbers as soon as a record is deleted, or when a file without an `NNNN-` prefix (a README, say) lands in the folder. Ignore any file whose name does not start with four digits and a hyphen.
 
-If `docs/decisions/<scope>/` does not exist or holds no numbered records, this will be `0001`.
+If the folder does not exist or holds no numbered records, this will be `0001`. Numbering is per folder, so architecture and process records share a sequence.
 
 ---
 
@@ -89,7 +99,7 @@ Read the template at `decision-record-template.md`. Fill every section.
 Write the completed record to:
 
 ```
-docs/decisions/<scope>/NNNN-<slug>.md
+docs/<architecture|product>/decisions/NNNN-<slug>.md
 ```
 
 Where `<slug>` is a short kebab-case description of the decision (e.g. `postgres-over-dynamodb`, `usage-based-billing`).
@@ -102,6 +112,6 @@ Present the written record to the user.
 
 Tell the user:
 
-> "Decision record written to `docs/decisions/<scope>/NNNN-<slug>.md`. If this decision is already final, update `status: accepted`. If it supersedes an older record, update the older record's `status: superseded` and `superseded_by:` field, then set this record's `supersedes:` field to the old filename.
+> "Decision record written to `[path]`. If this decision is already final, update `status: accepted`. If it supersedes an older record, update the older record's `status: superseded` and `superseded_by:` field, then set this record's `supersedes:` field to the old filename.
 >
-> Link from the relevant code or PR with a comment: `// see docs/decisions/<scope>/NNNN-<slug>.md`"
+> Link from the relevant code or PR with a comment: `// see [path]`"

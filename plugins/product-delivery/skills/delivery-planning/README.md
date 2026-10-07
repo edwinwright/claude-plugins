@@ -66,7 +66,7 @@ Routes, escalation gates, and the work order format are defined in [`request-tri
 
 **Next step:** Pass the saved Delivery Plan (and Tech Spec if available) to `work-breakdown`.
 
-> If the Delivery Plan contains unresolved Open Questions, resolve them before continuing. They will affect ticket scope and phase assignment.
+> If the Delivery Plan contains unresolved Open Questions, resolve them before continuing. They will affect how the work is sliced and phased.
 
 ## Files
 

@@ -30,10 +30,11 @@ Use this when you need to record *why* a significant decision was made — not w
 A MADR-format Decision Record written to:
 
 ```
-docs/decisions/<scope>/NNNN-<slug>.md
+docs/architecture/decisions/NNNN-<slug>.md     architecture and process scopes
+docs/product/decisions/NNNN-<slug>.md          product scope
 ```
 
-Numbered sequentially within each scope folder. Immutable `status:` field (`proposed` → `accepted` → `superseded`).
+Numbered sequentially within each folder. Immutable `status:` field (`proposed` → `accepted` → `superseded`).
 
 ## How it works
 
@@ -41,7 +42,7 @@ Numbered sequentially within each scope folder. Immutable `status:` field (`prop
 2. Applies the **significance gate** — argues itself out of writing first; refuses if any test fails
 3. Determines scope (`architecture` / `product` / `process`)
 4. Runs the appropriate **review-lens subagent(s)** to pressure-test the gate
-5. Numbers the file sequentially within the scope folder
+5. Numbers the file sequentially within its folder
 6. Fills the MADR template and writes the record
 
 ## The significance gate
@@ -68,7 +69,7 @@ Rough ceiling: more than ~1 Decision Record per significant feature usually mean
 This skill is standalone and can be triggered at any stage. Link from the relevant code with a comment:
 
 ```
-// see docs/decisions/architecture/0001-postgres-over-dynamodb.md
+// see docs/architecture/decisions/0001-postgres-over-dynamodb.md
 ```
 
 ## Files

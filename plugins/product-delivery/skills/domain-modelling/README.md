@@ -21,7 +21,7 @@ Bootstraps and maintains the project's shared vocabulary (`glossary.md`) and dom
 Two files written or updated at:
 
 ```
-docs/product/
+docs/domain/
   glossary.md        ← ubiquitous language: Term | Definition | Aliases | Notes
   domain-model.md    ← entities, relationships, invariants, mermaid diagram
 ```

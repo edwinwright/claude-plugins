@@ -9,9 +9,11 @@ You are orchestrating a virtual dev team to transform a PRD into a Technical Spe
 
 ## Routes
 
-Runs on the **Full** route only. Direct and Standard skip it — a feature in a well-understood domain, with no escalation gate open, does not need a technical specification to be broken into stories. Routes are defined in `../request-triage/references/routes.md`.
+Runs on the **Full** route only. Direct and Standard skip it — a feature in a well-understood domain, with no escalation gate open, does not need a technical specification to be broken into slices. Routes are defined in `../request-triage/references/routes.md`.
 
-**Before you start,** read the work order at `docs/work/YYYY-MM-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, ask whether a gate has opened since triage — if one has, update the work order and continue; if not, say the work does not need this step and stop.
+**Before you start,** read the work order at `docs/work/<ID>-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, ask whether a gate has opened since triage — if one has, update the work order and continue; if not, say the work does not need this step and stop.
+
+**Steps.** If a work order exists, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
 
 The output feeds directly into `delivery-planning`, so it must be complete and internally consistent.
 
@@ -27,7 +29,9 @@ Check the **Open Questions** section. If it contains unresolved questions, surfa
 
 ## Step 2: Establish tech stack constraints
 
-Ask the user:
+First read `docs/architecture/tech-stack.md` and `docs/architecture/conventions.md` if they exist, and the decision records in `docs/architecture/decisions/`. They are the project's standing technical constraints: pass them to the Architect as hard constraints, and ask only about anything specific to this feature.
+
+If they do not exist, ask the user:
 
 > **Do you have tech stack constraints for this feature?**
 > If yes, paste them here or attach a tech doc (e.g. architecture notes, README, tech stack reference).
@@ -109,15 +113,13 @@ During synthesis:
 
 ## Step 7: Save the Technical Specification
 
-Derive the feature slug from the feature name — lowercase, kebab-case (e.g. `user-authentication`, `billing-portal`).
-
 Save the Technical Specification into the work order's folder:
 
 ```
-docs/work/YYYY-MM-<slug>/tech-spec.md
+docs/work/<ID>-<slug>/tech-spec.md
 ```
 
-Use the slug and date from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.
+Use the ID and slug from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.
 
 Clean up the intermediate files (`_architect-output.md`, `_frontend-output.md`, `_backend-output.md`, `_qa-output.md`) from the working directory once the final spec is saved.
 
@@ -130,3 +132,9 @@ Present the Technical Specification to the user.
 Tell the user:
 
 > "The Technical Specification is ready to pass to the `delivery-planning` skill, which will run a planning team of subagents to sequence the work into a Delivery Plan. If there are Open Questions in the spec, resolve them before continuing — they will affect how delivery is sequenced."
+
+---
+
+## Finally: tick your step
+
+If there is a work order, tick `technical-design` in its `## Steps` and end with `Next: <first unticked step>`, or say the work order is complete if nothing is left. Change nothing else in the work order.

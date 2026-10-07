@@ -11,7 +11,9 @@ You are orchestrating a virtual planning team to transform a PRD and Technical S
 
 Runs on the **Full** route only. Direct and Standard skip it — `work-breakdown` derives its own ordering from dependencies when there is no delivery plan. Routes are defined in `../request-triage/references/routes.md`.
 
-**Before you start,** read the work order at `docs/work/YYYY-MM-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, say the work does not need this step and stop, unless the user tells you a gate has opened since triage.
+**Before you start,** read the work order at `docs/work/<ID>-<slug>/work-order.md`. If it says `route: standard` or `route: direct`, say the work does not need this step and stop, unless the user tells you a gate has opened since triage.
+
+**Steps.** If a work order exists, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
 
 The goal is a sequenced, dependency-aware plan that answers: *what gets built first, what depends on what, and how do we ship a working, testable slice of the system at each phase?*
 
@@ -86,15 +88,13 @@ Wait for confirmation before proceeding.
 
 ## Step 5: Save and present
 
-Derive the feature slug from the feature name — lowercase, kebab-case (e.g. `user-authentication`, `billing-portal`).
-
 Save the Delivery Plan into the work order's folder:
 
 ```
-docs/work/YYYY-MM-<slug>/delivery-plan.md
+docs/work/<ID>-<slug>/delivery-plan.md
 ```
 
-Use the slug and date from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.
+Use the ID and slug from the work order. Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`; check the host project's `AGENTS.md` or `CLAUDE.md` first.
 
 If no project folder is connected, save as `[Feature Name] Delivery Plan.md` in the working directory.
 
@@ -102,4 +102,10 @@ Clean up the intermediate files (`_backend-plan.md`, `_frontend-plan.md`, `_qa-p
 
 Tell the user:
 
-> "The Delivery Plan is ready to pass to the `work-breakdown` skill, which will create the work item tickets in your project management tool. Stories marked [Technical] should be picked up first — they unblock the feature stories. If there are Open Questions in the plan, resolve them before continuing — they may affect phase sequencing."
+> "The Delivery Plan is ready to pass to the `work-breakdown` skill, which turns each story into a slice of the work order's `PLAN.md`. Stories marked [Technical] come first: they unblock the feature stories. If there are Open Questions in the plan, resolve them before continuing — they may affect phase sequencing."
+
+---
+
+## Finally: tick your step
+
+If there is a work order, tick `delivery-planning` in its `## Steps` and end with `Next: <first unticked step>`, or say the work order is complete if nothing is left. Change nothing else in the work order.

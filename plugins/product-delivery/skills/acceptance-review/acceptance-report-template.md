@@ -1,5 +1,5 @@
 ---
-work_order: [YYYY-MM-slug]
+work_order: [ID-slug]
 reviewed: YYYY-MM-DD
 outcome: accepted | accepted with waivers | not accepted
 ---
@@ -76,7 +76,7 @@ What was promoted out of the transient documents, and where it went.
 
 | Decision | Record |
 |---|---|
-| | `docs/decisions/<scope>/NNNN-<slug>.md` |
+| | `docs/<architecture|product>/decisions/NNNN-<slug>.md` |
 
 ### Considered and not promoted
 
@@ -90,12 +90,12 @@ Candidates that were raised and rejected, with the reason. Recorded so the same 
 
 ## Archive
 
-- **Moved to:** `docs/work/_archive/[YYYY-MM-slug]/`
+- **Moved to:** `docs/work/_archive/[ID-slug]/`
 - **`AGENTS.md` entry removed:** yes / no
-- **Recover with:** `git log --diff-filter=D -- docs/work/[YYYY-MM-slug]`
+- **Recover with:** `git log --diff-filter=D -- docs/work/[ID-slug]`
 
 Nothing was deleted. Delete the archived folder by hand once you are satisfied nothing was lost:
 
 ```
-rm -rf docs/work/_archive/[YYYY-MM-slug]
+rm -rf docs/work/_archive/[ID-slug]
 ```

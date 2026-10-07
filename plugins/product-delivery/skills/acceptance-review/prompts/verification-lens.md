@@ -8,7 +8,7 @@ Your output gates everything downstream. If you report a pass, the work order ge
 
 ## Your inputs
 
-- **The work order folder** — the work order, the requirements document, the tech spec and delivery plan where they exist, and every ticket
+- **The work order folder** — the work order, the requirements document, the tech spec and delivery plan where they exist, and `PLAN.md` (or a `tickets/` folder, on older work)
 - **The repository** — you can read it and run commands in it
 - **The diff or commit range** for the work, if one was identified
 
@@ -18,7 +18,7 @@ Your output gates everything downstream. If you report a pass, the work order ge
 
 ### 1. Assemble the criteria
 
-Collect every acceptance criterion from the ticket files, and every acceptance test scenario from the tech spec where there is one. Deduplicate: the same criterion often appears in both.
+Collect every acceptance criterion from the slices in `PLAN.md` (or the ticket files, on older work), and every acceptance test scenario from the tech spec where there is one. Deduplicate: the same criterion often appears in both.
 
 Each should carry a `Verify:` line naming a command, a test, or a manual check. Where one does not, that is itself a finding — see UNVERIFIABLE below.
 
@@ -57,7 +57,7 @@ For every criterion:
 
 ```
 CRITERION: <the criterion, verbatim>
-SOURCE: <ticket filename, or tech spec section>
+SOURCE: <PLAN.md slice number, ticket filename, or tech spec section>
 VERDICT: <PASS | FAIL | UNVERIFIABLE>
 EVIDENCE: <the command and its relevant output, the test file and name, or the file and line. For FAIL, what actually happens instead. For UNVERIFIABLE, which of the causes above applies and what would close it.>
 ```

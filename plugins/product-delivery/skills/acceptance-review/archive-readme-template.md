@@ -5,10 +5,10 @@
 >
 > **Do not read these to understand how the system works.** For that, use:
 >
-> - `docs/product/glossary.md` — what terms mean here
-> - `docs/product/domain-model.md` — entities, relationships, invariants
+> - `docs/domain/glossary.md` — what terms mean here
+> - `docs/domain/domain-model.md` — entities, relationships, invariants
 > - `docs/product/nfr.md` — the non-functional baseline
-> - `docs/decisions/` — why things are the way they are
+> - `docs/architecture/decisions/` and `docs/product/decisions/` — why things are the way they are
 > - the code
 
 Each folder was moved here by `acceptance-review` once its work was verified. Every file carries frontmatter recording that:
@@ -33,4 +33,4 @@ Git holds the history either way.
 
 ## Nothing should link here
 
-`AGENTS.md` points at live work orders and its entries are removed at acceptance. Tickets link to durable documents. If something still depends on a folder in here, it was not finished being harvested — reopen it rather than restoring the link.
+`AGENTS.md` points at live work orders and its entries are removed at acceptance. Plans and tracker issues link to durable documents. If something still depends on a folder in here, it was not finished being harvested — reopen it rather than restoring the link.

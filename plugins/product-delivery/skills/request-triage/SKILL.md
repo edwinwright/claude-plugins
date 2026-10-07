@@ -1,6 +1,6 @@
 ---
 name: request-triage
-description: 'Triage an incoming request — a feature idea, a bug report, a change ask — and choose its delivery route: direct (straight to work breakdown), standard (refine the requirements first), or full (discovery and design first). Decides whether the request is worth building, checks the backlog for duplicates, and names the escalation gate whenever it routes to full. The front door to any delivery work. Triggers: "I have an idea for", "should we build X", "new feature request", "is this worth building", "add this to the backlog", "what route does this take".'
+description: 'Triage an incoming request — a feature idea, a bug report, a change ask, a new product — and choose its delivery route: direct (straight to work breakdown), standard (refine the requirements first), or full (discovery and design first). Every piece of delivery work starts here. Decides whether the request is worth building, checks the backlog for duplicates, and writes a work order with its ID and a Steps checklist naming which skills run, in order. Also reports where an existing work order has got to and what runs next. Triggers: "I have an idea for", "should we build X", "new feature request", "is this worth building", "add this to the backlog", "what route does this take", "where do I start", "what''s next on this work order".'
 ---
 
 # request-triage
@@ -12,7 +12,21 @@ You make two decisions, in this order:
 1. **Should this be built at all?** Now, later, or never.
 2. **Which route does it take?** Direct, Standard, or Full.
 
-This is the front door to every piece of delivery work. Read `references/routes.md` before deciding anything — it defines the three routes, the escalation gates, and the work order format, and it is the only place those are defined.
+This is the front door to every piece of delivery work: everything starts here. Read `references/routes.md` before deciding anything. It defines the three routes, the escalation gates, the work order format, and the Steps checklist each route writes, and it is the only place those are defined.
+
+---
+
+## Step 0: Is there already a work order?
+
+If the user points at an existing work order, or asks where a piece of work has got to ("what's next on MD-123", "where was I"), do not triage it again. Read `docs/work/<ID>-<slug>/work-order.md` and report:
+
+> **[ID]: [Title]** ([route])
+>
+> [The Steps list as it stands, ticked and unticked]
+>
+> Next: `[first unticked step]`
+
+Then stop. Re-triaging work that already has a route would overwrite a decision other skills have acted on.
 
 ---
 
@@ -32,8 +46,8 @@ Look for an associated product. Check for `docs/product/vision.md` and `docs/pro
 Before running triage, scan for existing work that overlaps with this request:
 
 1. Scan `docs/product/product-backlog.md` for entries with similar titles or goals.
-2. List the directories in `docs/work/` — scan the slugs for overlap. Include `docs/work/_archive/`: work that already shipped is the most useful kind of duplicate to find, because the answer may be "this already exists".
-3. If the project predates the current layout, also list `docs/features/`. See `references/artefacts.md`.
+2. List the directories in `docs/work/` and scan the slugs for overlap. Include `docs/work/_archive/`: work that already shipped is the most useful kind of duplicate to find, because the answer may be "this already exists".
+3. If the project has work from an earlier layout, list those folders too. `references/artefacts.md` names them.
 
 If you find a likely duplicate, surface it to the user before continuing:
 
@@ -76,21 +90,29 @@ Read `references/routes.md` if you have not already. Work through it in this ord
 
 1. **Start at Standard.** It is the default, and it stays the default unless one of the next two tests moves you off it.
 2. **Test for Direct.** Would a requirements document say anything the request does not already say? If you cannot name what it would add, take Direct.
-3. **Test the five escalation gates.** Take Full only if you can name a gate that is *actually* true. Check the glossary before claiming the domain-concepts gate; check `docs/product/nfr.md` before claiming the non-functional gate. A gate that is probably true but unconfirmed is not a gate — say so and stay on Standard.
+3. **Test the five escalation gates.** Take Full only if you can name a gate that is *actually* true. Check `docs/domain/glossary.md` before claiming the domain-concepts gate; check `docs/product/nfr.md` before claiming the non-functional gate. A gate that is probably true but unconfirmed is not a gate — say so and stay on Standard.
 
 The lens's `ROUTE` and `GATES` fields are an input to this decision, not the decision. You have read the glossary and the NFR baseline; the lens has not.
 
+**A new product** (no `docs/product/vision.md` for it, or the request is a whole product rather than a feature) is the product bootstrap shape of Route C in `references/routes.md`. Record `escalation_gates: [new product]`.
+
 #### 5b: Write the work order
 
-Derive a slug from the request — lowercase, kebab-case, three words at most (`csv-export`, `stripe-subscriptions`, `pricing-page-typo`).
+Derive a slug from the request: lowercase, kebab-case, three words at most (`csv-export`, `stripe-subscriptions`, `pricing-page-typo`).
+
+Find the work order's ID. Read **Work order IDs** in `references/artefacts.md` and follow it in order: a tracker issue the request arrived as, then a tracker issue created with the user's agreement, then the prefix declared in `AGENTS.md`, and only then ask. Never create a tracker issue without a yes.
 
 Read `work-order-template.md` and write it to:
 
 ```
-docs/work/YYYY-MM-<slug>/work-order.md
+docs/work/<ID>-<slug>/work-order.md
 ```
 
-...where `YYYY-MM` is the current year and month. Set `route`, and set `escalation_gates` to the named gates — non-empty whenever `route: full`, empty otherwise.
+Set `id`, `route`, and `escalation_gates`: the named gates, non-empty whenever `route: full`, empty otherwise.
+
+Fill `## Steps` from the list for this route in `references/routes.md`, copied line for line. On Full, include the `domain-modelling` line only if the new-domain-concepts gate is named; on a product bootstrap, include `requirements-discovery` only if the problem is not yet agreed. Do not add `ticket-publish` or `decision-record` lines; the user adds those if they want them tracked.
+
+**If this request is a backlog item of a product whose bootstrap work order is still open** in `docs/work/`, and every other line of that work order is ticked, close it: tick its last line, set its `status: done`, and `git mv` its folder to `docs/work/_archive/`. Say that you did.
 
 Check the host project's `AGENTS.md` or `CLAUDE.md` for a different work directory before writing; `docs/work/` is the default, not a fixed path.
 
@@ -104,11 +126,13 @@ Present this to the user:
 >
 > **Why this route:** [One or two sentences. On Full, name each gate and what makes it true. On Direct, say what a requirements document would have added and why the answer is nothing.]
 >
-> Work order written to `docs/work/YYYY-MM-<slug>/work-order.md`.
+> Work order written to `docs/work/<ID>-<slug>/work-order.md`.
 >
-> **Next:** run `[backlog-refinement | work-breakdown]`.
+> [The Steps list]
+>
+> Next: `[first step in the list]`
 
-The next skill is the one the route names: `work-breakdown` on Direct, `backlog-refinement` on Standard and Full. Do not run it automatically.
+Do not run the next skill automatically.
 
 ---
 

@@ -6,7 +6,7 @@ Three plugins, seventeen skills.
 
 | Plugin | Skills | For |
 |---|---|---|
-| [`product-delivery`](#product-delivery) | 11 | An end-to-end SDLC pipeline: request → requirements → spec → tickets → build → verified acceptance, on one of three routes |
+| [`product-delivery`](#product-delivery) | 11 | An end-to-end SDLC pipeline: request → requirements → spec → plan → build → verified acceptance, on one of three routes |
 | [`engineering`](#engineering) | 1 | Personal coding conventions: the judgement calls a linter can't make, plus the standard setup a new project gets |
 | [`knowledge`](#knowledge) | 5 | Learning and knowledge capture for an Obsidian vault: what shape a document should take, the workflows that produce it, and coached sessions that build understanding while you work |
 
@@ -16,7 +16,7 @@ They install independently and share no files. Install any combination.
 
 All three plugins are built around a small set of deliberate constraints rather than an accumulation of features:
 
-- **One source of truth: local markdown.** Project-management tools (Linear, GitHub Issues) are sync targets, never the origin. State lives where the code lives.
+- **Markdown in the repo is the source of truth for content; the tracker, when used, owns IDs and status.** Linear and GitHub Issues mirror the plan, never originate it. Documents live where the code lives.
 - **A document is worth writing only if its "why" can't be recovered from the code.** That single test gates every decision record — it keeps documentation from drifting into noise.
 - **Durable and transient documents are kept apart.** A glossary describes how things *are*; a requirements document describes a change we *propose to make*. Filed together, the second quietly rots the first.
 - **The heaviest process must never be the default.** Small work takes a short route, and escalating to the long one requires naming a reason that is actually true.
@@ -26,7 +26,7 @@ All three plugins are built around a small set of deliberate constraints rather 
 
 ## product-delivery
 
-Everything enters at `request-triage`, which decides whether the work should happen and which of three routes it takes.
+Every piece of work starts with `request-triage`, which decides whether the work should happen and which of three routes it takes, and writes the route into the work order as a checklist of Steps. Each skill ticks its own line and names the next, so the route never has to be remembered.
 
 ```
 A — Direct     request-triage → work-breakdown → build
@@ -35,10 +35,10 @@ A — Direct     request-triage → work-breakdown → build
 B — Standard   request-triage → backlog-refinement → work-breakdown → build → acceptance-review
                  the default: a feature, days of work, a familiar domain
 
-C — Full       requirements-discovery → product-definition → domain-modelling → request-triage →
-               backlog-refinement → technical-design → delivery-planning →
-               work-breakdown → build → acceptance-review
-                 a new product, or work that trips an escalation gate
+C — Full       request-triage → [domain-modelling] → backlog-refinement → technical-design →
+               delivery-planning → work-breakdown → build → acceptance-review
+                 work that trips an escalation gate; a new product runs discovery
+                 and product definition first, then triages each Must Have
 
 decision-record is available throughout, at any point a costly, hard-to-reverse decision is made.
 ```
@@ -47,15 +47,15 @@ Route B is the documented default. Escalating to C requires **naming a gate** th
 
 | Skill | Routes | Does |
 |---|---|---|
-| `requirements-discovery` | C | Elicitation, stakeholder mapping, current state, problem framing |
-| `product-definition` | C | Idea → vision, MoSCoW backlog, non-functional baseline |
+| `requirements-discovery` | C, new product | Elicitation, stakeholder mapping, current state, problem framing |
+| `product-definition` | C, new product | Idea → vision, MoSCoW backlog, non-functional baseline |
 | `domain-modelling` | any | Bootstraps and maintains the glossary + domain model |
 | `request-triage` | all | The front door — build or park, and which route |
 | `backlog-refinement` | B, C | Backlog item → requirements document |
 | `technical-design` | C | Requirements → Technical Specification (virtual dev team of four lenses) |
 | `delivery-planning` | C | Requirements + spec → sequenced Delivery Plan |
-| `work-breakdown` | all | Specified work → local Epic + Story ticket files |
-| `ticket-publish` | optional | Local ticket files → Linear or GitHub Issues |
+| `work-breakdown` | all | Specified work → `PLAN.md` of vertical slices an agent runs one at a time |
+| `ticket-publish` | optional | `PLAN.md` slices → Linear or GitHub Issues, IDs written back |
 | `acceptance-review` | B, C | Verify against criteria, harvest what is durable, archive what is spent |
 | `decision-record` | any | MADR-style record with a significance gate that refuses trivial ones |
 
@@ -125,6 +125,8 @@ Skills then trigger on natural language — see each skill's `SKILL.md` for its 
 ## Status
 
 All seventeen skills ship and are in active use. `CLAUDE.md` carries the conventions these plugins are developed under, including why two overlapping skills were merged into one.
+
+`product-delivery` 4.0 makes the work order the map and changes the layout. `request-triage` writes a `## Steps` checklist into every work order; `work-breakdown` writes one `PLAN.md` of slices instead of Epic and Story files; `ticket-publish` publishes slices and writes their IDs back. Documents move to `docs/architecture/`, `docs/domain/` and `docs/product/`, and work folders are named `<ID>-<slug>` after the project's ticket prefix rather than the date. Projects on the 3.x layout are still read, and nothing is migrated without you; no skill was renamed.
 
 `product-delivery` 3.0 is `delivery-design` renamed. The plugin grew past the old name: `requirements-discovery` runs before anything is designed and `acceptance-review` runs after the code is built, leaving design as three skills of eleven rather than the shape of the whole. No skill was renamed and nothing inside them changed — but the namespace every skill is invoked under did, so `delivery-design:request-triage` is now `product-delivery:request-triage`. There is no alias mechanism for plugin names any more than for skill names, so remove the old plugin and install `product-delivery` fresh.
 

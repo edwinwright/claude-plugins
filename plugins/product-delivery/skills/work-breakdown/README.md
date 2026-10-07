@@ -1,61 +1,69 @@
 # work-breakdown
 
-Breaks a Delivery Plan into an Epic and Stories, saved as local Markdown files ready for review.
+Turns specified work into a `PLAN.md`: numbered, dependency-ordered vertical slices that a coding agent executes one at a time.
 
 ## When to use
 
-Use this once the work is specified enough to decompose. On the Direct route that is straight after `request-triage`.
+Once the work is specified enough to decompose. On the Direct route that is straight after `request-triage`; on Standard, after `backlog-refinement`; on Full, after `delivery-planning`.
 
-Do not run this skill if the Delivery Plan has unresolved Open Questions — they will cause stories to be scoped or phased incorrectly.
-
-Run `ticket-publish` afterwards to push the generated files to Linear or GitHub Issues.
+Do not run it while the input document has unresolved Open Questions. They produce wrongly scoped slices.
 
 ## Inputs
 
 | Input | Required | Notes |
 |---|---|---|
-| Delivery Plan | Yes | From `delivery-planning`, as a file or pasted content |
-| Technical Specification | No | Strongly recommended — used to pull acceptance criteria and task breakdowns into story bodies |
+| Work order | Yes | `docs/work/<ID>-<slug>/work-order.md`, for the ID, route, and request |
+| Requirements document | Standard, Full | From `backlog-refinement` |
+| Delivery Plan + Technical Specification | Full | From `delivery-planning` and `technical-design`; the spec supplies acceptance criteria, files, and check commands |
 
 ## Output
 
-Local Markdown files written to a `tickets/` subfolder:
+One file in the work order's folder:
 
-- `_epic.md` — the Epic ticket
-- `[story-name].md` — one file per story, named in kebab-case
+```
+docs/work/<ID>-<slug>/PLAN.md
+```
 
-Each file includes frontmatter (`ticket_type`, `phase`, `depends_on`, `epic`) that `ticket-publish` reads when creating tickets in the project management tool.
+- **How to run this**: the rules an executing agent follows. One slice at a time, run the slice's Check before stopping, stop and report after two failed Checks, never improvise a substitute or skip ahead. `review: stop` slices wait for the author to commit; `review: continue` slices commit and carry on; a cloud or background agent treats every slice as `continue` and ends with one pull request.
+- **Context, Goal, Done when**: enough *why* to survive the requirements document being archived.
+- **Slices**: each with its goal, review mode, files to create and modify, what not to touch, tasks, acceptance criteria with `Verify:` lines, and a Check block of exact commands.
+
+Also adds a one-line pointer to the plan in the repo-root `AGENTS.md`, creating it (and a `CLAUDE.md` symlink) if needed.
 
 ## How it works
 
-1. Reads the Delivery Plan and checks for unresolved Open Questions
-2. Presents the full story list for review before generating anything
-3. Generates `_epic.md` from `templates/epic-template.md`
-4. Generates one `.md` file per story from `templates/story-template.md`, in phase order
-5. Presents the list of generated files and prompts the user to review before deploying
+1. Reads the work order and the documents its route produced, and checks for unresolved Open Questions
+2. Proposes the slice list, with a review mode per slice, for confirmation before writing anything
+3. Recommends splitting the work order if it runs past about eight slices or splits into independent groups
+4. Writes `PLAN.md` from `templates/plan-template.md`
+5. Adds the `AGENTS.md` pointer
 
-No external tool connections are required. All output is local.
+## Why a plan rather than tickets
+
+Earlier versions wrote an Epic file and one Story file per story. In practice an agent works better from one document it can read top to bottom, with its execution rules at the top and a check at the end of every step, than from a folder of tickets it has to assemble. The slice keeps what a good story carried (files, the *why*, criteria that can be verified, the commands that prove it) and drops the scaffolding.
+
+Tracker issues are still available: `ticket-publish` mirrors each slice into one issue and writes the IDs back into the plan.
 
 ## Usage guidelines
 
-This skill runs entirely within the main agent — no subagents are spawned.
+This skill runs entirely within the main agent; no subagents are spawned.
 
 | Setting | Recommendation |
 |---|---|
-| Model | **claude-sonnet-4-6** is sufficient. The task is structured and well-constrained by the Delivery Plan and templates. |
+| Model | **claude-sonnet-4-6** is sufficient. The task is structured and well constrained by the inputs and the template. |
 | Effort | **Low to medium.** |
 
-Ticket quality depends on the Tech Spec. Passing only the Delivery Plan produces thinner stories. Passing both the Delivery Plan and the Tech Spec produces richer acceptance criteria and task breakdowns.
+Plan quality depends on the tech spec on the Full route. Without one, slices carry thinner acceptance criteria and the Check commands come from `AGENTS.md`.
 
-This is the safe step — review and edit the generated files before running `ticket-publish`. File changes are free; deleting 30 tickets from Linear is not.
+This is the safe step. Edit the plan freely before anything runs; editing a file is free, deleting thirty tracker issues is not.
 
 ## Routes
 
-Runs on **every** route — the one step no route skips. What it reads differs by route: the delivery plan on Full, the requirements document on Standard, the work order alone on Direct.
+Runs on **every** route, the one step no route skips. What it reads differs by route: the delivery plan on Full, the requirements document on Standard, the work order alone on Direct.
 
 Routes, escalation gates, and the work order format are defined in [`request-triage/references/routes.md`](../request-triage/references/routes.md).
 
-**Next step:** Review the files in `tickets/`, then run `ticket-publish` if the tickets should exist in Linear or GitHub.
+**Next step:** Build from the plan. Run `ticket-publish` first if the slices should exist as tracker issues.
 
 ## Files
 
@@ -63,6 +71,5 @@ Routes, escalation gates, and the work order format are defined in [`request-tri
 |---|---|
 | `SKILL.md` | Skill instructions |
 | `README.md` | This file |
-| `templates/epic-template.md` | Template for the Epic file |
-| `templates/story-template.md` | Template for each Story file |
+| `templates/plan-template.md` | Template for `PLAN.md` |
 | `agents-template.md` | Template for the repo-root `AGENTS.md` agent router |

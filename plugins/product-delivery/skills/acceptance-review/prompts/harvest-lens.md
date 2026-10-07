@@ -10,9 +10,9 @@ You are looking for what got *learned*, which is rarely the same as what got *pl
 
 ## Your inputs
 
-- **The work order folder** — work order, requirements document, tech spec and delivery plan where they exist, tickets
+- **The work order folder** — work order, requirements document, tech spec and delivery plan where they exist, and `PLAN.md`
 - **The diff or commit range** for the work as actually built
-- **The current durable documents** — `docs/product/glossary.md`, `docs/product/domain-model.md`, `docs/product/nfr.md`, and `docs/decisions/`
+- **The current durable documents** — `docs/domain/glossary.md`, `docs/domain/domain-model.md`, `docs/product/nfr.md`, and the decision records in `docs/architecture/decisions/` and `docs/product/decisions/`
 
 ---
 

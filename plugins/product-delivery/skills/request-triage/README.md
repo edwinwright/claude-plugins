@@ -26,7 +26,7 @@ One of three outcomes:
 
 | Outcome | What happens |
 |---|---|
-| **Build now** | A work order at `docs/work/YYYY-MM-<slug>/work-order.md` naming the route and, on Full, the gates that opened |
+| **Build now** | A work order at `docs/work/<ID>-<slug>/work-order.md` naming the route, the gates that opened on Full, and a `## Steps` checklist of the skills to run, in order |
 | **Park** | A new row appended to the appropriate MoSCoW section in `docs/product/product-backlog.md` |
 | **Won't build** | The lens's reasoning presented to the user; nothing written to disk |
 
@@ -36,7 +36,9 @@ One of three outcomes:
 2. Scans the existing backlog and feature directories for duplicates
 3. Runs the **Product Lens** subagent — a senior Product Owner who assesses the request and returns a structured triage verdict
 4. If the verdict is "Needs clarification", surfaces the subagent's questions to the user and re-runs triage with the enriched request
-5. Acts on the verdict: selects a route and writes the work order, appends to the backlog, or rejects with reasoning
+5. Acts on the verdict: selects a route and writes the work order with its Steps, appends to the backlog, or rejects with reasoning
+
+Pointed at an existing work order instead, it reports the Steps as they stand and names the next one, without re-triaging.
 
 Route selection is the main agent's call, not the lens's. The lens recommends; the main agent has read the glossary and the non-functional baseline and makes the decision.
 
@@ -55,7 +57,7 @@ The entry point on **every** route. This is the skill that chooses which route t
 
 Routes, escalation gates, and the work order format are defined in [`references/routes.md`](references/routes.md) — this skill owns them, and no other skill restates them.
 
-**Next step:** Run whichever skill the route names — `work-breakdown` on Direct, `backlog-refinement` on Standard and Full.
+**Next step:** The first line of the work order's Steps. Every skill after this ticks its own line and names the next.
 
 ## Files
 
@@ -63,7 +65,8 @@ Routes, escalation gates, and the work order format are defined in [`references/
 |---|---|
 | `SKILL.md` | Skill instructions |
 | `README.md` | This file |
+| `references/artefacts.md` | The docs layout, work order IDs, and how legacy layouts are read |
 | `references/routes.md` | The three delivery routes, the escalation gates, and the work order format — owned here, referenced everywhere else |
-| `work-order-template.md` | Template for `docs/work/YYYY-MM-<slug>/work-order.md` |
+| `work-order-template.md` | Template for `docs/work/<ID>-<slug>/work-order.md` |
 | `backlog-entry-template.md` | Template for a single MoSCoW backlog row |
 | `prompts/product-lens.md` | Product Owner triage persona (subagent) |

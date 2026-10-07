@@ -1,6 +1,6 @@
 ---
 name: acceptance-review
-description: 'Close out a delivered work order: verify the built result against its acceptance criteria, promote business rules discovered during the build into the glossary and domain model, promote contested costly-to-reverse choices into decision records, and archive the spent requirements document and technical specification. Use when a work order is built, before it is considered done. Triggers: "does this meet the acceptance criteria", "close out this work order", "sign off this work", "verify against the requirements", "what did we learn building this".'
+description: 'Close out a delivered work order: verify the built result against its acceptance criteria, promote business rules discovered during the build into the glossary and domain model, promote contested costly-to-reverse choices into decision records, and archive the spent work order folder. Use when a work order is built, before it is considered done. Triggers: "does this meet the acceptance criteria", "close out this work order", "sign off this work", "verify against the requirements", "what did we learn building this".'
 ---
 
 # acceptance-review
@@ -17,19 +17,21 @@ The harvest is the point. Without it, everything learned during the build stays 
 
 Runs at the close of the **Standard** and **Full** routes. Direct skips it: there is no requirements document to verify against and nothing durable to harvest — the tests and the code review are the acceptance. Routes are defined in `../request-triage/references/routes.md`.
 
-**Scope: one run per work order,** after the last story is done. Not per story — a per-story harvest fragments the durable additions and makes the archive step incoherent.
+**Scope: one run per work order,** after the last slice in `PLAN.md` is done. Not per slice: a per-slice harvest fragments the durable additions and makes the archive step incoherent.
+
+**Steps.** Read the work order's `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`. Your line is the last one, so every line above it should be ticked, `build` included.
 
 ---
 
 ## Step 1: Read the work order
 
-Read `docs/work/YYYY-MM-<slug>/work-order.md`, then everything else in the folder: `requirements.md`, `tech-spec.md` and `delivery-plan.md` where the route produced them, and every file in `tickets/`.
+Read `docs/work/<ID>-<slug>/work-order.md`, then everything else in the folder: `requirements.md`, `tech-spec.md` and `delivery-plan.md` where the route produced them, and `PLAN.md`. Work started under version 3 of this plugin has a `tickets/` folder instead of `PLAN.md`; read every file in it.
 
-Check the layout defaults in `../request-triage/references/artefacts.md` first — the host project may put work elsewhere, and older work may sit under `docs/features/<slug>/`.
+Check the layout defaults in `../request-triage/references/artefacts.md` first. The host project may put work elsewhere, and older work may sit in a legacy layout, which that file names.
 
 **If `status` is already `accepted`,** stop and say so. Re-running would re-harvest content that is already in the durable documents and produce duplicates.
 
-**If there is no work order,** say what is missing and offer to verify against the ticket files alone. Say clearly that you are doing so — verification against tickets is weaker than verification against agreed requirements, because tickets can be edited after the fact.
+**If there is no work order,** say what is missing and offer to verify against `PLAN.md` alone. Say clearly that you are doing so: verification against a plan is weaker than verification against agreed requirements, because a plan can be edited after the fact.
 
 ---
 
@@ -111,7 +113,7 @@ Record where each item landed. You need the paths for the `harvested_to` stamp i
 
 Read the repo-root `AGENTS.md` and delete the "Before you start" entry for this work order.
 
-The entry points into `docs/work/YYYY-MM-<slug>/`, which is about to move. Leaving it produces a router that sends agents to a path that no longer exists — worse than no entry at all, because it looks authoritative.
+The entry points into `docs/work/<ID>-<slug>/`, which is about to move. Leaving it produces a router that sends agents to a path that no longer exists — worse than no entry at all, because it looks authoritative.
 
 Change nothing else in the file.
 
@@ -122,17 +124,17 @@ Change nothing else in the file.
 **Never delete.** Move it:
 
 1. Confirm the working tree is clean and the work is committed. If it is not, stop and say so — archiving on top of uncommitted changes makes the move hard to undo.
-2. `git mv docs/work/YYYY-MM-<slug> docs/work/_archive/YYYY-MM-<slug>`
+2. `git mv docs/work/<ID>-<slug> docs/work/_archive/<ID>-<slug>`
 3. Stamp every file in the archived folder:
 
    ```yaml
    status: superseded
    archived: YYYY-MM-DD
-   harvested_to: [docs/product/glossary.md, docs/decisions/architecture/0007-webhook-retries.md]
+   harvested_to: [docs/domain/glossary.md, docs/architecture/decisions/0007-webhook-retries.md]
    ```
 
    Add these keys to existing frontmatter; do not replace it. Files without frontmatter get a block added at the top.
-4. Set the archived work order's `status: accepted`.
+4. Set the archived work order's `status: accepted`, and tick `acceptance-review` in its `## Steps`.
 5. If `docs/work/_archive/README.md` does not exist, create it from `archive-readme-template.md`.
 
 The stamp is what stops an agent finding a superseded specification and treating it as current. It is the one real cost of archiving rather than deleting, and it is worth paying for the ability to get the content back without git archaeology.
@@ -141,7 +143,7 @@ The stamp is what stops an agent finding a superseded specification and treating
 
 ## Step 8: Report
 
-Write the completed report to `docs/work/_archive/YYYY-MM-<slug>/acceptance-report.md` and present it.
+Write the completed report to `docs/work/_archive/<ID>-<slug>/acceptance-report.md` and present it.
 
 Tell the user:
 
@@ -149,12 +151,12 @@ Tell the user:
 >
 > - **Verified:** [n] criteria passed[, m waived]
 > - **Promoted:** [what went where, as paths]
-> - **Archived:** `docs/work/_archive/YYYY-MM-<slug>/`
+> - **Archived:** `docs/work/_archive/<ID>-<slug>/`
 >
 > Nothing was deleted. When you are satisfied nothing was lost:
 >
 > ```
-> rm -rf docs/work/_archive/YYYY-MM-<slug>
+> rm -rf docs/work/_archive/<ID>-<slug>
 > ```
 >
 > The durable documents are now current as of this work. That is the point of this step — they go stale one unharvested feature at a time."

@@ -11,7 +11,9 @@ You are helping the user turn a product or feature idea into a structured Produc
 
 Runs on the **Standard** and **Full** routes. The Direct route skips it — on Direct, a requirements document would only restate the request. Routes are defined in `../request-triage/references/routes.md`.
 
-**Before you start,** read the work order at `docs/work/YYYY-MM-<slug>/work-order.md` for the route and the triaged request. If no work order exists, say so and offer to run `request-triage` first, or to proceed on the Standard route without one. Do not invent a work order.
+**Before you start,** read the work order at `docs/work/<ID>-<slug>/work-order.md` for the route and the triaged request. If no work order exists, say so and offer to run `request-triage` first, or to proceed on the Standard route without one. Do not invent a work order.
+
+**Steps.** If a work order exists, read its `## Steps` before you start. If a line above yours is unticked, name it and ask whether to proceed without it. When you finish, tick your own line and end your hand-off with `Next: <first unticked step>`. The full rule is **Following the Steps** in `../request-triage/references/routes.md`.
 
 Your goal is a requirements document clear enough to hand on without further clarification — to `technical-design` on the Full route, or straight to `work-breakdown` on Standard.
 
@@ -70,10 +72,10 @@ The **Open Questions** section matters — use it for anything that remains unre
 Save the requirements document into the work order's folder, alongside the work order that opened it:
 
 ```
-docs/work/YYYY-MM-<slug>/requirements.md
+docs/work/<ID>-<slug>/requirements.md
 ```
 
-Use the slug and date from the work order rather than deriving new ones — everything for one piece of work lives in one folder and moves together. If there is no work order, derive `YYYY-MM` from today and the slug from the feature name.
+Use the ID and slug from the work order rather than deriving new ones — everything for one piece of work lives in one folder and moves together. If there is no work order, find an ID as **Work order IDs** in `../request-triage/references/artefacts.md` describes, and derive the slug from the feature name.
 
 Placement and legacy layouts are covered in `../request-triage/references/artefacts.md`. Check the host project's `AGENTS.md` or `CLAUDE.md` first — `docs/work/` is the default, not a fixed path.
 
@@ -83,8 +85,14 @@ Tell the user what comes next, which depends on the route:
 
 > **Full route:** "This is ready to pass to `technical-design`, which will run a dev team of subagents to produce a Technical Specification."
 >
-> **Standard route:** "This is ready to pass to `work-breakdown`, which will decompose it into ticket files."
+> **Standard route:** "This is ready to pass to `work-breakdown`, which will break it into the slices of a `PLAN.md`."
 
 In both cases add:
 
 > "If anything looks wrong or incomplete, edit it now — everything downstream is built on what this document says. If there are Open Questions, resolve them first."
+
+---
+
+## Finally: tick your step
+
+If there is a work order, tick `backlog-refinement` in its `## Steps` and end with `Next: <first unticked step>`, or say the work order is complete if nothing is left. Change nothing else in the work order.

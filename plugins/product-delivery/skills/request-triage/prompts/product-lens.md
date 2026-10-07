@@ -34,7 +34,8 @@ Compare the request against the product vision (if provided). Does this move the
 
 ### 3. Is the scope appropriate for a single feature?
 
-- **Too broad**: This sounds like a new product or a multi-feature initiative. If so, recommend "Park" and note that it may need a `product-definition` first.
+- **A new product**: The request is for a whole product, not a feature of an existing one. Recommend "Build now" with `ROUTE: Full` and `GATES: new product`. The main agent opens a product bootstrap work order, which runs discovery and product definition before any feature is built.
+- **Too broad for one feature**: A multi-feature initiative inside an existing product. Recommend "Park" and say how it might split, so each part can be triaged on its own.
 - **Too narrow**: This is a minor UI tweak, a copy change, or a config change. That is not a reason to reject it — it is a reason to route it Direct. Recommend "Build now" with `ROUTE: Direct`.
 - **Right-sized**: One coherent capability, deliverable in a few weeks. Proceed.
 

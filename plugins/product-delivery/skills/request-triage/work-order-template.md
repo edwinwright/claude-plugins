@@ -1,4 +1,5 @@
 ---
+id: [ID, e.g. MD-123]
 route: direct | standard | full
 escalation_gates: []
 slug: [kebab-case-slug]
@@ -17,6 +18,12 @@ status: open
 **[Direct | Standard | Full]**
 
 [Two or three sentences: why this route. On Full, name each gate that opened and what makes it actually true — "introduces `settlement window`, not in the glossary", not "may involve new concepts". On Direct, say what a requirements document would have added, and why the answer is nothing.]
+
+## Steps
+
+[The checklist for this route, copied from `references/routes.md`. Each skill ticks its own line when it finishes and names the next unticked one.]
+
+- [ ] [skill] → [what it produces]
 
 ## Known constraints
 
