@@ -11,7 +11,7 @@ Use a `src/` directory. It keeps application code separate from the growing pile
 ```
 src/
   app/          routes, layouts, route handlers — routing only
-  features/     one directory per feature: components, hooks, logic, types
+  modules/      one directory per feature: components, hooks, logic, types
   components/   shared UI used by two or more features
   lib/          framework-agnostic utilities and clients
   services/     data access — the only place that talks to a database or external API
@@ -24,7 +24,7 @@ A `components/` directory holding every component in the application tells you n
 Group by feature instead. Everything a feature needs lives in its directory until a second feature needs it, at which point it moves up to `components/` or `lib/`. **Promote on the second use, not in anticipation of it.**
 
 ```
-src/features/checkout/
+src/modules/checkout/
   components/
   hooks/
   checkout-service.ts
