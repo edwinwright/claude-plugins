@@ -63,7 +63,7 @@ Route B is the documented default. Escalating to C requires **naming a gate** th
 
 ## engineering
 
-`coding-conventions` holds only the judgement calls a linter cannot make — naming that carries meaning, function and module boundaries, error handling, server/client component choice, feature-based folder structure. Anything ESLint decides deterministically stays in the lint config instead.
+`coding-conventions` holds only the judgement calls a linter cannot make — naming that carries meaning, function and file boundaries, error handling, server/client component choice, feature-based folder structure. Anything ESLint decides deterministically stays in the lint config instead.
 
 | Skill | Does |
 |---|---|

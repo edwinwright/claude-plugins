@@ -1,6 +1,6 @@
 ---
 name: coding-conventions
-description: Personal coding conventions for TypeScript, React, and Next.js — the judgement calls a linter cannot make, plus the standard setup a new repository gets. Use when writing or refactoring TypeScript or JavaScript, creating React components, deciding where a file or folder belongs, reviewing code for anything beyond lint errors, or setting up a new project. Covers naming that carries meaning, function and module boundaries, error handling, server/client component choice, feature-based folder structure, and the lint and format stack.
+description: Personal coding conventions for TypeScript, React, and Next.js — the judgement calls a linter cannot make, plus the standard setup a new repository gets. Use when writing or refactoring TypeScript or JavaScript, creating React components, deciding where a file or folder belongs, reviewing code for anything beyond lint errors, or setting up a new project. Covers naming that carries meaning, function and file boundaries, error handling, server/client component choice, feature-based folder structure, and the lint and format stack.
 ---
 
 # Coding Conventions
@@ -15,7 +15,7 @@ This skill holds **only the rules a linter cannot enforce**. Anything a linter d
 |---|---|
 | `no-explicit-any`, `prefer-const`, `no-var` | When `unknown` is the right type and when to model a union instead |
 | `naming-convention`, `filename-case` | What a name should *say* |
-| `import/order`, `no-empty` | Where a module boundary belongs |
+| `import/order`, `no-empty` | Where a file boundary belongs |
 | Anything with an autofix | Anything needing a judgement call |
 
 If you find yourself about to write a rule here that ESLint already enforces, stop — the lint config owns it.
