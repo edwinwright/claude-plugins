@@ -63,11 +63,11 @@ Route B is the documented default. Escalating to C requires **naming a gate** th
 
 ## engineering
 
-`coding-conventions` holds only the judgement calls a linter cannot make — naming that carries meaning, function and file boundaries, error handling, server/client component choice, feature-based folder structure. Anything ESLint decides deterministically stays in the lint config instead.
+`coding-conventions` holds only the judgement calls a linter cannot make — naming that carries meaning, function and file boundaries, error handling, server/client component choice, React Native platform and device constraints, feature-based folder structure. Anything ESLint decides deterministically stays in the lint config instead.
 
 | Skill | Does |
 |---|---|
-| `coding-conventions` | TypeScript, React, and Next.js conventions, plus the standard setup a new repository gets |
+| `coding-conventions` | TypeScript, React, Next.js, and React Native conventions, plus the standard setup a new repository gets |
 
 ## knowledge
 
@@ -98,7 +98,7 @@ plugins/
 │   ├── .claude-plugin/plugin.json
 │   └── skills/
 │       └── coding-conventions/
-│           └── references/          typescript, react-nextjs, project-setup doctrine
+│           └── references/          typescript, react, nextjs, react-native, project-setup doctrine
 └── knowledge/
     ├── .claude-plugin/plugin.json
     └── skills/

@@ -1,6 +1,6 @@
 ---
 name: coding-conventions
-description: Personal coding conventions for TypeScript, React, and Next.js — the judgement calls a linter cannot make, plus the standard setup a new repository gets. Use when writing or refactoring TypeScript or JavaScript, creating React components, deciding where a file or folder belongs, reviewing code for anything beyond lint errors, or setting up a new project. Covers naming that carries meaning, function and file boundaries, error handling, server/client component choice, feature-based folder structure, and the lint and format stack.
+description: Personal coding conventions for TypeScript, React, Next.js, and React Native with Expo — the judgement calls a linter cannot make, plus the standard setup a new repository gets. Use when writing or refactoring TypeScript or JavaScript, creating React components or mobile screens, deciding where a file or folder belongs, reviewing code for anything beyond lint errors, or setting up a new project. Covers naming that carries meaning, function and file boundaries, error handling, server/client component choice, platform differences and device constraints on mobile, feature-based folder structure, and the lint and format stack.
 ---
 
 # Coding Conventions
@@ -36,5 +36,7 @@ Load only what the task needs.
 | File | Read when |
 |---|---|
 | `references/typescript.md` | Writing or reviewing any TypeScript — naming, functions, types, error handling |
-| `references/react-nextjs.md` | Building components, choosing server vs client, placing a file |
+| `references/react.md` | Any React work — structure, placing a file, data access, state, memoisation. Always read with one runtime file below |
+| `references/nextjs.md` | A Next.js App Router project — choosing server vs client, mutations |
+| `references/react-native.md` | A React Native or Expo project — platform differences, layout, accessibility, lists, navigation, device constraints |
 | `references/project-setup.md` | Starting a new repository, or configuring lint, format, and the lint hook |

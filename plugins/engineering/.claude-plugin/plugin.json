@@ -1,7 +1,7 @@
 {
   "name": "engineering",
-  "version": "1.1.0",
-  "description": "Personal engineering conventions: the judgement rules for TypeScript, React, and Next.js that a linter cannot enforce, plus the standard setup a new project gets.",
+  "version": "1.2.0",
+  "description": "Personal engineering conventions: the judgement rules for TypeScript, React, Next.js, and React Native that a linter cannot enforce, plus the standard setup a new project gets.",
   "author": {
     "name": "Ed Wright"
   }

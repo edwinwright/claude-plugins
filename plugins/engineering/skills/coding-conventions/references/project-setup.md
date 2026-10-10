@@ -11,7 +11,10 @@ What a new repository gets, and why. For an existing project, read its `CLAUDE.m
 | Language | TypeScript, `strict: true` |
 | Linting | ESLint with `typescript-eslint` type-aware rules |
 | Formatting | Prettier |
-| Framework lint rules | `eslint-config-next` on Next.js projects |
+| React lint rules | `eslint-plugin-react-hooks`, including its React Compiler rules |
+| Framework lint rules | `eslint-config-next` on Next.js projects; `eslint-config-expo` plus `eslint-plugin-react-native` on Expo projects |
+
+`eslint-config-expo` is deliberately minimal — JSX, TypeScript, and platform file extensions — so it does not catch React Native mistakes such as raw text outside `<Text>`. `eslint-plugin-react-native` adds those.
 
 Type-aware linting requires ESLint to know about your `tsconfig.json`. It is slower than syntactic linting and worth it — the rules that need type information are the ones that catch real bugs rather than style drift.
 
